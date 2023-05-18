@@ -22,3 +22,8 @@ class FeelogDetailSerializer(serializers.ModelSerializer):
     model = Feelog
     fields = ('title','content','username','user','created_at','movie','mood','like_users')
     read_only_fields = ('movie',)
+
+class MoodSerializer(serializers.ModelSerializer):
+  class Meta:
+    model = Mood
+    fields = '__all__'
