@@ -4,7 +4,9 @@ import SignupView from '@/views/SignupView'
 import HomeView from '@/views/HomeView'
 import LoginView from '@/views/LoginView'
 import MovieListView from '@/views/MovieListView'
-
+import MovieDetailView from '@/views/MovieDetailView'
+import FeelogDetailView from '@/views/FeelogDetailView'
+import MyPageView from '@/views/MyPageView'
 
 Vue.use(VueRouter)
 
@@ -29,7 +31,22 @@ const routes = [
     path : '/movielist',
     name : 'MovieListView',
     component : MovieListView,
-  }
+  },
+  {
+    path : '/movie-detail',
+    name : 'MovieDetailView',
+    component : MovieDetailView,
+  },
+  {
+    path : '/feelog-detail',
+    name : 'FeelogDetailView',
+    component : FeelogDetailView,
+  },
+  {
+    path : '/mypage',
+    name : 'MyPageView',
+    component : MyPageView,
+  },
 ]
 
 const router = new VueRouter({
