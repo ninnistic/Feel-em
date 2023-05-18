@@ -1,5 +1,6 @@
 from django.db import models
 from movies.models import Movie
+from django.conf import settings
 # Create your models here.
 
 class Mood(models.Model):
@@ -11,4 +12,4 @@ class Feelog(models.Model):
     created_at = models.DateField(auto_now_add=True)
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE, related_name='feelogs')
     mood = models.ForeignKey(Mood, on_delete=models.CASCADE, related_name='mood_feelog')
-    
+    like_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_feelogs')
