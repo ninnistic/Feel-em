@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 
 
 class Genre(models.Model):
@@ -12,3 +13,4 @@ class Movie(models.Model):
     popularity = models.IntegerField()
     vote_average = models.FloatField()
     genres = models.ManyToManyField(Genre, related_name='movies')
+    like_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_movies')
