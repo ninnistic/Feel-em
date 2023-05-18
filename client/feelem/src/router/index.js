@@ -1,52 +1,52 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import SignupView from '@/views/SignupView'
-import HomeView from '@/views/HomeView'
-import LoginView from '@/views/LoginView'
-import MovieListView from '@/views/MovieListView'
-import MovieDetailView from '@/views/MovieDetailView'
-import FeelogDetailView from '@/views/FeelogDetailView'
-import MyPageView from '@/views/MyPageView'
+// import SignupView from '@/views/SignupView'
+// import HomeView from '@/views/HomeView'
+// import LoginView from '@/views/LoginView'
+// import MovieListView from '@/views/MovieListView'
+// import MovieDetailView from '@/views/MovieDetailView'
+// import FeelogDetailView from '@/views/FeelogDetailView'
+// import MyPageView from '@/views/MyPageView'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path : '/',
-    name : 'HomeView',
-    component : HomeView
-
+    redirect: '/home'
+  },
+  {
+    path : '/home',
+    component : () => import('@/views/HomeView.vue')
   },
   {
     path: '/signup',
-    name: 'SignupView',
-    component: SignupView
+    component: () => import('@/views/SignupView.vue')
   },
   {
     path : '/login',
-    name : 'LoginView',
-    component : LoginView
+    component : () => import('@/views/LoginView.vue')
   },
   {
     path : '/movielist',
-    name : 'MovieListView',
-    component : MovieListView,
+    component : () => import('@/views/MovieListView.vue')
   },
   {
     path : '/movie-detail',
-    name : 'MovieDetailView',
-    component : MovieDetailView,
+    component : () => import('@/views/MovieDetailView.vue')
   },
   {
     path : '/feelog-detail',
-    name : 'FeelogDetailView',
-    component : FeelogDetailView,
+    component : () => import('@/views/FeelogDetailView.vue')
   },
   {
     path : '/mypage',
-    name : 'MyPageView',
-    component : MyPageView,
+    component : () => import('@/views/MyPageView.vue')
   },
+  {
+    path : '*',
+    component : () => import('@/views/NotFoundPage.vue')
+  }
 ]
 
 const router = new VueRouter({
