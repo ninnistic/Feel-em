@@ -34,7 +34,7 @@ def feelog(request, movie_pk, feelog_pk):
   elif request.method == 'DELETE':
     feelog = get_object_or_404(Feelog, pk=feelog_pk)
     feelog.delete()
-    return Response({"DELETE": 'suceshvefb'},status=status.HTTP_204_NO_CONTENT)
+    return Response({"DELETE": 'success'},status=status.HTTP_204_NO_CONTENT)
 
 @api_view(['GET'])
 def mood_list(request):
