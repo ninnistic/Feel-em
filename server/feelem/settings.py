@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+import os, environ
+
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -27,6 +30,16 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# environ import 해오기 
+env = environ.Env(DEBUG=(bool, True))
+
+#환경변수 파일 읽어오기
+environ.Env.read_env(
+    env_file=os.path.join(BASE_DIR, '.env')
+)
+
+SECRET_KEY = env('SECRET_KEY') #SECEREY_KEY 값 불러오기
+DEBUG = env('DEBUG') #DEBUG 값 불러오기
 
 # Application definition
 
