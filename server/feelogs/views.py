@@ -8,7 +8,7 @@ from django.shortcuts import get_object_or_404, get_list_or_404
 
 from .models import Feelog, Mood
 from movies.models import Movie
-from .serializers import FeelogListSerializer, FeelogDetailSerializer, MovieFeelogSerializer, MoodSerializer
+from .serializers import FeelogListSerializer, FeelogDetailSerializer, MovieFeelogSerializer, MoodSerializer,FeelogMoodDetailSerializer
 
 @api_view(['GET','POST'])
 def feelog_list(request, movie_pk):
@@ -29,7 +29,7 @@ def feelog(request, movie_pk, feelog_pk):
   if request.method == 'GET':
     movie = get_object_or_404(Movie, pk=movie_pk)
     feelog = get_object_or_404(Feelog, pk=feelog_pk)
-    serializer = FeelogDetailSerializer(feelog)
+    serializer = FeelogMoodDetailSerializer(feelog)
     return Response(serializer.data)
   elif request.method == 'DELETE':
     feelog = get_object_or_404(Feelog, pk=feelog_pk)

@@ -8,5 +8,5 @@ urlpatterns = [
     # 단일 영화 조회 ('GET' : movies/<movie_pk>)
     path('<movie_pk>/', views.movie, name='movie'),
     # 전체 장르 조회 ('GET' : movies/genres)
-    path('genres/', views.genre_list, name='genre_list')
+    path('all/genres/', views.genre_list, name='genre_list')
 ]
