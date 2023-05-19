@@ -45,3 +45,13 @@ Vue.use(VModal)
 
 ## 생각해볼 문제
 여러 libraries를 사용하는 까닭에 syntax가 겹치는 문제 발생할 수도 있다.
+
+## Axios 전역 설정
+```
+// 1. main.js 에 아래 코드 입력
+
+import axios from 'axios'
+Vue.prototype.$http = axios 
+
+```
+* 이후 사용하고 싶은 Vue Component에서 this.$http를 통해 axios 사용 가능하다. 
