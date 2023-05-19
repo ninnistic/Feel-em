@@ -31,17 +31,18 @@ const routes = [
     path : '/movielist',
     component : () => import('@/views/MovieListView.vue')
   },
-  {
-    path : '/movie-detail',
-    component : () => import('@/views/MovieDetailView.vue')
-  },
-  {
-    path : '/feelog-detail',
-    component : () => import('@/views/FeelogDetailView.vue')
-  },
+  
   {
     path : '/mypage',
     component : () => import('@/views/MyPageView.vue')
+  },
+  {
+    path : '/movie-detail/:id',
+    component : () => import('@/views/MovieDetailView.vue')
+  },
+  {
+    path : '/feelog-detail/:id',
+    component : () => import('@/views/FeelogDetailView.vue')
   },
   {
     path : '*',

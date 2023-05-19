@@ -14,7 +14,15 @@ export default {
   },
   data() {
     return {
-      
+    }
+  },
+  created(){
+    this.getMovieDetail()
+  },
+  methods : {
+    getMovieDetail(){
+      const id = this.$route.params.id
+      this.$store.dispatch('getMovieDetail', id)
     }
   }
 
