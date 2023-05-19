@@ -9,6 +9,7 @@
 *  `npm i vuex-persistedstate`
 *  `vue add router` - history mode [yes] 선택
 *  `vue add vuetify`
+*  `npm i axios`
 *  `npm install vue bootstrap-vue bootstrap`
 ```
 // main.js에 추가 
