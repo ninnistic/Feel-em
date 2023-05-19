@@ -3,11 +3,17 @@ from .models import Mood, Feelog
 from movies.models import Movie
 from movies.serializers import MovieDetailSerializer
 
+# class TotalFeeologSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = Feelog
+#         fields = '__all__'
+
+
 class FeelogListSerializer(serializers.ModelSerializer):
     username = serializers.CharField(source='user.username', read_only=True)
     class Meta:
         model = Feelog
-        fields = ('title','user', 'username')
+        fields = '__all__'
         
 class MovieFeelogSerializer(serializers.ModelSerializer):
     feelogs = FeelogListSerializer(many=True)
