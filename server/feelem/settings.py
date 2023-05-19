@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os, environ
-
+from datetime import timedelta
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -47,6 +47,9 @@ INSTALLED_APPS = [
     'feelogs',
     'movies',
     'accounts',
+    
+    "corsheaders",
+    
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -58,12 +61,17 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:8080',
 ]
 
 ROOT_URLCONF = 'feelem.urls'
@@ -86,7 +94,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'feelem.wsgi.application'
 
-
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(days=1),
+}
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
@@ -116,6 +126,17 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# REST_FRAMEWORK = {
+#         'DEFAULT_PERMISSION_CLASSES': [
+#             'rest_framework.permissions.IsAuthenticated',
+#         ],
+#         'DEFAULT_AUTHENTICATION_CLASSES': (
+#             'rest_framework.authentication.BasicAuthentication',  # enables simple command line authentication
+#             'rest_framework.authentication.SessionAuthentication',
+#             'rest_framework.authentication.TokenAuthentication',      
+#             'rest_framework_simplejwt.authentication.JWTAuthentication',    
+#         )
+#     }
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/

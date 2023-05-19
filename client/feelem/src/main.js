@@ -11,7 +11,10 @@ import BootstrapVue from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import VModal from 'vue-js-modal';
+// axios
+import axios from 'axios'
 
+Vue.prototype.$http = axios
 
 Vue.config.productionTip = false
 
