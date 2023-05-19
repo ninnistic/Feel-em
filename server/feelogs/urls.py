@@ -9,5 +9,5 @@ urlpatterns = [
     path('<int:movie_pk>/<int:feelog_pk>/', views.feelog, name='feelog'),
     # # Mood 전체 조회 ('GET')
     path('moods', views.mood_list, name='mood_list'),
-
+    # 
 ]
