@@ -48,7 +48,7 @@ INSTALLED_APPS = [
     'movies',
     'accounts',
     
-    "corsheaders",
+    'corsheaders',
     
     'django.contrib.admin',
     'django.contrib.auth',

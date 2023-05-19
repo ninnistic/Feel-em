@@ -5,6 +5,7 @@ from django.conf import settings
 class Mood(models.Model):
     title = models.CharField(max_length=10)
     image = models.CharField(max_length=100)
+    
 class Feelog(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
