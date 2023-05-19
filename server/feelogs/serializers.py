@@ -7,7 +7,7 @@ class FeelogListSerializer(serializers.ModelSerializer):
     username = serializers.CharField(source='user.username', read_only=True)
     class Meta:
         model = Feelog
-        fields = ('title','user', 'username')
+        fields = ('title','user', 'username',)
         
 class MovieFeelogSerializer(serializers.ModelSerializer):
     feelogs = FeelogListSerializer(many=True)

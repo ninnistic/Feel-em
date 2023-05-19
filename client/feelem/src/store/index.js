@@ -23,6 +23,7 @@ export default new Vuex.Store({
         url : `${BASE_URI}/movies`
       })
       .then(res => {
+        console.log(res)
         context.commit('SET_MOVIES', res)
       })
       .catch(err => {
