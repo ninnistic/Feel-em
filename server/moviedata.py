@@ -18,12 +18,12 @@ def save_genre():
     for genre_Data in genres['genres']:
         genre = Genre(
             name = genre_Data['name'],
-            genre_ids = genre_Data['id']
+            # genre_ids = genre_Data['id']  해당 코드 넣으려면 models.py에 추가할 것.
         )
         genre.save()
 
 def save_movie():
-    for page in range(3,6):
+    for page in range(1,6):
         print(page)
         URL = f"https://api.themoviedb.org/3/movie/popular?api_key=3bf4d020baa9f161f8eaac60d2ab7205&language=ko-KR&page={page}"
 
@@ -48,7 +48,7 @@ def save_movie():
         #     genre = Genre.objects.get(genre_ids=genre_id)
         #     print(genre)
         #     movie.genres.add(genre)
-            
+            # 에러! django.db.utils.IntegrityError: FOREIGN KEY constraint failed
             
 
 if __name__=='__main__':
