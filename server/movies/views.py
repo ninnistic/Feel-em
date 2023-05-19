@@ -34,3 +34,16 @@ def movie(request, movie_pk):
         movie = get_object_or_404(Movie, pk=movie_pk)
         serializer = MovieDetailSerializer(movie)
         return Response(serializer.data)
+    
+@api_view(['POST'])  
+def likemovie(request,movie_pk):
+    # if request.user.is_authenticated:
+        if request.method == 'POST':
+            user = request.user
+            movie = get_object_or_404(Movie, pk=movie_pk)
+            if movie in user.save_movies.all():
+                user.save_movies.remove(movie)
+                return Response({"Unllike": 'success'})
+            else:
+                user.save_movies.add(movie)
+                return Response({"like": 'success'})
