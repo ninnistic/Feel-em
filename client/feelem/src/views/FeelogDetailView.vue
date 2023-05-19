@@ -10,7 +10,7 @@
 export default {
   name : 'FeelogDetailView',
   components : {
-
+    
   },
   data() {
     return {
