@@ -14,6 +14,7 @@ def get_movies():
             if release_date and int(release_date[:4]) >= 2010:
                 if movie.get('release_date', '') and movie.get('poster_path', ''):
                     fields = {
+                        'movie_num':movie['id'],
                         'title': movie['title'],
                         'release_date': movie['release_date'],
                         'popularity': movie['popularity'],
@@ -25,7 +26,7 @@ def get_movies():
                     }
 
                     data = {
-                        "pk": movie['id'],
+                        # "pk": movie['id'],
                         "model": "movies.Movie",
                         "fields": fields,
                     }

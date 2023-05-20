@@ -7,7 +7,7 @@ class Genre(models.Model):
 
 
 class Movie(models.Model):
-    
+    movie_num = models.IntegerField()
     title = models.CharField(max_length=500)
     overview = models.TextField()
     poster_path = models.CharField(max_length=300)

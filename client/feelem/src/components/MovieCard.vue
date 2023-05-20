@@ -4,7 +4,7 @@
       <img :src="posterPath" alt="posterImage" @click="movieDetail">
       <p>{{movie.title}}</p>
       <p> 평점 : {{movie.vote_average}}</p>
-      <p>{{movie.movie_id}}</p>
+      <p>{{movie.id}}</p>
     </div>
 
    
@@ -19,7 +19,7 @@ export default {
   },
   data() {
     return {
-      id : this.movie.movie_id
+      id : this.movie.id
     }
     
   },
@@ -31,7 +31,7 @@ export default {
   methods : {
     movieDetail(){
       console.log(this.movie)
-      return this.$router.push(`movie-detail/` + this.id)
+      return this.$router.push(`movie-detail/${this.id}`)
     }
   }
 }
