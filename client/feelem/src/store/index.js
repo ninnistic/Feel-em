@@ -16,7 +16,7 @@ export default new Vuex.Store({
       state.movies = res.data
     },
     SET_MOVIE_DETAIL(state, res){
-      state.movie = res
+      state.movie = res.data
     }
   },
   actions: {
@@ -41,6 +41,18 @@ export default new Vuex.Store({
       .then(res => {
         console.log(res)
         context.commit('SET_MOVIE_DETAIL', res)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+    },
+    getFeelogDetail(context, id){
+      axios({
+        method : 'get',
+        url : `${BASE_URI}/feelogs/${id}`
+      })
+      .then(res => {
+        console.log(context, res)
       })
       .catch(err => {
         console.log(err)

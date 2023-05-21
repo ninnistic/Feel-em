@@ -22,19 +22,25 @@ export default {
   },
   created(){
     this.getMovieDetail()
+    this.getFeelogDetail()
   },
   methods : {
     getMovieDetail(){
       const id = this.$route.params.id
       this.$store.dispatch('getMovieDetail', id)
+    },
+    getFeelogDetail() {
+      const id = this.$route.params.id
+      this.$store.dispatch('getFeelogDetail', id)
     }
+
   },
   computed : {
     getImageUrl() {
-      return `https://image.tmdb.org/t/p/w500`+ this.$store.state.movie.data.poster_path
+      return `https://image.tmdb.org/t/p/w500`+ this.$store.state.movie.poster_path
     },
     getMovieInfo(){
-      return this.$store.state.movie.data
+      return this.$store.state.movie
     }
   },
 
