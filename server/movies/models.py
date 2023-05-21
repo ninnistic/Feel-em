@@ -15,7 +15,7 @@ class Movie(models.Model):
     popularity = models.IntegerField()
     vote_average = models.FloatField()
     genres = models.ManyToManyField(Genre, related_name='movies')
-    save_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='save_movies')
+    # save_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='save_movies')
 
 # def save_genre():
 #     URL = 'https://api.themoviedb.org/3/genre/movie/list?api_key=3bf4d020baa9f161f8eaac60d2ab7205&language=ko-kr'

@@ -6,5 +6,5 @@ class UserSerializer(serializers.ModelSerializer):
     # followings_count = serializers.IntegerField(source = 'followings.count')
     class Meta:
         model = get_user_model()
-        fields=('username','password','email','goal_of_month','favorite_genre')
+        fields=('username','password','email','goal_of_month','favorite_genre','followings','save_movies')
 

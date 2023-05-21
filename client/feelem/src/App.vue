@@ -14,7 +14,7 @@ App.vue 입니다.
   <router-link to="/movielist">전체</router-link> |
   <!-- <router-link to="/movie-detail/:id">영화상세</router-link> | -->
   <router-link to="/feelog-detail }">리뷰상세</router-link> |
-  <router-link to="/mypage">마이페이지</router-link>
+  <router-link :to="`/mypage/`+getNickname">마이페이지</router-link>
 </nav>
 <router-view @Login="isLogin=true"/>      
 </div>

@@ -33,7 +33,7 @@ const routes = [
   },
   
   {
-    path : '/mypage',
+    path : '/mypage/:nickname',
     component : () => import('@/views/MyPageView.vue')
   },
   {

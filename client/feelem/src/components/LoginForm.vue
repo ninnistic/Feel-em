@@ -19,7 +19,6 @@
 </template>
 
 <script>
-import axios from 'axios'
 
 export default {
   name : 'SignupForm',
@@ -33,27 +32,10 @@ export default {
   },
   methods : {
     login(){
-      axios({
-        method: "POST", 
-        url: "http://127.0.0.1:8000/api/token/",
-        data: this.userdata  
-      })
-      .then((response) => {
-        // console.log(response)
-        const nickname = this.userdata.username
-        console.log(nickname)
-        this.$store.dispatch('setusername',nickname)
-        localStorage.setItem("jwt", response.data.access)
-        //localStorage.setItem("nickname", nickname)
+      const payload = this.userdata
+      this.$store.dispatch('login', payload)
 
-        //this.$emit('login')
-        // 로그인 성공하면, todo list로 이동하기
-        this.$router.push(`home`)
-
-      })
-      .catch((error) => {
-        console.log(error)
-      })
+      
     }
   }
 

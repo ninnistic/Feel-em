@@ -9,7 +9,8 @@ export default new Vuex.Store({
   state: {
     movies: [],
     feelogs: [],
-    nickname: null
+    nickname: null,
+    profile:{},
   },
   getters: {
     getRecommendedMovies(state) {
@@ -25,6 +26,9 @@ export default new Vuex.Store({
     }
   },
   mutations: {
+    SET_PROFILE(state, res){
+      state.profile = res
+    },
     SET_MOVIES(state, res){
       state.movies = res.data
     },
@@ -34,6 +38,9 @@ export default new Vuex.Store({
     },
     SET_SIGNUP() {
       router.push(`login`) 
+    },
+    SET_LOGIN() {
+      router.push(`home`) 
     },
     SET_NICKNAME(state, nickname){
       state.nickname = nickname
@@ -58,6 +65,20 @@ export default new Vuex.Store({
   },
   actions: {
     // Consider renaming to fetchAllMovies
+    fetchProfile(context,nickname){
+      axios({
+        method : 'get',
+        url : `${BASE_URI}/accounts/${nickname}`,
+        headers: authHeaders()
+      })
+      .then(res => {
+        console.log(res)
+        context.commit('SET_PROFILE', res)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+    },
     fetchMovieList(context){
       axios({
         method : 'get',
@@ -113,6 +134,34 @@ export default new Vuex.Store({
         console.log(err)
       })
     },
+    login(context, payload){
+      const username = payload.username
+      const password = payload.password
+        axios({
+          method: "POST", 
+          url: "http://127.0.0.1:8000/api/token/",
+          data: {
+            username, password
+          },
+          headers: authHeaders()
+        })
+        .then((response) => {
+          // console.log(response)
+          const nickname = payload.username
+          // console.log(nickname)
+          context.dispatch('setusername',nickname)
+          localStorage.setItem("jwt", response.data.access)
+          localStorage.setItem("nickname", nickname)
+  
+          //this.$emit('login')
+          // 로그인 성공하면, todo list로 이동하기
+          context.commit('SET_LOGIN')
+  
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+      },
     signup(context, payload){
       const username = payload.username
       const email = payload.email
