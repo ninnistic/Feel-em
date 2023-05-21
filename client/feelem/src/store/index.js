@@ -9,8 +9,12 @@ export default new Vuex.Store({
   state: {
     movies : null,
     movie : null,
+    nickname:null,
   },
   getters: {
+    isSignedIn(state) {
+      return state.nickname != null
+    }
     
   },
   mutations: {
@@ -26,6 +30,9 @@ export default new Vuex.Store({
     },
     SET_SIGNUP() {
       router.push(`login`) 
+    },
+    SET_NICKNAME(state, nickname){
+      state.nickname = nickname
     }
   },
   actions: {
@@ -89,6 +96,14 @@ export default new Vuex.Store({
         console.log(err)
         console.log(payload)
       }) 
+    },
+    signOut(context) {
+      localStorage.removeItem('jwt')
+      localStorage.removeItem('nickname')
+      context.commit('SET_NICKNAME', null)
+    },
+    setusername(context, nickname){
+      context.commit('SET_NICKNAME', nickname)
     }
 
   },

@@ -40,9 +40,13 @@ export default {
       })
       .then((response) => {
         // console.log(response)
+        const nickname = this.userdata.username
+        console.log(nickname)
+        this.$store.dispatch('setusername',nickname)
         localStorage.setItem("jwt", response.data.access)
-        this.$emit('login')
-        
+        //localStorage.setItem("nickname", nickname)
+
+        //this.$emit('login')
         // 로그인 성공하면, todo list로 이동하기
         this.$router.push(`home`)
 
