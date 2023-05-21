@@ -1,6 +1,7 @@
 <template>
 <div>
 App.vue 입니다.
+
 <nav>
   <router-link to="/signup">회원가입</router-link> |
   <router-link to="/home">Home</router-link> |
