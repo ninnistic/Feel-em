@@ -13,7 +13,7 @@
         </div>
         <div>
         <label for="passowrd">password : </label>
-        <input type="password" v-model="passowrd" id="password">\
+        <input type="password" v-model="password" id="password">\
         </div>
         <div>
         <label for="passowrd2">password check : </label>

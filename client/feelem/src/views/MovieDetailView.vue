@@ -2,45 +2,36 @@
   <div>
    <h1>영화 상세</h1>
    <div>
-    {{getMovieInfo.title}}
-    <img :src="getImageUrl" alt="posterImage">
+
+    <!-- {{getMovieInfo.title}}
+    <img :src="getImageUrl" alt="posterImage"> -->
+    <MovieCard :movie = movie showsOverview showsVote/>
   </div>
   </div>
 </template>
 
 <script>
-
+import MovieCard from '@/components/MovieCard'
 
 export default {
   name : 'MovieDetailView',
   components : {
-
+    MovieCard,
   },
   data() {
     return {
+      
     }
   },
   created(){
-    this.getMovieDetail()
-    this.getFeelogDetail()
-  },
-  methods : {
-    getMovieDetail(){
-      const id = this.$route.params.id
-      this.$store.dispatch('getMovieDetail', id)
-    },
-    getFeelogDetail() {
-      const id = this.$route.params.id
-      this.$store.dispatch('getFeelogDetail', id)
-    }
-
+    const id = this.$route.params.id
+    this.$store.dispatch("fetchSingleMovie", id)
+    this.$store.dispatch('fetchFeelogDetail', id)
   },
   computed : {
-    getImageUrl() {
-      return `https://image.tmdb.org/t/p/w500`+ this.$store.state.movie.poster_path
-    },
-    getMovieInfo(){
-      return this.$store.state.movie
+    movie() {
+      const id = this.$route.params.id
+      return this.$store.state.movies.find(movie => movie.id == id)
     }
   },
 

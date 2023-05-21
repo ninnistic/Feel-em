@@ -1,6 +1,8 @@
 <template>
   <div>
-    <MovieCard v-for="(movie, index) in movieList" :key="index" :movie = movie />
+    <router-link v-for="(movie, index) in movieList" :key="index" :to="'movie-detail/' + movie.id">
+      <MovieCard :movie = movie showsVote />
+    </router-link>
   </div>
 </template>
 
@@ -9,7 +11,6 @@ import MovieCard from '@/components/MovieCard'
 
 export default {
   name : 'MovieListView',
-
   components : {
     MovieCard,
   },
@@ -20,12 +21,10 @@ export default {
 
   },
   created() {
-    this.getMovieList()
+    this.$store.dispatch('fetchMovieList')
   },
   methods : {
-    getMovieList(){
-      this.$store.dispatch('getMovieList')
-    }
+
   }
 }
 </script>

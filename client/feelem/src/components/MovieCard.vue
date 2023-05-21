@@ -1,10 +1,11 @@
 <template>
   <div class="card">
     <div class="card-body">
-      <img :src="posterPath" alt="posterImage" @click="movieDetail">
+      <img :src="posterPath" alt="posterImage">
       <p>{{movie.title}}</p>
-      <p> 평점 : {{movie.vote_average}}</p>
-      <p>{{movie.id}}</p>
+      <p v-if="showsVote"> 평점 : {{movie.vote_average}}</p>
+      <p v-if="showsOverview">{{movie.overview}}</p>
+    
     </div>
 
    
@@ -16,12 +17,8 @@ export default {
   name : 'MovieCard', 
   props : {
     movie : Object,
-  },
-  data() {
-    return {
-      id : this.movie.id
-    }
-    
+    showsVote: Boolean,
+    showsOverview: Boolean,
   },
   computed : {
     posterPath() {
@@ -29,10 +26,6 @@ export default {
     }
   },
   methods : {
-    movieDetail(){
-      console.log(this.movie)
-      return this.$router.push(`movie-detail/${this.id}`)
-    }
   }
 }
 </script>
