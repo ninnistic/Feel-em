@@ -41,19 +41,28 @@ export default new Vuex.Store({
     SET_SINGLE_MOVIE(state, res) {
       state.movies = [res.data]
     },
-    SET_FEELOGS(state, res){
-      state.feelogs = res.data
-    },
-    SET_SINGLE_FEELOGS(state, res){
-      state.feelogs = [res.data]
+    SET_FEELOGS(state, data) {
+      // 전체 리뷰 가져오기
+      if (Array.isArray(data)) {
+        state.feelogs = data
+        // 한 영화에 대한 리뷰 전체 가져오기
+      } else if (typeof data === "object") {
+        state.feelogs = data.feelogs
+      } else {
+        console.warn("Invalid feelog data")
+      }
     }
+    // SET_SINGLE_FEELOGS(state, res){
+    //   state.feelogs = [res.data]
+    // }
   },
   actions: {
     // Consider renaming to fetchAllMovies
     fetchMovieList(context){
       axios({
         method : 'get',
-        url : `${BASE_URI}/movies`
+        url : `${BASE_URI}/movies`,
+        headers: authHeaders()
       })
       .then(res => {
         console.log(res)
@@ -67,6 +76,7 @@ export default new Vuex.Store({
       axios({
         method : 'get',
         url : `${BASE_URI}/movies/${id}`,
+        headers: authHeaders()
       })
       .then(res => {
         console.log(res)
@@ -79,23 +89,25 @@ export default new Vuex.Store({
     fetchFeelogList(context){
       axios({
         method : 'get',
-        url : `${BASE_URI}/feelogs`
+        url : `${BASE_URI}/feelogs`,
+        headers: authHeaders()
       })
       .then(res => {
         console.log(context,res)
-        context.commit('SET_FEELOGS', res)
+        context.commit('SET_FEELOGS', res.data)
       })
       .catch(err => {
         console.log(err)
       })
     },
-    fetchFeelogDetail(context, id){
+    fetchFeelogsForMovieId(context, id){
       axios({
         method : 'get',
-        url : `${BASE_URI}/feelogs/${id}/`
+        url : `${BASE_URI}/feelogs/${id}/`,
+        headers: authHeaders()
       })
       .then(res => {
-        context.commit('SET_SINGLE_FEELOG', res)
+        context.commit('SET_FEELOGS', res.data)
       })
       .catch(err => {
         console.log(err)
@@ -113,7 +125,7 @@ export default new Vuex.Store({
         method:'post',
         url:`${BASE_URI}/accounts/signup`,
         data:{
-          username, password,passwordConfirm, email, favorite_genre, goal_of_month
+          username, password, passwordConfirm, email, favorite_genre, goal_of_month
         }
       })
       .then(() =>{
@@ -138,3 +150,10 @@ export default new Vuex.Store({
   },
 
 })
+
+function authHeaders() {
+  const token = localStorage.getItem("jwt")
+  return {
+    Authorization: "Bearer " + token
+  }
+}

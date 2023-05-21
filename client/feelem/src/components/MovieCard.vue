@@ -1,14 +1,11 @@
 <template>
-  <div class="card">
+  <div class="card" v-if="movie">
     <div class="card-body">
       <img :src="posterPath" alt="posterImage">
       <p>{{movie.title}}</p>
       <p v-if="showsVote"> 평점 : {{movie.vote_average}}</p>
       <p v-if="showsOverview">{{movie.overview}}</p>
-    
     </div>
-
-   
   </div>
 </template>
 

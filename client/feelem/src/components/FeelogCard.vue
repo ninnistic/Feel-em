@@ -1,7 +1,7 @@
 <template>
   <div>
     <p>title : {{feelog.title}}</p>
-    <p>content : {{feelog.content}}</p>
+    <p v-if="showsContent">content : {{feelog.content}}</p>
   </div>
 </template>
 
@@ -10,6 +10,7 @@ export default {
   name : 'FeelogCard',
   props : {
     feelog : Object,
+    showsContent: Boolean
   }
 
 }
