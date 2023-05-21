@@ -103,7 +103,7 @@ export default new Vuex.Store({
     fetchFeelogsForMovieId(context, id){
       axios({
         method : 'get',
-        url : `${BASE_URI}/feelogs/${id}/`,
+        url : `${BASE_URI}/feelogs/by-movie/${id}/`,
         headers: authHeaders()
       })
       .then(res => {

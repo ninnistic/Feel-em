@@ -28,7 +28,7 @@ def user_feelog_list(request, username):
     return Response(serializer.data)
 
 @api_view(['GET','POST'])
-def feelog_list(request, movie_pk):
+def feelogs_by_movie(request, movie_pk):
   movie = get_object_or_404(Movie, pk=movie_pk)
   if request.method == 'GET':
     serializer = MovieFeelogSerializer(movie)
@@ -42,9 +42,8 @@ def feelog_list(request, movie_pk):
     
 
 @api_view(['GET','DELETE']) 
-def feelog(request, movie_pk, feelog_pk):
+def feelog(request, feelog_pk):
   if request.method == 'GET':
-    movie = get_object_or_404(Movie, pk=movie_pk)
     feelog = get_object_or_404(Feelog, pk=feelog_pk)
     serializer = FeelogMoodDetailSerializer(feelog)
     return Response(serializer.data)
