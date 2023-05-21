@@ -8,7 +8,7 @@
         <input type="text" v-model="email" id="email">
         </div>
         <div>
-        <label for="passowrd">password : </label>
+        <label for="password">password : </label>
         <input type="password" v-model="passowrd" id="password">
         </div>  
         <button type="submit">로그인하세용</button>
