@@ -33,9 +33,12 @@ export default {
     feelogs() {
       const nickname = this.$route.params.nickname
       const res = this.$store.state.feelogs.filter(feelog => feelog.username == nickname)
-      console.log(res)
-      console.log(this.$store.state.feelogs)
-      return res
+      const result = res.filter(res => {
+        const create = new Date(res.created_at)
+        return create.getMonth()===4
+        // 0:12 범위로 날짜를 리턴함. 해당 숫자를 움직여서 월 별 필로그 보여주기.
+      })
+      return result
     }
   
   },
