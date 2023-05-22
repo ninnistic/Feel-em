@@ -161,7 +161,6 @@ export default new Vuex.Store({
         console.log(err)
       })
     },
- 
     login(context, payload){
       const username = payload.username
       const password = payload.password
@@ -246,6 +245,20 @@ export default new Vuex.Store({
       })
       .then(() =>{
         console.log('like')
+      })  
+      .catch((err) => {
+        console.log(err)
+        
+      }) 
+    },
+    save(context, id){
+      axios({
+        method:'post',
+        url:`${BASE_URI}/movies/${id}/like`,
+        headers: authHeaders()
+      })
+      .then(() =>{
+        console.log('save')
       })  
       .catch((err) => {
         console.log(err)
