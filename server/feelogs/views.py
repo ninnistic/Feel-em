@@ -34,10 +34,13 @@ def feelogs_by_movie(request, movie_pk):
     serializer = MovieFeelogSerializer(movie)
     return Response(serializer.data)
   elif request.method == 'POST':
-    serializer = FeelogDetailSerializer(data = request.data)
+    # if request.user.is_authenticated:
+    data = request.data.copy()
+    data['user'] = request.user.pk
+    serializer = FeelogDetailSerializer(data = data)
     if serializer.is_valid(raise_exception=True):
       serializer.save(movie=movie)
-      return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.data, status=status.HTTP_201_CREATED)
   
     
 
