@@ -1,5 +1,7 @@
 <template>
   <div>
+    <img src="@/assets/emotion/mood (1).png" alt="">
+    <img src="@/assets/profile/OBJECTS_03.png" alt="">
   <div v-if="profile.data.username != login_user">
     <button @click="follow" :class="{ following_status : isfollowed}" >follow</button>
   </div>

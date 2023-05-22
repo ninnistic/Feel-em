@@ -101,7 +101,7 @@ table {
 }
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard.css");
 * {
-  font-family: 'Pretendard'
+  font-family: 'Pretendard';
   background-color: #f4f3ee;
 }
 .main{
