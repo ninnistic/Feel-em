@@ -23,20 +23,20 @@ class MovieFeelogSerializer(serializers.ModelSerializer):
       
 class FeelogDetailSerializer(serializers.ModelSerializer):
   username = serializers.CharField(source='user.username', read_only=True)
-  like_users_count = serializers.IntegerField(source = 'like_users.count')
+  # like_users_count = serializers.IntegerField(source = 'like_users.count')
   # movie = MovieDetailSerializer()
   class Meta:
     model = Feelog
-    fields = ('title','content','username','user','created_at','movie','mood', 'id','like_users_count','like_users')
+    fields = ('title','content','username','user','created_at','movie','mood', 'id','like_users',)
     read_only_fields = ('movie',)
 
 class FeelogMoodDetailSerializer(serializers.ModelSerializer):
   username = serializers.CharField(source='user.username', read_only=True)
-  like_users_count = serializers.IntegerField(source = 'like_users.count')
+  # like_users_count = serializers.IntegerField(source = 'like_users.count', blank=True)
   # movie = MovieDetailSerializer()
   class Meta:
     model = Feelog
-    fields = ('title','content','username','user','created_at','movie','mood','like_users','like_users_count', 'id')
+    fields = ('title','content','username','user','created_at','movie','mood','like_users', 'id',)
     read_only_fields = ('movie',)
     
 class MoodSerializer(serializers.ModelSerializer):

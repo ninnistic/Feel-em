@@ -6,7 +6,7 @@
     <!-- {{getMovieInfo.title}}
     <img :src="getImageUrl" alt="posterImage"> -->
     <MovieCard :movie = movie showsOverview showsVote/>
-    <FeelogCard v-for="feelog in feelogs" :feelog = feelog :key="feelog.id" showsContent />
+    <FeelogCard v-for="feelog in feelogs" :feelog = feelog :key="feelog.id"  />
     <FeelogCreateForm :movie_id = movie_id />
   </div>
   </div>
