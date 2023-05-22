@@ -99,7 +99,9 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
-*{
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard.css");
+* {
+  font-family: 'Pretendard'
   background-color: #f4f3ee;
 }
 .main{
@@ -111,4 +113,6 @@ table {
 .main-view{
   align-self: center;
 }
+
+
 </style>
