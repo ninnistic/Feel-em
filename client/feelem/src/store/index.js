@@ -270,6 +270,20 @@ export default new Vuex.Store({
         console.log(err)
         
       }) 
+    },
+    save(context, id){
+      axios({
+        method:'post',
+        url:`${BASE_URI}/movies/${id}/like`,
+        headers: authHeaders()
+      })
+      .then(() =>{
+        console.log('save')
+      })  
+      .catch((err) => {
+        console.log(err)
+        
+      }) 
     }
 
   },
