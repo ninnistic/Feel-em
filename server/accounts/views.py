@@ -49,11 +49,11 @@ def profile(request,username):
 def follow(request,username):
     if request.user.is_authenticated:
         user = get_object_or_404(User, username=username)
-        if request.user in user.followings.all():
-            user.followings.remove(request.user)
+        if user in request.user.followings.all():
+            request.user.followings.remove(user)
             return Response({"Unfollow": 'success'})
         else:
-            user.followings.add(request.user)
+            request.user.followings.add(user)
             return Response({"follow": 'success'})
 
 @api_view(['POST'])

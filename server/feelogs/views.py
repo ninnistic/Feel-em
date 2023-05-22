@@ -28,13 +28,17 @@ def user_feelog_list(request, username):
     return Response(serializer.data)
 
 @api_view(['GET','POST'])
+
 def feelogs_by_movie(request, movie_pk):
   movie = get_object_or_404(Movie, pk=movie_pk)
   if request.method == 'GET':
     serializer = MovieFeelogSerializer(movie)
     return Response(serializer.data)
   elif request.method == 'POST':
-    serializer = FeelogDetailSerializer(data = request.data)
+    # if request.user.is_authenticated:
+    data = request.data.copy()
+    data['user'] = request.user.pk
+    serializer = FeelogDetailSerializer(data = data)
     if serializer.is_valid(raise_exception=True):
       serializer.save(movie=movie)
       return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -58,3 +62,14 @@ def mood_list(request):
     moods = get_list_or_404(Mood)
     serializer = MoodSerializer(moods, many=True)
     return Response(serializer.data)
+
+@api_view(['POST'])  
+def feeloglike(request,feelog_pk):
+    if request.user.is_authenticated:
+        feelog = get_object_or_404(Feelog, pk=feelog_pk)
+        if request.user in feelog.like_users.all():
+            feelog.like_users.remove(request.user)
+            return Response({"Unfollow": 'success'})
+        else:
+            feelog.like_users.add(request.user)
+            return Response({"follow": 'success'})

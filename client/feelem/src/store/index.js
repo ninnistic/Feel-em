@@ -61,7 +61,8 @@ export default new Vuex.Store({
     },
     SET_SINGLE_FEELOG(state, res){
       state.feelogs = [res.data]
-    }
+    },
+    
   },
   actions: {
     // Consider renaming to fetchAllMovies
@@ -160,7 +161,7 @@ export default new Vuex.Store({
           headers: authHeaders()
         })
         .then((response) => {
-          // console.log(response)
+          console.log(response)
           const nickname = payload.username
           // console.log(nickname)
           context.dispatch('setusername',nickname)
@@ -207,7 +208,35 @@ export default new Vuex.Store({
     setusername(context, nickname){
       context.commit('SET_NICKNAME', nickname)
     },
-   
+
+    follow(context, nickname){
+      axios({
+        method:'post',
+        url:`${BASE_URI}/accounts/${nickname}/follow`,
+        headers: authHeaders()
+      })
+      .then(() =>{
+        console.log('팔로우')
+      })  
+      .catch((err) => {
+        console.log(err)
+        
+      }) 
+    },
+    like(context, id){
+      axios({
+        method:'post',
+        url:`${BASE_URI}/feelogs/${id}/like/`,
+        headers: authHeaders()
+      })
+      .then(() =>{
+        console.log('like')
+      })  
+      .catch((err) => {
+        console.log(err)
+        
+      }) 
+    }
 
   },
   modules: {

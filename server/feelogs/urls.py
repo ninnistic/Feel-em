@@ -14,6 +14,7 @@ urlpatterns = [
     # # 상세 Feelog 조회 ('GET', 'DELETE', 'POST')
     path('<int:feelog_pk>/', views.feelog, name='feelog'),
     # # Mood 전체 조회 ('GET')
-    path('moods', views.mood_list, name='mood_list'),
+    path('moods/', views.mood_list, name='mood_list'),
+    path('<int:feelog_pk>/like/', views.feeloglike, name='feeloglike'),
     # 
 ]
