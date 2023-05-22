@@ -10,7 +10,7 @@ export default new Vuex.Store({
     movies: [],
     feelogs: [],
     nickname: null,
-    profile:{},
+    profile:[],
     moods: [],
   },
   getters: {
