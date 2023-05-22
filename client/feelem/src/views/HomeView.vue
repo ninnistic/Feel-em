@@ -1,6 +1,7 @@
 <template>
-  <div>
-    메인 홈홈홈
+  <div class="d-flex m-1 container">
+    <b-container class="mb-1">
+      <b-row cols="5">
     <router-link
       v-for="movie in movieList"
       :key="movie.movie_num"
@@ -18,6 +19,8 @@
         :feelog="feelog"
       />
     </router-link>
+    </b-row>
+  </b-container>
   </div>
 </template>
 
@@ -46,5 +49,12 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.container{
+  display: flex;
+  justify-content: center;
+  align-items : center;
+  flex-direction: row;
+  margin : 1rem;
+}
 </style>
