@@ -1,7 +1,7 @@
 <template>
   <div>
   <div v-if="profile.data.username != login_user">
-    <button @click="follow" :class="{ following_status : isfollowed}">follow</button>
+    <button @click="follow" :class="{ following_status : isfollowed}" >follow</button>
   </div>
 
   <span>내 이름은 {{ profile.data.username }}!</span><br>
@@ -41,6 +41,8 @@ export default {
           this.isfollowed = !this.isfollowed
           const nickname = this.$route.params.nickname 
           this.$store.dispatch('follow',nickname)
+          // 새로고침
+          this.$router.go()
         }
   },
   computed: {

@@ -161,7 +161,26 @@ export default new Vuex.Store({
         console.log(err)
       })
     },
- 
+    createFeelog(context, newFeelog){
+      const id = newFeelog.id
+      const title = newFeelog.title
+      const content = newFeelog.content
+      const mood = newFeelog.mood
+      axios({
+        method : 'post',
+        url : `${BASE_URI}/feelogs/by-movie/${id}/`,
+        headers : authHeaders(),
+        data : {
+          title, content, mood
+        }
+      })
+      .then(() => {
+        console.log(context)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+    },
     login(context, payload){
       const username = payload.username
       const password = payload.password

@@ -7,7 +7,7 @@
     <img :src="getImageUrl" alt="posterImage"> -->
     <MovieCard :movie = movie showsOverview showsVote/>
     <FeelogCard v-for="feelog in feelogs" :feelog = feelog :key="feelog.id" showsContent />
-    <FeelogCreateForm />
+    <FeelogCreateForm :movie_id = movie_id />
   </div>
   </div>
 </template>
@@ -26,7 +26,7 @@ export default {
   },
   data() {
     return {
-    
+      movie_id : this.$route.params.id
     }
   },
   created(){
