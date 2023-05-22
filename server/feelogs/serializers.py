@@ -26,7 +26,7 @@ class FeelogDetailSerializer(serializers.ModelSerializer):
   # movie = MovieDetailSerializer()
   class Meta:
     model = Feelog
-    fields = ('title','content','username','user','created_at','movie','mood')
+    fields = ('title','content','username','user','created_at','movie','mood', 'id')
     read_only_fields = ('movie',)
 
 class FeelogMoodDetailSerializer(serializers.ModelSerializer):
@@ -35,7 +35,7 @@ class FeelogMoodDetailSerializer(serializers.ModelSerializer):
   # movie = MovieDetailSerializer()
   class Meta:
     model = Feelog
-    fields = ('title','content','username','user','created_at','movie','mood','like_users','like_users_count')
+    fields = ('title','content','username','user','created_at','movie','mood','like_users','like_users_count', 'id')
     read_only_fields = ('movie',)
     
 class MoodSerializer(serializers.ModelSerializer):

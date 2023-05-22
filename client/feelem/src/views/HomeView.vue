@@ -3,17 +3,21 @@
     메인 홈홈홈
     <router-link
       v-for="movie in movieList"
-      :key="movie.id"
+      :key="movie.movie_num"
       :to="'movie-detail/' + movie.id"
     >
       <MovieCard :movie="movie" />
     </router-link>
 
-    <FeelogCard
+    <router-link
       v-for="feelog in feelogList"
       :key="feelog.id"
-      :feelog="feelog"
-    />
+      :to="'feelog-detail/' + feelog.id"
+    >
+      <FeelogCard
+        :feelog="feelog"
+      />
+    </router-link>
   </div>
 </template>
 

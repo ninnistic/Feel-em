@@ -52,16 +52,16 @@ export default new Vuex.Store({
       // 전체 리뷰 가져오기
       if (Array.isArray(data)) {
         state.feelogs = data
-        // 한 영화에 대한 리뷰 전체 가져오기
+      // 한 영화에 대한 리뷰 전체 가져오기
       } else if (typeof data === "object") {
         state.feelogs = data.feelogs
       } else {
         console.warn("Invalid feelog data")
       }
+    },
+    SET_SINGLE_FEELOG(state, res){
+      state.feelogs = [res.data]
     }
-    // SET_SINGLE_FEELOGS(state, res){
-    //   state.feelogs = [res.data]
-    // }
   },
   actions: {
     // Consider renaming to fetchAllMovies
@@ -134,6 +134,20 @@ export default new Vuex.Store({
         console.log(err)
       })
     },
+    fetchSingleFeelog(context, id){
+      axios({
+        method : 'get',
+        url : `${BASE_URI}/feelogs/${id}/`,
+        headers: authHeaders()
+      })
+      .then(res => {
+        context.commit('SET_SINGLE_FEELOG', res)
+      })
+      .catch(err=> {
+        console.log(err)
+      })
+
+    },
     login(context, payload){
       const username = payload.username
       const password = payload.password
@@ -192,7 +206,8 @@ export default new Vuex.Store({
     },
     setusername(context, nickname){
       context.commit('SET_NICKNAME', nickname)
-    }
+    },
+   
 
   },
   modules: {
