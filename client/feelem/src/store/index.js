@@ -11,6 +11,7 @@ export default new Vuex.Store({
     feelogs: [],
     nickname: null,
     profile:{},
+    moods: [],
   },
   getters: {
     getRecommendedMovies(state) {
@@ -62,7 +63,9 @@ export default new Vuex.Store({
     SET_SINGLE_FEELOG(state, res){
       state.feelogs = [res.data]
     },
-    
+    SET_MOODS(state, data){
+      state.moods = data
+    }
   },
   actions: {
     // Consider renaming to fetchAllMovies
@@ -73,7 +76,6 @@ export default new Vuex.Store({
         headers: authHeaders()
       })
       .then(res => {
-        console.log(res)
         context.commit('SET_PROFILE', res)
       })
       .catch(err => {
@@ -87,7 +89,6 @@ export default new Vuex.Store({
         headers: authHeaders()
       })
       .then(res => {
-        console.log(res)
         context.commit('SET_MOVIES', res)
       })
       .catch(err => {
@@ -101,7 +102,6 @@ export default new Vuex.Store({
         headers: authHeaders()
       })
       .then(res => {
-        console.log(res)
         context.commit('SET_SINGLE_MOVIE', res)
       })
       .catch(err => {
@@ -115,7 +115,6 @@ export default new Vuex.Store({
         headers: authHeaders()
       })
       .then(res => {
-        console.log(context,res)
         context.commit('SET_FEELOGS', res.data)
       })
       .catch(err => {
@@ -147,8 +146,22 @@ export default new Vuex.Store({
       .catch(err=> {
         console.log(err)
       })
-
     },
+    fetchMoods(context){
+      axios({
+        method : 'get',
+        url : `${BASE_URI}/feelogs/moods/`,
+        headers: authHeaders()
+      })
+      .then(res => {
+        console.log(res.data)
+        context.commit('SET_MOODS', res.data)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+    },
+ 
     login(context, payload){
       const username = payload.username
       const password = payload.password
@@ -163,10 +176,12 @@ export default new Vuex.Store({
         .then((response) => {
           console.log(response)
           const nickname = payload.username
+          
           // console.log(nickname)
           context.dispatch('setusername',nickname)
           localStorage.setItem("jwt", response.data.access)
           localStorage.setItem("nickname", nickname)
+
   
           //this.$emit('login')
           // 로그인 성공하면, todo list로 이동하기

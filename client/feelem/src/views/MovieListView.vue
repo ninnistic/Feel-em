@@ -1,6 +1,6 @@
 <template>
   <div>
-    <router-link v-for="(movie, index) in movieList" :key="index" :to="'movie-detail/' + movie.id">
+    <router-link v-for="(movie, index) in movieList" :key="index" :to="'/movie-detail/' + movie.id">
       <MovieCard :movie = movie showsVote />
     </router-link>
   </div>

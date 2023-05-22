@@ -41,7 +41,7 @@ def feelogs_by_movie(request, movie_pk):
     serializer = FeelogDetailSerializer(data = data)
     if serializer.is_valid(raise_exception=True):
       serializer.save(movie=movie)
-      return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.data, status=status.HTTP_201_CREATED)
   
     
 

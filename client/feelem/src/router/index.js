@@ -33,16 +33,16 @@ const routes = [
   },
   
   {
-    path : '/mypage/:nickname',
-    component : () => import('@/views/MyPageView.vue')
-  },
-  {
     path : '/movie-detail/:id',
     component : () => import('@/views/MovieDetailView.vue')
   },
   {
     path : '/feelog-detail/:id',
     component : () => import('@/views/FeelogDetailView.vue')
+  },
+  {
+    path : '/mypage/:nickname',
+    component : () => import('@/views/MyPageView.vue')
   },
   {
     path : '*',
