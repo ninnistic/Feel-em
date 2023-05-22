@@ -13,12 +13,12 @@
         <!-- <li>
           <router-link to="/movie-detail/:id">영화상세</router-link>
         </li> -->
-        <li v-if="isLogin" class="nav-login">
+        <li v-if="isLoggedIn" class="nav-login">
         <span>
           <span @click="logout">로그아웃</span>
         </span>
         <span>
-          <router-link :to="`/mypage/` + getNickname">{{ getNickname }}</router-link>
+          <router-link :to="`/mypage/` + nickname">{{ nickname }}</router-link>
         </span>
       </li>
 
@@ -36,7 +36,7 @@
       </ul>
     </nav>
 
-    <router-view @Login="isLogin=true" class="main-view" />
+    <router-view class="main-view" />
   </div>
 </template>
 
@@ -45,27 +45,20 @@ export default {
   name: 'App',
   methods : {
     logout: function() {
-      this.$store.dispatch("signOut");
+      this.$store.dispatch("signOut")
       this.$router.push(`login`) 
     }
   },
-  mounted() {
-   const token = localStorage.getItem('jwt')
-    if(token) {
-      this.isLogin = true
-    }
-    this.getNickname
+  created() {
+    this.$store.dispatch("checkForLogin")
   },
-  
   computed:{
-    isLogin() {
-      console.log( this.$store.getters.isSignedIn);
-      console.log("computed:isLogin", this.$store.getters.isSignedIn);
-     return this.$store.getters.isSignedIn;
+    isLoggedIn() {
+      return this.$store.getters.isSignedIn;
     },
-   getNickname(){
-    return this.$store.state.nickname;
-   }
+    nickname(){
+      return this.$store.state.nickname;
+    }
   },
 }
 </script>

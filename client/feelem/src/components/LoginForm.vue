@@ -21,7 +21,8 @@
 <script>
 
 export default {
-  name : 'SignupForm',
+  // signupform이 아님 
+  name : 'LoginForm',
   data() {
     return {
       userdata:{

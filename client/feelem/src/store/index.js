@@ -181,27 +181,35 @@ export default new Vuex.Store({
         console.log(err)
       })
     },
+    checkForLogin(context) {
+      const nickname = localStorage.getItem("nickname")
+      // jwt는 store에 저장되어있어야 한다. localStorage가 아니라 
+      const jwt = localStorage.getItem("jwt")
+
+      if (nickname === null || jwt === null)
+        // not logged in; nothing to do
+        return
+
+      console.debug(`User is logged in as ${nickname}`)
+      context.commit('SET_NICKNAME', nickname)
+    },
     login(context, payload){
-      const username = payload.username
+      // 이름을 통일해야할 필요가 있다 -> 헷갈림 username이거나 nickname이거나  
+      const nickname = payload.username
       const password = payload.password
         axios({
           method: "POST", 
           url: "http://127.0.0.1:8000/api/token/",
           data: {
-            username, password
+            username: nickname, password
           },
           headers: authHeaders()
         })
         .then((response) => {
-          console.log(response)
-          const nickname = payload.username
-          
-          // console.log(nickname)
-          context.dispatch('setusername',nickname)
+          context.commit('SET_NICKNAME', nickname)
           localStorage.setItem("jwt", response.data.access)
           localStorage.setItem("nickname", nickname)
 
-  
           //this.$emit('login')
           // 로그인 성공하면, todo list로 이동하기
           context.commit('SET_LOGIN')
@@ -239,10 +247,6 @@ export default new Vuex.Store({
       localStorage.removeItem('nickname')
       context.commit('SET_NICKNAME', null)
     },
-    setusername(context, nickname){
-      context.commit('SET_NICKNAME', nickname)
-    },
-
     follow(context, nickname){
       axios({
         method:'post',
