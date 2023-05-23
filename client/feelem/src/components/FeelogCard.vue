@@ -3,7 +3,7 @@
     <router-link :to="'/mypage/' + feelog.username "> <p>user : {{feelog.username}}</p> </router-link>
     <p>title : {{feelog.title}}</p>
     <p v-if="showsContent">content : {{feelog.content}}</p>
-    <p>좋아요 수 : {{feelog.like_users_count}}</p>
+    <!-- <p>좋아요 수 : {{feelog.likeCount}}</p> -->
   </div>
 </template>
 
@@ -13,7 +13,12 @@ export default {
   props : {
     feelog : Object,
     showsContent: Boolean,
-   
+  },
+  computed : {
+    
+  },
+  methods : {
+
   }
 
 }

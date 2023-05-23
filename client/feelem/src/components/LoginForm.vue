@@ -5,11 +5,11 @@
         <form @submit.prevent="login">
         <div>
         <label for="username">username : </label>
-        <input type="text" v-model="userdata.username" id="username">
+        <input type="text" v-model="userdata.username" id="username" autocomplete="id">
         </div>
         <div>
         <label for="password">password : </label>
-        <input type="password" v-model="userdata.password" id="password">
+        <input type="password" v-model="userdata.password" id="password" autocomplete="password">
         </div>  
         <button type="submit">로그인하세용</button>
         </form>
@@ -21,7 +21,8 @@
 <script>
 
 export default {
-  name : 'SignupForm',
+  // signupform이 아님 
+  name : 'LoginForm',
   data() {
     return {
       userdata:{

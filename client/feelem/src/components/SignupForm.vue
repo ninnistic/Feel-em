@@ -2,18 +2,18 @@
   <div class="card">
     <div class="card-body">
       <div class="form-group">
-        <form @submit.prevent="signup">
+        <form @submit.prevent="signUp">
         <div>
         <label for="username" >username : </label>
-        <input type="text" v-model="username" id="username">
+        <input type="text" v-model="username" id="username" >
         </div>
         <div>
         <label for="email">email : </label>
-        <input type="text" v-model="email" id="email">
+        <input type="text" v-model="email" id="email" autocomplete="off">
         </div>
         <div>
         <label for="password">password : </label>
-        <input type="password" v-model="password" id="password">
+        <input type="password" v-model="password" id="password" >
         </div>
         <div>
         <label for="passwordConfirm">password check : </label>
@@ -43,12 +43,12 @@ export default {
         email: null,
         password : null,
         passwordConfirm : null,
-        goal_of_month:null,
+        goal_of_month: null,
         favorite_genre: null,      
     }
   },
   methods : {
-    signup() {
+    signUp() {
       const username = this.username
       const email = this.email
       const password = this.password
@@ -59,7 +59,7 @@ export default {
       const payload = {
         username, password, passwordConfirm, email, goal_of_month, favorite_genre
       }
-      this.$store.dispatch('signup', payload)
+      this.$store.dispatch('signUp', payload)
     }
   }
 

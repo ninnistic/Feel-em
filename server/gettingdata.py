@@ -33,22 +33,23 @@ def save_movie():
                 title = movie_data['title']
                 adult = ['막내 처제', '옥보단']
                 if not any(word in title for word in adult):
+                    if movie_data['overview']:
 
-                    movie = Movie.objects.create(
-                        movie_num = movie_data['id'],
-                        title = movie_data['title'],
-                        release_date= movie_data['release_date'],
-                        popularity= movie_data['popularity'],
-                        vote_average= movie_data['vote_average'],
-                        overview= movie_data['overview'],
-                        poster_path= movie_data['poster_path'],
-                    )
-                    genre_ids = movie_data['genre_ids']
-                    genres = Genre.objects.filter(id__in = genre_ids)
-                    
-                    movie.genres.set(genres)
+                        movie = Movie.objects.create(
+                            movie_num = movie_data['id'],
+                            title = movie_data['title'],
+                            release_date= movie_data['release_date'],
+                            popularity= movie_data['popularity'],
+                            vote_average= movie_data['vote_average'],
+                            overview= movie_data['overview'],
+                            poster_path= movie_data['poster_path'],
+                        )
+                        genre_ids = movie_data['genre_ids']
+                        genres = Genre.objects.filter(id__in = genre_ids)
+                        
+                        movie.genres.set(genres)
 
-                    movie.save()
+                        movie.save()
 
 save_genre()
 save_movie()
