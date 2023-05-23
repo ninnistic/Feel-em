@@ -250,7 +250,7 @@ export default new Vuex.Store({
       const email = payload.email
       const password = payload.password
       const passwordConfirm = payload.passwordConfirm
-      const favorite_genre = [payload.favorite_genre]
+      const favorite_genre = payload.favorite_genre
       const goal_of_month = payload.goal_of_month
 
       axios({
@@ -261,6 +261,7 @@ export default new Vuex.Store({
         }
       })
       .then(() =>{
+        console.log(favorite_genre)
         context.commit('SET_SIGNUP')
       })  
       .catch((err) => {

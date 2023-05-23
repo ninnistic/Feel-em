@@ -6,7 +6,7 @@ from .models import Movie, Genre
 class GenreListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Genre
-        fields = ('name',)
+        fields = ('id', 'name',)
 
 class MovieListSerializer(serializers.ModelSerializer): # movie 전체 데이터 목록을 가져올 serializer 생성
     class Meta:
