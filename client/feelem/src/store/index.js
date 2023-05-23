@@ -30,7 +30,7 @@ export default new Vuex.Store({
       return state.feelogs.slice(0, 5);
     },
     isSignedIn(state) {
-      return state.nickname != null
+      return state.nickname !== null
     },
     isMovieSaved(state){
       return state.isMovieSaved
@@ -89,7 +89,7 @@ export default new Vuex.Store({
   },
   actions: {
     // Consider renaming to fetchAllMovies
-    fetchProfile(context,nickname){
+    fetchProfile(context, nickname){
       axios({
         method : 'get',
         url : `${BASE_URI}/accounts/${nickname}`,
@@ -132,7 +132,6 @@ export default new Vuex.Store({
       axios({
         method : 'get',
         url : `${BASE_URI}/feelogs`,
-        headers: authHeaders()
       })
       .then(res => {
         context.commit('SET_FEELOGS', res.data)
@@ -216,16 +215,8 @@ export default new Vuex.Store({
       })
     },
     checkForLogin(context) {
-      const nickname = localStorage.getItem("nickname")
-      // jwt는 store에 저장되어있어야 한다. localStorage가 아니라 
       const jwt = localStorage.getItem("jwt")
-
-      if (nickname === null || jwt === null)
-        // not logged in; nothing to do
-        return
-
-      console.debug(`User is logged in as ${nickname}`)
-      context.commit('SET_NICKNAME', nickname)
+      if (jwt === null) context.commit('SET_NICKNAME', null)
     },
     login(context, payload){
       // 이름을 통일해야할 필요가 있다 -> 헷갈림 username이거나 nickname이거나  
@@ -240,9 +231,8 @@ export default new Vuex.Store({
           headers: authHeaders()
         })
         .then((response) => {
-          context.commit('SET_NICKNAME', nickname)
           localStorage.setItem("jwt", response.data.access)
-          localStorage.setItem("nickname", nickname)
+          context.commit('SET_NICKNAME', nickname)
 
           //this.$emit('login')
           // 로그인 성공하면, todo list로 이동하기
@@ -279,7 +269,6 @@ export default new Vuex.Store({
     },
     signOut(context) {
       localStorage.removeItem('jwt')
-      localStorage.removeItem('nickname')
       context.commit('SET_NICKNAME', null)
     },
     follow(context, nickname){

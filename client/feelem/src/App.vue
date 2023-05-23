@@ -1,8 +1,7 @@
 <template>
   <div class="main">
-    <nav class="navbar fixed-top" style="background-color: transparent; width: 100%;">
+    <nav class="navbar fixed-top" style="background-color: transparent; width: 100%;" id="myNav">
       <ul>
-        
         <li>
           <router-link to="/movielist">Movie list</router-link>
         </li>
@@ -14,13 +13,13 @@
           <router-link to="/movie-detail/:id">영화상세</router-link>
         </li> -->
         <li v-if="isLoggedIn" class="nav-login">
-        <span>
-          <span @click="logout">로그아웃</span>
-        </span>
-        <span>
-          <router-link :to="`/mypage/` + nickname">{{ nickname }}</router-link>
-        </span>
-      </li>
+          <span>
+            <span @click="logout">로그아웃</span>
+          </span>
+          <span>
+            <router-link :to="'/account/' + nickname">{{ nickname }}</router-link>
+          </span>
+        </li>
 
         <li v-else class="nav-login">
           
@@ -52,7 +51,7 @@ export default {
     }
   },
   created() {
-    this.$store.dispatch("checkForLogin")
+    this.$store.actions.checkForLogin();
   },
   computed:{
     isLoggedIn() {
@@ -63,11 +62,14 @@ export default {
     }
   },
 }
+
 </script>
 
 <style>
 
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard.css");
+v
+
 * {
   font-family: 'Pretendard';
   
@@ -143,5 +145,8 @@ nav{
   background-color: #8DDCA4;
   color:black;
 }
+/* 
+.nav-colored { background-color:#000; }
+.nav-transparent { background-color:transparent;} */
 
 </style>

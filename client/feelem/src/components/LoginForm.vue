@@ -35,8 +35,6 @@ export default {
     login(){
       const payload = this.userdata
       this.$store.dispatch('login', payload)
-
-      
     }
   }
 
