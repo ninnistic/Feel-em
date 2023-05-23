@@ -1,6 +1,6 @@
 from rest_framework import status
 from rest_framework.response import Response
-from .serializers import UserSerializer
+from .serializers import UserSerializer, UserLoginSerializer
 from rest_framework.decorators import permission_classes, api_view
 from rest_framework.permissions import IsAuthenticated, AllowAny, IsAuthenticatedOrReadOnly
 from .models import User
@@ -20,7 +20,7 @@ def signup(request):
     if password != password_confirm:
         return Response({'error': "비밀번호가 일치하지 않습니다."}, status=status.HTTP_400_BAD_REQUEST)
     
-    serializer = UserSerializer(data=request.data) # serializer로 비밀번호를 가져옴.
+    serializer = UserLoginSerializer(data=request.data) # serializer로 비밀번호를 가져옴.
     # 유효성 검사 진행
     if serializer.is_valid(raise_exception=True):
         # 여기까지 들어왔다는 것은 비밀 번호가 유효하다는 것.

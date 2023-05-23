@@ -13,7 +13,6 @@
       <b-card :img-src="posterPath" img-alt="Image" img-top style="max-width:20rem" class="card h-100">
         <b-card-title class="card-title">{{movie.title}}</b-card-title>
       <b-card-text class="overview" >
-        {{ movie }}
         {{ movie.overview }}
       </b-card-text>
       <p v-if="showsVote"> 평점 : {{movie.vote_average}}</p>

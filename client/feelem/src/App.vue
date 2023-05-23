@@ -68,7 +68,7 @@ export default {
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard.css");
 * {
   font-family: 'Pretendard';
-  background-color: #f4f3ee;
+  
   
 }
 .main{
@@ -81,22 +81,25 @@ export default {
 .main-view{
   align-self: center;
   background-color: #f4f3ee;
+  position: relative;
+  top:0px;
 }
 
 nav{
- 
+  background-color: transparent;
 	vertical-align: baseline;
-  background-color: #f4f3ee;
+  /* background-color: #f4f3ee; */
 }
 .navbar {
-  background-color: #f4f3ee;
+  /* background-color: #f4f3ee; */
   padding: 10px;
 	font-size: 100%;
 	font: inherit;
 	vertical-align: baseline;
   display: flex;
   justify-content: space-between;
-  
+  background-color: transparent;
+  position: fixed;
 }
 
 .nav-login{
@@ -109,7 +112,7 @@ nav{
   padding: 0;
   margin: 0;
   display: flex;
-  background-color: #f4f3ee;
+  /* background-color: #f4f3ee; */
   width:100%;
   justify-content: space-around;
   align-items: center;
@@ -130,7 +133,7 @@ nav{
   color: #000;
   padding: 5px;
   border-radius: 5px;
-  background-color: #f4f3ee;
+  /* background-color: #f4f3ee; */
 }
 
 .navbar a:hover {
