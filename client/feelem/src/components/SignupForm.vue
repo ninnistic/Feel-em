@@ -1,30 +1,32 @@
 <template>
-  <div class="card">
-    <div class="card-body">
+  <div>
+    <div>
       <div class="form-group" v-if="genres">
         <form @submit.prevent="signUp">
           <div>
-            <label for="username">username:</label>
+            <label for="username" class="title-tag">* Username</label>
             <input type="text" v-model="username" id="username">
           </div>
           <div>
-            <label for="email">email:</label>
+            <label for="email" class="title-tag">* Email</label>
             <input type="text" v-model="email" id="email" autocomplete="off">
           </div>
           <div>
-            <label for="password">password:</label>
+            <label for="password" class="title-tag">* Password</label>
             <input type="password" v-model="password" id="password">
           </div>
           <div>
-            <label for="passwordConfirm">password check:</label>
+            <label for="passwordConfirm" class="title-tag">* Password check</label>
             <input type="password" v-model="passwordConfirm" id="passwordConfirm">
           </div>
-          <label for="favorite_genre">장르 선택:</label>
-          <div v-for="genre in genres" :key="genre.id">
+          <p class="title-tag">* 선호하는 장르 </p>
+          <section class="genre-card">
+          <div v-for="genre in genres" :key="genre.id" class="genre">
             <span :value="genre.id" @click="saveGenre(genre.id)" :class="{ selected: isSelected(genre.id) }" class="genre-btn" >{{ genre.name }}</span>
           </div>
+          </section>
           <div>
-            <label for="goal_of_month">월별 목표:</label>
+            <label for="goal_of_month" class="title-tag">월별 목표</label>
           <div>
             <b-form-select v-model="goal_of_month" :options="options" :select-size="4"></b-form-select>
             <div class="mt-3">Selected: <strong>{{ goal_of_month }}</strong></div>
@@ -116,8 +118,19 @@ export default {
 };
 </script>
 
-<style>
-
+<style scoped>
+.title-tag{
+  font-size: 1.7em;
+  font-weight: 700;
+  color :  #3B322C;
+}
+.genre-card{
+  display : flex;
+  flex-wrap: wrap;
+  gap: 20px 2%;
+  width: 50%;
+  margin-bottom : 2em;
+}
 
 .genre-btn{
   background-color: #8DDCA4;
@@ -126,9 +139,10 @@ export default {
   border : solid 1px white;
   border-radius: 20px;
   padding : 10px 20px; 
-  margin: 5px;
   cursor : pointer;
 }
+
+
 .selected {
   background-color: #3B322C;
   color : #F4F3EE;
@@ -137,5 +151,16 @@ export default {
   background-color: #3B322C;
   color : #F4F3EE;
   transition: 0.1s;
+}
+
+input[type=text], input[type=password]{
+  width : 100%;
+  height: 50px;
+  font-size: 1.5em;
+  outline : none;
+  padding-left : 20px;
+  color : #627278;
+  border-bottom: 1px solid #627278;
+  margin-bottom : 20px;
 }
 </style>
