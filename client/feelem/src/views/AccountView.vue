@@ -5,8 +5,8 @@
       <!-- <img src="@/assets/emotion/mood (1).png" alt=""> -->
       <img src="@/assets/profile/OBJECTS_03.png" alt="" />
       <h2>{{ profile.username }}</h2>
-      <b-button v-if="!isCurrentUser" @click="follow" variant="primary" :class="{ following_status: isfollowed }">
-        Follow
+      <b-button v-if="!isCurrentUser" @click="follow" variant="primary" size="sm" :class="{ following_status: isfollowed }">
+        {{ isfollowed ? "Unfollow" : "Follow" }}
       </b-button>
       <ul>
         <li>Following: 50</li>
@@ -57,8 +57,8 @@ export default {
       this.isfollowed = !this.isfollowed;
       const nickname = this.$route.params.nickname;
       this.$store.dispatch("follow", nickname);
-      // 새로고침
-      this.$router.go();
+      // // 새로고침
+      // this.$router.go();
     },
   },
   computed: {
@@ -90,15 +90,27 @@ export default {
 }
 .profile-card {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+  column-gap: 1.25em;
+  grid-template-columns: repeat(3, auto);
+}
+
+.profile-card img {
+  grid-row: 1 / 3;
 }
 
 .profile-card button {
-  grid-column: 2 / -1;
+  grid-column: 3 / -1;
 }
 
+.profile-card h2 {
+  margin: 0;
+}
 .profile-card ul {
+  margin: 0;
+  padding: 0;
   display: flex;
+  grid-column: 2 / -1;
 }
 .profile-card li:not(:last-child):after {
   content: "\00a0|\00a0";

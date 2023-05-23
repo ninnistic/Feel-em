@@ -117,21 +117,25 @@ export default {
 </script>
 
 <style>
-.selected {
-  background-color: #3B322C;
-  color : #F4F3EE
-}
+
 
 .genre-btn{
+  background-color: #8DDCA4;
+  color: #3B322C;
   display: inline-block;
-  border : solid #3B322C 2.5px;
-  border-radius: 10px;
-  padding : 6px; 
+  border : solid 1px white;
+  border-radius: 20px;
+  padding : 10px 20px; 
   margin: 5px;
   cursor : pointer;
 }
+.selected {
+  background-color: #3B322C;
+  color : #F4F3EE;
+}
 .genre-btn:hover{
-  background-color: #8DDCA4;
+  background-color: #3B322C;
+  color : #F4F3EE;
   transition: 0.1s;
 }
 </style>
