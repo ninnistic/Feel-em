@@ -34,9 +34,9 @@ class UserSerializer(serializers.ModelSerializer):
         # read_only_fields = ('genres',)
         fields='__all__'
 
-class UserLoginSerializer(serializers.ModelSerializer):
+class UserSignUpSerializer(serializers.ModelSerializer):
     # followings_count = serializers.IntegerField(source = 'followings.count')
-
+    
     class MovieSerializer(serializers.ModelSerializer):
         class Meta:
             model = Movie
