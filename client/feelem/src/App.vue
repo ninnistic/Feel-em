@@ -27,7 +27,7 @@
           <router-link to="/login">Login</router-link>
         </span>
         <span>
-          <router-link to="/signup">Sign In</router-link>
+          <router-link to="/signup">Sign Up</router-link>
         </span>
         
       </li>
@@ -146,6 +146,8 @@ body.fixed-nav .navbar {
   background-color: #8DDCA4;
   color:black;
 }
+
+
 /* 
 .nav-colored { background-color:#000; }
 .nav-transparent { background-color:transparent;} */

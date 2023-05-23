@@ -1,30 +1,59 @@
 <template>
   <div>
-      <div class="form-group" v-if="genres">
-        <form @submit.prevent="signUp" class="signup-form">
-          <div>
-            <label for="username" class="title-tag">* Username</label>
-            <input type="text" v-model="username" id="username" />
-          </div>
-          <div>
-            <label for="email" class="title-tag">* Email</label>
-            <input type="text" v-model="email" id="email" autocomplete="off" />
-          </div>
-          <div>
-            <label for="password" class="title-tag">* Password</label>
-            <input type="password" v-model="password" id="password" />
-          </div>
-          <div>
-            <label for="passwordConfirm" class="title-tag"
-              >* Password check</label
-            >
-            <input
-              type="password"
-              v-model="passwordConfirm"
-              id="passwordConfirm"
-            />
-          </div>
-          <div class="card-container">
+    <div class="form-group" v-if="genres">
+      <form @submit.prevent="signUp" class="signup-form">
+        <div>
+          <label for="username" class="title-tag">* Username</label>
+          <input
+            type="text"
+            v-model="username"
+            id="username"
+            required
+            placeholder="Enter your name"
+            min="3"
+            max="50"
+          />
+        </div>
+        <!-- <p class="error-message">
+          으아악, 이름을 입력하세요
+        </p>
+        <p class="success-message">
+          으아악, 이름을 입력하기성공
+        </p> -->
+        <div>
+          <label for="email" class="title-tag">* Email</label>
+          <input
+            type="email"
+            v-model="email"
+            id="email"
+            autocomplete="off"
+            required
+            placeholder="Enter your email"
+          />
+        </div>
+        <div>
+          <label for="password" class="title-tag">* Password</label>
+          <input
+            type="password"
+            v-model="password"
+            id="password"
+            required
+            placeholder="Enter your password"
+          />
+        </div>
+        <div>
+          <label for="passwordConfirm" class="title-tag"
+            >* Check password</label
+          >
+          <input
+            type="password"
+            v-model="passwordConfirm"
+            id="passwordConfirm"
+            required
+            placeholder="Check your password"
+          />
+        </div>
+        <div class="card-container">
           <p class="title-tag">* 선호하는 장르</p>
           <section class="genre-card">
             <div v-for="genre in genres" :key="genre.id" class="genre">
@@ -38,16 +67,20 @@
             </div>
           </section>
           <section clas="goal-card">
-            <label for="goal_of_month" class="title-tag" >* 이번 달에는<br> <b-form-select
+            <label for="goal_of_month" class="title-tag"
+              >* 이번 달에는<br />
+              <b-form-select
                 v-model="goal_of_month"
                 :options="options"
                 id="goal-select"
-              ></b-form-select> <br>개의 영화를 보고싶어요. </label>
+              ></b-form-select>
+              <br />개의 영화를 보고싶어요.
+            </label>
           </section>
-          </div>
-          <input type="submit" value="Sign Up >" class="signup-btn" />
-        </form>
-      </div>
+        </div>
+        <input type="submit" value="Sign Up >" class="signup-btn" />
+      </form>
+    </div>
   </div>
 </template>
 
@@ -133,10 +166,10 @@ export default {
 * {
   background: #f4f3ee;
 }
-.form-group{
+.form-group {
   margin: 5em;
 }
-.signup-form{
+.signup-form {
   display: flex;
   flex-direction: column;
 }
@@ -173,38 +206,46 @@ export default {
   transition: 0.1s;
 }
 
-#goal-select{
+#goal-select {
   outline: none;
   font-size: 3em;
   color: #f58080;
 }
-#goal-select:hover{
+#goal-select:hover {
   color: #8ddca4;
+  cursor: pointer;
 }
 
-.signup-btn{
+.signup-btn {
   display: block;
   font-size: 4em;
   font-weight: 600;
   color: #3b322c;
   align-self: flex-end;
-  background: linear-gradient(to right,  #f58080,#8ddca4);
+  background: linear-gradient(to right, #f58080, #8ddca4);
   animation: rainbow 2s ease-in-out infinite;
   background-clip: text;
-  -webkit-background-clip:text;
-  transition: color .2s ease-in-out;
+  -webkit-background-clip: text;
+  transition: color 0.2s ease-in-out;
 }
-.signup-btn:hover{
-  color:rgba(0,0,0,0);
+.signup-btn:hover {
+  color: rgba(0, 0, 0, 0);
 }
-@keyframes rainbow { 
-  0%{background-position:left}
-  50%{background-position:right}
-  100%{background-position:left}
+@keyframes rainbow {
+  0% {
+    background-position: left;
+  }
+  50% {
+    background-position: right;
+  }
+  100% {
+    background-position: left;
+  }
 }
 
 input[type="text"],
-input[type="password"] {
+input[type="password"],
+input[type="email"] {
   width: 100%;
   height: 50px;
   font-size: 1.5em;
@@ -217,7 +258,8 @@ input[type="password"] {
 }
 
 input[type="text"]:focus,
-input[type="password"]:focus {
+input[type="password"]:focus,
+input[type="email"]:focus {
   animation-name: border-focus;
   animation-duration: 0.5s;
   animation-fill-mode: forwards;
@@ -231,8 +273,22 @@ input[type="password"]:focus {
   }
 }
 
+.error-message{
+  display: none;
+  margin-left: 1.3em;
+  margin-bottom: 2em;
+  color: #f58080;
+  font-weight: 600;
+}
+.success-message{
+  display: none;
+  margin-left: 1.3em;
+  margin-bottom: 2em;
+  color: #8ddca4;
+  font-weight: 600;
+}
 
-
-
-
+input:valid + .success-message{
+  display: show;
+}
 </style>

@@ -33,6 +33,7 @@
 import MovieCard from "@/components/MovieCard";
 import FeelogCard from "@/components/FeelogCard";
 import VideoCard from "@/components/VideoCard";
+
 export default {
   name: "HomeView",
   components: {
@@ -61,7 +62,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .container{
   display: flex;
   justify-content: center;
