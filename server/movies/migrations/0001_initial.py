@@ -14,7 +14,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Genre',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.IntegerField(primary_key=True, serialize=False)),
                 ('name', models.CharField(blank=True, max_length=50)),
             ],
         ),
