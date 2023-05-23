@@ -3,7 +3,7 @@
     <nav class="navbar" style="background-color: transparent; width: 100%;" id="myNav">
       <ul>
         <li>
-          <router-link to="/movielist">Movie list</router-link>
+          <router-link to="/movielist">Movies</router-link>
         </li>
         <li>
           <router-link to="/home"><img src="@/assets/logo-white.png" alt="" style="width:150px;"></router-link>
@@ -14,7 +14,7 @@
         </li> -->
         <li v-if="isLoggedIn" class="nav-login">
           <span>
-            <span @click="logout">Logout</span>
+            <a @click="logout">Logout</a>
           </span>
           <span>
             <router-link :to="'/account/' + nickname">{{ nickname }}</router-link>
