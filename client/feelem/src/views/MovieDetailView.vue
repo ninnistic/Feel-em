@@ -1,7 +1,7 @@
 <template>
   <div>
-   <h1>영화 상세</h1>
-   <div>
+  <h1>영화 상세</h1>
+  <div>
     <!-- <div v-if="isLoading" class="loading-container">
 	<div class="loading">
 		<Fade-loader />

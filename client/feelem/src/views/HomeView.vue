@@ -9,7 +9,7 @@
     <router-link
       v-for="movie in movieList"
       :key="movie.movie_num"
-      :to="'movie-detail/' + movie.id"
+      :to="'/movie-detail/' + movie.id"
     >
       <MovieCard :movie="movie" />
     </router-link>
@@ -17,7 +17,7 @@
     <router-link
       v-for="feelog in feelogList"
       :key="feelog.id"
-      :to="'feelog-detail/' + feelog.id"
+      :to="'/feelog-detail/' + feelog.id"
     >
       <FeelogCard
         :feelog="feelog"

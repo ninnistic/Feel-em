@@ -2,10 +2,15 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
 import router from '../router'
+import createPersistedState from "vuex-persistedstate";
 
 Vue.use(Vuex)
+
 const BASE_URI = 'http://127.0.0.1:8000'
 export default new Vuex.Store({
+  plugins : [
+    createPersistedState()
+  ],
   state: {
     movies: [],
     feelogs: [],
@@ -29,11 +34,14 @@ export default new Vuex.Store({
     },
     isMovieSaved(state){
       return state.isMovieSaved
+    },
+    getUserFeelogsByName : (state) => (nickname) => {
+      return state.feelogs.filter(feelog => feelog.username == nickname)
     }
   },
   mutations: {
     SET_PROFILE(state, res){
-      state.profile = res
+      state.profile = res.data
     },
     SET_MOVIES(state, res){
       state.movies = res.data
