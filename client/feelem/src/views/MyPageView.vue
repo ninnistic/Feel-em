@@ -1,18 +1,27 @@
 <template>
   <div>
-    <img src="@/assets/emotion/mood (1).png" alt="">
+  <div class="profile-card">
+    <div class="profile-greet">
+    <p>Hello <br>
+    {{ profile.username }}!
+    </p>
+    </div>
+    <div class="profile-pic">
+    <!-- <img src="@/assets/emotion/mood (1).png" alt=""> -->
     <img src="@/assets/profile/OBJECTS_03.png" alt="">
+    </div>
   <div v-if="profile.username != login_user">
-    <button @click="follow" :class="{ following_status : isfollowed}" >follow</button>
+    <button @click="follow" :class="{ following_status : isfollowed}">follow</button>
   </div>
+  </div>
+  <div class="name-tag"><span>{{profile.favorite_genre[0].name}} 장르 애호가 </span></div>
 
-  <span>내 이름은 {{ profile.username }}!</span><br>
-  <span>이번달은 {{ profile.goal_of_month}}개의 영화를 볼거야!</span><br>
+
+  <div>이번달은 {{ profile.goal_of_month}}개의 영화를 볼거야!</div>
   <div v-if="profile.username == login_user">
-    <span>나는 {{ profile.favorite_genre[0].name }}같은 장르들을 좋아해!</span><br> <!--숫자로 뜬다-->
-    <span>특히 {{ profile.save_movies[0].title }}가 보고 싶더라.</span><br><!--movie가 pk로 뜬다.-->
-    <span>관심가는 feelmers는 
-    <span v-for="feelmer in profile.followings" :key="feelmer.id"> {{ feelmer.username }},</span>야.</span><br> <!--user.pk로 뜬다. -->
+    <div>나는 {{ profile.favorite_genre[0].name }}같은 장르들을 좋아해!</div> 
+    <div>특히 {{ profile.save_movies[0].title }}가 보고 싶더라.</div>
+    <div>관심가는 feelmers는 <span v-for="feelmer in profile.followings" :key="feelmer.id"> {{ feelmer.username }},</span>야.</div>
   </div>
   <span>내가 쓴 feelog는 : </span>
     <router-link
@@ -74,11 +83,25 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 
 .following_status{
   background-color: blue;
   color: beige;
+}
+.profile-card{
+  display: flex;
+  justify-content: space-between;
+}
+.profile-greet {
+  color: #3B322C;
+  font-size: 4em;
+  font-weight: 700;
+}
+.name-tag{
+  font-size : 1.5em;
+  font-weight: 200;
+  color : #627278;
 }
 
 </style>
