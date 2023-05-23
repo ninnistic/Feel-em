@@ -17,8 +17,8 @@
         {{ movie.overview }}
       </b-card-text>
       <p v-if="showsVote"> 평점 : {{movie.vote_average}}</p>
-      <button @click="saveMovie" v-if="isMovieSaved" >♡</button>
-      <button @click="saveMovie" v-else >♥</button>
+      <button @click="saveMovie" v-if="isMovieSaved" >♥</button>
+      <button @click="saveMovie" v-else >♡</button>
       <!-- <template #footer>
         <small class="text-muted" > {{movie.id}} 명의 사람이 추천했어요</small>
       </template> -->

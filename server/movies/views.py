@@ -23,21 +23,24 @@ def genre_list(request):
         return Response(serializer.data)
 
 @api_view(['GET'])
+@permission_classes([AllowAny])
 def movie_list(request):
     if request.method == 'GET':
         movies = get_list_or_404(Movie)
         serializer = MovieListSerializer(movies, many=True)
         return Response(serializer.data)
     
-@api_view(['GET'])        
+@api_view(['GET'])
+@permission_classes([AllowAny])      
 def movie(request, movie_pk):
     if request.method == 'GET':
         movie = get_object_or_404(Movie, pk=movie_pk)
         serializer = MovieDetailSerializer(movie)
         return Response(serializer.data)
     
-@api_view(['POST'])  
-def likemovie(request,movie_pk):
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def save_movie(request,movie_pk):
     # if request.user.is_authenticated:
         if request.method == 'POST':
             user = request.user

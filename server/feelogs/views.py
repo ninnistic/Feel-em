@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework.decorators import permission_classes
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated,IsAuthenticatedOrReadOnly, AllowAny
 from rest_framework import status
 from django.shortcuts import get_object_or_404, get_list_or_404
 
@@ -13,6 +13,7 @@ from .serializers import FeelogListSerializer, FeelogDetailSerializer, MovieFeel
 
 # 모든 feelog 조회(모든 내용 포함)
 @api_view(['GET'])
+@permission_classes([AllowAny])
 def total_feelog_list(request):
   if request.method == 'GET':
         feelogs = get_list_or_404(Feelog)
@@ -20,6 +21,7 @@ def total_feelog_list(request):
         return Response(serializer.data)
 
 @api_view(['GET'])
+@permission_classes([AllowAny])
 def user_feelog_list(request, username):
   if request.method == 'GET':
     user = get_object_or_404(User, username=username)
@@ -28,7 +30,7 @@ def user_feelog_list(request, username):
     return Response(serializer.data)
 
 @api_view(['GET','POST'])
-
+@permission_classes([IsAuthenticatedOrReadOnly])
 def feelogs_by_movie(request, movie_pk):
   movie = get_object_or_404(Movie, pk=movie_pk)
   if request.method == 'GET':
@@ -45,7 +47,8 @@ def feelogs_by_movie(request, movie_pk):
   
     
 
-@api_view(['GET','DELETE']) 
+@api_view(['GET','DELETE'])
+@permission_classes([IsAuthenticatedOrReadOnly])
 def feelog(request, feelog_pk):
   if request.method == 'GET':
     feelog = get_object_or_404(Feelog, pk=feelog_pk)
@@ -57,6 +60,7 @@ def feelog(request, feelog_pk):
     return Response({"DELETE": 'success'},status=status.HTTP_204_NO_CONTENT)
 
 @api_view(['GET'])
+@permission_classes([AllowAny])
 def mood_list(request):
   if request.method == 'GET':
     moods = get_list_or_404(Mood)
@@ -64,6 +68,7 @@ def mood_list(request):
     return Response(serializer.data)
 
 @api_view(['POST'])  
+@permission_classes([IsAuthenticated])
 def feeloglike(request,feelog_pk):
     if request.user.is_authenticated:
         feelog = get_object_or_404(Feelog, pk=feelog_pk)

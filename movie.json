@@ -1042,21 +1042,6 @@
 	{
 		"model": "movies.Movie",
 		"fields": {
-			"movie_num": 747355,
-			"title": "스와핑: 두 부부의 이혼여행",
-			"release_date": "2020-08-28",
-			"popularity": 437.719,
-			"vote_average": 6.3,
-			"overview": "",
-			"poster_path": "/wESfP4ZeBbwjjFw2tql4Bqx101Q.jpg",
-			"genres": [
-				18
-			]
-		}
-	},
-	{
-		"model": "movies.Movie",
-		"fields": {
 			"movie_num": 631842,
 			"title": "똑똑똑",
 			"release_date": "2023-02-01",
@@ -1269,6 +1254,71 @@
 			"poster_path": "/xP1GXV1gms9b5BpHZP7S8qs8FO.jpg",
 			"genres": [
 				18
+			]
+		}
+	},
+	{
+		"model": "movies.Movie",
+		"fields": {
+			"movie_num": 1011679,
+			"title": "샤크 사이드 오브 더 문",
+			"release_date": "2022-08-12",
+			"popularity": 345.008,
+			"vote_average": 5.3,
+			"overview": "",
+			"poster_path": "/v5CfpzxoJDkZxjZAizClFdlEF0U.jpg",
+			"genres": [
+				28,
+				878,
+				53,
+				27
+			]
+		}
+	},
+	{
+		"model": "movies.Movie",
+		"fields": {
+			"movie_num": 1023313,
+			"title": "La Exorcista",
+			"release_date": "2022-11-02",
+			"popularity": 343.092,
+			"vote_average": 5.9,
+			"overview": "",
+			"poster_path": "/d07xtqwq1uriQ1hda6qeu8Skt5m.jpg",
+			"genres": [
+				27
+			]
+		}
+	},
+	{
+		"model": "movies.Movie",
+		"fields": {
+			"movie_num": 667538,
+			"title": "트랜스포머: 비스트의 서막",
+			"release_date": "2023-06-06",
+			"popularity": 340.121,
+			"vote_average": 0,
+			"overview": "화려한 액션과 스펙터클로 전 세계를 사로잡은 영화 <트랜스포머> 시리즈의 신작 <트랜스포머: 비스트의 서막>은 1990년대의 지구를 배경으로 벌어지는 오토봇과 디셉티콘의 전투 그리고 새롭게 등장하는 캐릭터들인 맥시멀을 선보일 예정이다.",
+			"poster_path": "/chUZNPNd7EiETSB4xBGykXhuXRr.jpg",
+			"genres": [
+				28,
+				12,
+				878
+			]
+		}
+	},
+	{
+		"model": "movies.Movie",
+		"fields": {
+			"movie_num": 985939,
+			"title": "폴: 600미터",
+			"release_date": "2022-08-11",
+			"popularity": 339.177,
+			"vote_average": 7.3,
+			"overview": "내려갈 길이 끊겨버린 600미터 TV 타워 위에서  두 명의 친구가 살아남기 위해 펼치는 사상 최초의 고공 서바이벌 여기에서",
+			"poster_path": "/8huJowZK1t7MNLEKo3dgLAxmiLW.jpg",
+			"genres": [
+				53
 			]
 		}
 	}

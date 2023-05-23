@@ -98,7 +98,7 @@ export default new Vuex.Store({
       axios({
         method : 'get',
         url : `${BASE_URI}/movies`,
-        headers: authHeaders()
+        // headers: authHeaders()
       })
       .then(res => {
         context.commit('SET_MOVIES', res)
@@ -304,8 +304,7 @@ export default new Vuex.Store({
     saveMovie(context, id){
       axios({
         method:'post',
-        // TODO : url like이 아니라 save-movie 이런식으로 하고 / 도 통일할 것..
-        url:`${BASE_URI}/movies/${id}/like`,
+        url:`${BASE_URI}/movies/${id}/save-movie/`,
         headers: authHeaders()
       })
       .then((res) =>{
