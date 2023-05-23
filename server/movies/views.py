@@ -40,7 +40,7 @@ def movie(request, movie_pk):
     
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
-def likemovie(request,movie_pk):
+def save_movie(request,movie_pk):
     # if request.user.is_authenticated:
         if request.method == 'POST':
             user = request.user
