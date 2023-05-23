@@ -25,7 +25,11 @@
           </div>
           <div>
             <label for="goal_of_month">월별 목표:</label>
-            <input type="text" v-model="goal_of_month" id="goal_of_month">
+          <div>
+            <b-form-select v-model="goal_of_month" :options="options" :select-size="4"></b-form-select>
+            <div class="mt-3">Selected: <strong>{{ goal_of_month }}</strong></div>
+          </div>
+
           </div>
           <input type="submit" value="signup">
         </form>
@@ -43,8 +47,20 @@ export default {
       email: null,
       password: null,
       passwordConfirm: null,
-      goal_of_month: null,
+      goal_of_month: 1,
       favorite_genre: [],
+        options: [
+          { value: 1, text: '1' },
+          { value: 2, text: '2' },
+          { value: 3, text: '3' },
+          { value: 4, text: '4' },
+          { value: 5, text: '5' },
+          { value: 6, text: '6' },
+          { value: 7, text: '7' },
+          { value: 8, text: '8' },
+          { value: 9, text: '9' },
+          { value: 10, text: '10' }
+        ]
     };
   },
   created() {
