@@ -14,8 +14,12 @@
     <span>관심가는 feelmers는 
     <span v-for="feelmer in profile.followings" :key="feelmer.id"> {{ feelmer.username }},</span>야.</span><br> <!--user.pk로 뜬다. -->
   </div>
-  <span>내가 쓴 feelog</span>
-  <span>{{ feelogs }}</span>
+  <span>내가 쓴 feelog는 : </span>
+    <router-link
+      v-for="feelog in feelogs"
+      :key="feelog.id"
+      :to="'/feelog-detail/' + feelog.id"
+    >{{ feelog.title }}</router-link>
 
   </div>
 </template>
@@ -30,12 +34,15 @@ export default {
   },
   data(){
     return{
-      isfollowed:false
+      isfollowed: false
     }
   },
   created(){
     const nickname = this.$route.params.nickname
     this.$store.dispatch("fetchProfile", nickname)
+  },
+  mounted(){
+  
   },
   methods:{
     follow() {
@@ -43,7 +50,6 @@ export default {
           this.isfollowed = !this.isfollowed
           const nickname = this.$route.params.nickname 
           this.$store.dispatch("follow", nickname)
-          this.$forceUpdate()
           // 새로고침
           this.$router.go()
         }
