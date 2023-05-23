@@ -72,7 +72,7 @@ v
 
 * {
   font-family: 'Pretendard';
-  
+  text-decoration: none;
   
 }
 .main{

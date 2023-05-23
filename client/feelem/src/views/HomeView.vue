@@ -55,7 +55,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 .container{
   display: flex;
   justify-content: center;
@@ -63,6 +63,7 @@ export default {
   flex-direction: column;
   position: relative;
   top:30%;
+  width:100vw;
 }
 
 .video{

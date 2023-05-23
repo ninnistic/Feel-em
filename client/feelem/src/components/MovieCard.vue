@@ -10,7 +10,7 @@
   </div> -->
 
   <b-col class="card-container"  v-if="movie">
-      <b-card :img-src="posterPath" img-alt="Image" img-top style="max-width:20rem" class="card h-100">
+      <b-card :img-src="posterPath" img-alt="Image" img-top style="max-width:20rem;" class="card h-200">
         <b-card-title class="card-title">{{movie.title}}</b-card-title>
       <b-card-text class="overview" >
         {{ movie.overview }}
@@ -55,14 +55,23 @@ export default {
 </script>
 
 <style>
+*{
+  text-decoration: none;
+}
 
-
-img{
+.img-top {
   width: 200px;
+  height:357px;
 }
 
 .card-container{
   margin-bottom: 30px;
+  width:240px;
+}
+.card-title{
+  line-height: 26px;
+  height: calc(2 * 25px);
+  text-decoration: none;
 }
 
 .overview {
