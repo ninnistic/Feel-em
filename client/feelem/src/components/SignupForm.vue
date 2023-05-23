@@ -161,6 +161,23 @@ input[type=text], input[type=password]{
   padding-left : 20px;
   color : #627278;
   border-bottom: 1px solid #627278;
+  transition: border-width 0.6s linear;
   margin-bottom : 20px;
 }
+
+
+input[type=text]:focus,
+input[type=password]:focus {
+  animation-name: border-focus;
+        animation-duration: 0.5s;
+        animation-fill-mode: forwards;
+      }
+      @keyframes border-focus {
+        from {
+          border-bottom : 1px solid #627278;
+        }
+        to {
+          border-bottom : 3px solid #F58080;
+        }
+      }
 </style>
