@@ -41,9 +41,8 @@ export default {
     },
     feelogs() {
       const id = this.$route.params.id
-      const res = this.$store.state.feelogs.filter(feelog => feelog.movie == id)
-      console.log(this.$store.state.feelogs)
-      return res
+      return this.$store.state.feelogs.filter(feelog => feelog.movie == id)
+      
     }
   },
 

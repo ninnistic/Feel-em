@@ -37,6 +37,7 @@ export default new Vuex.Store({
       state.token = token
       router.push(`home`) 
     },
+    // TODO : router store에다 쓰지 말 것...
     SET_SIGNUP() {
       router.push(`login`) 
     },
@@ -219,7 +220,7 @@ export default new Vuex.Store({
           console.log(error)
         })
       },
-    signup(context, payload){
+    signUp(context, payload){
       const username = payload.username
       const email = payload.email
       const password = payload.password
