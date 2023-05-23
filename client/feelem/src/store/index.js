@@ -33,7 +33,7 @@ export default new Vuex.Store({
   },
   mutations: {
     SET_PROFILE(state, res){
-      state.profile = res
+      state.profile = res.data
     },
     SET_MOVIES(state, res){
       state.movies = res.data
