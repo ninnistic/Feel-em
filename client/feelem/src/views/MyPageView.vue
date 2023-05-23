@@ -34,14 +34,14 @@ export default {
   },
   created(){
     const nickname = this.$route.params.nickname
-    this.$store.dispatch("fetchProfile",nickname)
+    this.$store.dispatch("fetchProfile", nickname)
   },
   methods:{
     follow() {
           // follow 메서드 구현 (버튼을 클릭했을 때 호출될 동작)
           this.isfollowed = !this.isfollowed
           const nickname = this.$route.params.nickname 
-          this.$store.dispatch('follow',nickname)
+          this.$store.dispatch('follow', nickname)
           // 새로고침
           this.$router.go()
         }
@@ -52,12 +52,9 @@ export default {
     },
     feelogs() {
       const nickname = this.$route.params.nickname
-      const res = this.$store.state.feelogs.filter(feelog => feelog.username == nickname)
-      // const result = res.filter(res => {
-      //   const create = new Date(res.created_at)
-      //   return create.getMonth()===4
-        // 0:12 범위로 날짜를 리턴함. 해당 숫자를 움직여서 월 별 필로그 보여주기.
-      return res
+      return this.$store.state.feelogs.filter(feelog => feelog.username == nickname)
+ 
+      
       },
       
     login_user(){
