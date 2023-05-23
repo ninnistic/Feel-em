@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <SignupForm />
   </div>
 </template>
@@ -17,13 +17,14 @@ export default {
       
     }
   },
-  methods : {
-    
-  }
+
 
 }
 </script>
 
-<style>
-
+<style scoped>
+.container{
+  position: relative;
+  top:200px;
+}
 </style>

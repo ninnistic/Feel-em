@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <img src="@/assets/emotion/mood (1).png" alt="">
     <img src="@/assets/profile/OBJECTS_03.png" alt="">
   <div v-if="profile.data.username != login_user">
@@ -69,12 +69,15 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 
 .following_status{
   background-color: blue;
   color: beige;
 }
-
+.container{
+  position: relative;
+  top:200px;
+}
 </style>
 

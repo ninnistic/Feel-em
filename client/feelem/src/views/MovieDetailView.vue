@@ -2,11 +2,11 @@
   <div>
    <h1>영화 상세</h1>
    <div>
-    <div v-if="isLoading" class="loading-container">
+    <!-- <div v-if="isLoading" class="loading-container">
 	<div class="loading">
 		<Fade-loader />
 	</div>
-</div>
+</div> -->
     <!-- {{getMovieInfo.title}}
     <img :src="getImageUrl" alt="posterImage"> -->
     <MovieCard :movie = movie showsOverview showsVote/>
@@ -53,7 +53,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .loading {
   z-index: 2;
   position: fixed;
@@ -62,4 +62,7 @@ export default {
   transform: translate(-50%, -50%);
   box-shadow: rgba(0, 0, 0, 0.1) 0 0 0 9999px;
 }
+
+
 </style>
+
