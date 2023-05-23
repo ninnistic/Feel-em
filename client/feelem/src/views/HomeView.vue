@@ -5,7 +5,11 @@
   </div>
 
   <div v-if="isLoggedIn" class="d-flex my-5 p-3" style="align-self: self-start;">
-    <h1 class="fw-bold username" v-if="isLoggedIn" style="align-self: self-start;">{{nickname}}</h1>
+    <h1 class="fw-bold username" style="align-self: self-start;">{{nickname}}</h1>
+    <h1 class="fw-bold">님께 딱 맞는 영화</h1>
+  </div>
+  <div v-else class="d-flex my-5 p-3" style="align-self: self-start;">
+    <h1 class="fw-bold username" style="align-self: self-start;">Feelmer</h1>
     <h1 class="fw-bold">님께 딱 맞는 영화</h1>
   </div>
   <div class=" m-1 container">
@@ -21,10 +25,9 @@
   </b-row>
   </b-container>
 
-  <div v-if="isLoggedIn" class="d-flex my-5 p-3" style="align-self: self-start;">
-    <h1 class="fw-bold username" v-if="isLoggedIn" style="align-self: self-start;">Feelmer's PICK</h1>
+  <div class="d-flex my-5 p-3" style="align-self: self-start;">
+    <h1 class="fw-bold username" style="align-self: self-start;">Feelmer's PICK</h1>
   </div>
-
   <b-container class="mb-1">
       <b-row cols="2">
     <router-link
