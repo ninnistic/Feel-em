@@ -7,10 +7,6 @@ django.setup()
 from movies.models import Genre, Movie
 import requests
 
-
-# 원래는 models.py 아래에 쓴대서 아래 코드들을 movies/models.py 아래에 저장하고 호출함. 
-# 호출 안되면서 다양한 에러가 뜬다..! 그래서 폴더를 옮김
-# feelem 모듈이 없다는 에러... 혹시 해당 코드 사용 가능하다면, 사용해보기
 def save_genre():
     URL = 'https://api.themoviedb.org/3/genre/movie/list?api_key=3bf4d020baa9f161f8eaac60d2ab7205&language=ko-kr'
     genres = requests.get(URL).json()
@@ -18,8 +14,8 @@ def save_genre():
     for genre_Data in genres['genres']:
         genre = Genre(
             name = genre_Data['name'],
-            # genre_ids = genre_Data['id']  해당 코드 넣으려면 models.py에 추가할 것.
-        )
+            id = genre_Data['id'],
+            )
         genre.save()
 
 def save_movie():
@@ -32,25 +28,27 @@ def save_movie():
         data = response.json()
         
         for movie_data in data['results']:
-            movie = Movie(
-                title = movie_data['title'],
-                release_date= movie_data['release_date'],
-                popularity= movie_data['popularity'],
-                vote_average= movie_data['vote_average'],
-                overview= movie_data['overview'],
-                poster_path= movie_data['poster_path'],
-               )
-            movie.save()
-            movie.genres.set(movie_data['genre_ids'])
+            release_date = movie_data['release_date']
+            if release_date and int(release_date[:4]) >= 2010:
+                title = movie_data['title']
+                adult = ['막내 처제', '옥보단']
+                if not any(word in title for word in adult):
 
-        # movie.genres.set(movie_data['genre_ids'])
-        # for genre_id in movie_data['genre_ids']:
-        #     genre = Genre.objects.get(genre_ids=genre_id)
-        #     print(genre)
-        #     movie.genres.add(genre)
-            # 에러! django.db.utils.IntegrityError: FOREIGN KEY constraint failed
-            
+                    movie = Movie.objects.create(
+                        movie_num = movie_data['id'],
+                        title = movie_data['title'],
+                        release_date= movie_data['release_date'],
+                        popularity= movie_data['popularity'],
+                        vote_average= movie_data['vote_average'],
+                        overview= movie_data['overview'],
+                        poster_path= movie_data['poster_path'],
+                    )
+                    genre_ids = movie_data['genre_ids']
+                    genres = Genre.objects.filter(id__in = genre_ids)
+                    
+                    movie.genres.set(genres)
 
-if __name__=='__main__':
-    save_genre()
-    save_movie()
+                    movie.save()
+
+save_genre()
+save_movie()

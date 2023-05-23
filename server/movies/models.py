@@ -3,10 +3,12 @@ from django.conf import settings
 import requests
 
 class Genre(models.Model):
+    id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=50, blank=True)
 
 
 class Movie(models.Model):
+   
     movie_num = models.IntegerField()
     title = models.CharField(max_length=500)
     overview = models.TextField()
