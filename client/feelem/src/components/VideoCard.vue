@@ -16,7 +16,7 @@
 										바람과 모래로 쓴 <br>대서사시의 서문
 									</h2><br>
 									<p class="text-white">두려워하지 말라, 두려움은 정신을 죽이고, <br>세계를 소멸시키는 작은 죽음이다</p>
-									<p class="text-white mb-4 fs-5">
+									<p class="text-white mb-4 fs-5" id="shortcut">
 										바로 가기 >									
 									</p>
 								</div>
@@ -40,8 +40,8 @@
 									<h2 class="text-white movie-description">
 										달리거나, 죽거나.
 									</h2><br>
-									<p class="text-white">죽은놈이 살아 돌아온 이유는 딱 하나지. 복수</p>
-									<p class="text-white mb-4 fs-5">
+									<p class="text-white movie-sub-description">죽은놈이 살아 돌아온 이유는 딱 하나지. 복수</p>
+									<p class="text mb-4 fs-5" id="shortcut">
 										바로가기 >
 									</p>
 								</div>
@@ -117,5 +117,18 @@ export default {
 .movie-description{
 	font-size : 2em;
 	font-weight: 200;
+}
+.movie-sub-description{
+	font-size : 3em;
+	font-weight: 400;
+}
+#shortcut {
+	color : #627278;
+	font-weight: 500;
+}
+
+#shortcut:hover{
+	color : white;
+	cursor : pointer;
 }
 </style>

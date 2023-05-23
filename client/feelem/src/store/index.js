@@ -38,7 +38,7 @@ export default new Vuex.Store({
     },
     getUserFeelogsByName : (state) => (nickname) => {
       return state.feelogs.filter(feelog => feelog.username == nickname)
-    }
+    },
   },
   mutations: {
     SET_PROFILE(state, res){
