@@ -1,4 +1,8 @@
 <template>
+<div>
+  <div class="video"> 
+    <VideoCard /> 
+  </div>
   <div class="d-flex m-1 container">
     <b-container class="mb-1">
       <b-row cols="5">
@@ -22,17 +26,19 @@
     </b-row>
   </b-container>
   </div>
+  </div>
 </template>
 
 <script>
 import MovieCard from "@/components/MovieCard";
 import FeelogCard from "@/components/FeelogCard";
-
+import VideoCard from "@/components/VideoCard";
 export default {
   name: "HomeView",
   components: {
     MovieCard,
     FeelogCard,
+    VideoCard,
   },
   computed: {
     movieList() {
@@ -54,7 +60,13 @@ export default {
   display: flex;
   justify-content: center;
   align-items : center;
-  flex-direction: row;
+  flex-direction: column;
   margin : 1rem;
+}
+
+.video{
+  position: relative;
+  top:0px;
+  width:100%;
 }
 </style>
