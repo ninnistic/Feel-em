@@ -10,9 +10,10 @@ export default new Vuex.Store({
     movies: [],
     feelogs: [],
     nickname: null,
-    profile:[],
+    profile: [],
     moods: [],
-    isMovieSaved : false,
+    isMovieSaved: false,
+    genres: [],
   },
   getters: {
     getRecommendedMovies(state) {
@@ -73,7 +74,10 @@ export default new Vuex.Store({
     },
     SAVE_MOVIE(state){
       state.isMovieSaved = !state.isMovieSaved
-    }
+    },
+    SET_GENRES(state, data){
+      state.genres = data
+    },
   },
   actions: {
     // Consider renaming to fetchAllMovies
@@ -164,6 +168,19 @@ export default new Vuex.Store({
       .then(res => {
         console.log(res.data)
         context.commit('SET_MOODS', res.data)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+    },
+    fetchGenres(context){
+      axios({
+        method: 'get',
+        url : `${BASE_URI}/movies/all/genres`,
+      })
+      .then((res) => {
+        context.commit('SET_GENRES', res.data)
+      
       })
       .catch(err => {
         console.log(err)
