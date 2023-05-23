@@ -1,9 +1,9 @@
 <template>
-<div>
+<div class="container">
   <div class="video"> 
-    <VideoCard /> 
+    <VideoCard class="video"/> 
   </div>
-  <div class="d-flex m-1 container">
+  <div class=" m-1 container">
     <b-container class="mb-1">
       <b-row cols="5">
     <router-link
@@ -61,14 +61,11 @@ export default {
   justify-content: center;
   align-items : center;
   flex-direction: column;
-  margin : 1rem;
   position: relative;
   top:30%;
 }
 
 .video{
-  position: relative;
-  top:0px;
-  width:100%;
+  width:100vw;
 }
 </style>

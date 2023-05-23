@@ -1,13 +1,14 @@
 <template>
-		<div id="mainTopCarousel" class="carousel slide" data-bs-ride="carousel">
+<div class="container">
+		<div id="mainTopCarousel" class="carousel slide" data-bs-ride="carousel" style="width:2000px; height:700px;">
 		<div class="carousel-inner">
 			<div class="carousel-item active">
 				<div class="main-top-promotion">
-					<video class="main-top-promotion-video" autoplay="autoplay" loop="loop" muted="muted">
+					<video class="main-top-promotion-video" style="width:2000px; height:700px;" autoplay="autoplay" loop="loop" muted="muted">
 						<source src="@/assets/movie/movie.mp4" type="video/mp4">
 					</video>
 					<div class="container">
-						<div class="row align-items-center">
+						<div class="row align-items-center" style="width:800px; height:700px;">
 							<div class="col-sm-12 col-md-6 text-md-start">
 								<div class="py-3 py-md-5">
 									<h1 class="text-white fw-bold">
@@ -25,11 +26,11 @@
 			</div>
 			<div class="carousel-item">
 				<div class="main-top-promotion">
-					<video class="main-top-promotion-video" autoplay="autoplay" loop="loop" muted="muted">
+					<video class="main-top-promotion-video" style="width:2000px; height:700px;" autoplay="autoplay" loop="loop" muted="muted">
 						<source src="@/assets/movie/movie.mp4" type="video/mp4">
 					</video>
 					<div class="container">
-						<div class="row align-items-center">
+						<div class="row align-items-center" style="width:800px; height:700px;">
 							<div class="col-sm-12 col-md-6 text-md-start">
 								<div class="py-3 py-md-5">
 									<h1 class="text-white fw-bold">
@@ -56,6 +57,7 @@
 			<span class="visually-hidden">Next</span>
 		</button>
 	</div>
+	</div>
 </template>
 <script>
 
@@ -70,8 +72,15 @@ export default {
 	width: 100%;
 }
 .main-top-promotion {
-  position: relative;
+  display:flex;
+	justify-content: center;
   width: 100%;
+	align-self: center;
+}
+.container {
+  display:flex;
+	justify-content: center;
+	align-self: center;
 }
 
 .main-top-promotion-video {
@@ -89,6 +98,7 @@ export default {
 .main-top-promotion > .container {
   position: relative;
 	width: 100%;
+	right:180px;
 }
 
 .carousel-control-next, .carousel-control-prev {

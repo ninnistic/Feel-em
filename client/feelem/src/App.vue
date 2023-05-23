@@ -7,7 +7,7 @@
           <router-link to="/movielist">Movie list</router-link>
         </li>
         <li>
-          <router-link to="/home"><img src="@/assets/logo-black.png" alt="" style="width:150px;"></router-link>
+          <router-link to="/home"><img src="@/assets/logo-white.png" alt="" style="width:150px;"></router-link>
         </li>
         
         <!-- <li>
@@ -83,6 +83,7 @@ export default {
 .main-view{
   align-self: center;
   background-color: #f4f3ee;
+  
 
 }
 
@@ -135,20 +136,12 @@ nav{
   padding: 5px;
   border-radius: 5px;
   /* background-color: #f4f3ee; */
+  color:white;
 }
 
 .navbar a:hover {
   background-color: #8DDCA4;
-}
-.video-card-container {
-  height: 0;
-  overflow: hidden;
-  position:absolute;
-  top: 0px;
-}
-
-.video-card-container.show {
-  height: auto;
+  color:black;
 }
 
 </style>
