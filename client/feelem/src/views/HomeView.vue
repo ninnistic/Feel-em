@@ -52,6 +52,12 @@ export default {
     this.$store.dispatch("fetchMovieList");
     this.$store.dispatch("fetchFeelogList");
   },
+  mounted() {
+    document.body.classList.add("fixed-nav");
+  },
+  destroyed() {
+    document.body.classList.remove("fixed-nav");
+  }
 };
 </script>
 

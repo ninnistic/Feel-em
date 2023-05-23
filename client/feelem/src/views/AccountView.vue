@@ -1,15 +1,10 @@
 <template>
   <div>
+  <!--TODO: 나중에 ProfileCard 만들어서 다 옮기기... -->
   <div class="profile-card">
-    <div class="profile-greet">
-    <p>Hello <br>
-    {{ profile.username }}!
-    </p>
-    </div>
-    <div class="profile-pic">
+    <p class="profile-greet">Hello {{ profile.username }}!</p>
     <!-- <img src="@/assets/emotion/mood (1).png" alt=""> -->
-    <img src="@/assets/profile/OBJECTS_03.png" alt="">
-    </div>
+    <img class="profile-pic" src="@/assets/profile/OBJECTS_03.png" alt="">
   <div v-if="!isCurrentUser">
     <button @click="follow" :class="{ following_status : isfollowed}">follow</button>
   </div>
@@ -100,6 +95,14 @@ export default {
   color: #3B322C;
   font-size: 4em;
   font-weight: 700;
+  max-width: 300px;
+  padding: 0;
+  line-height: 1.25em;
+}
+.profile-pic {
+  aspect-ratio: 1 / 1;
+  flex: 1;
+  background-color: red;
 }
 .name-tag{
   font-size : 1.5em;
