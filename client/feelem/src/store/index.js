@@ -87,7 +87,7 @@ export default new Vuex.Store({
       axios({
         method : 'get',
         url : `${BASE_URI}/movies`,
-        headers: authHeaders()
+        // headers: authHeaders()
       })
       .then(res => {
         context.commit('SET_MOVIES', res)

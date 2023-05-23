@@ -1,8 +1,8 @@
 from rest_framework import status
-from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from .serializers import UserSerializer
-from rest_framework.permissions import AllowAny
+from rest_framework.decorators import permission_classes, api_view
+from rest_framework.permissions import IsAuthenticated, AllowAny, IsAuthenticatedOrReadOnly
 from .models import User
 from django.shortcuts import get_object_or_404, get_list_or_404
 from django.contrib.auth import get_user, authenticate
@@ -30,7 +30,9 @@ def signup(request):
         user.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED) # 완료된 데이터를 담아서 전송(hash된 비밀번호)
 
-@api_view(['GET','PUT','DELETE'])   
+
+@api_view(['GET','PUT','DELETE'])
+@permission_classes([IsAuthenticatedOrReadOnly])   
 def profile(request,username):
     user = get_object_or_404(User, username=username)
     if request.method == 'GET':
@@ -45,7 +47,8 @@ def profile(request,username):
         user.delete()
         return Response({"DELETE": 'success'},status = status.HTTP_204_NO_CONTENT)
 
-@api_view(['POST'])  
+@api_view(['POST'])
+@permission_classes([IsAuthenticated]) 
 def follow(request,username):
     if request.user.is_authenticated:
         user = get_object_or_404(User, username=username)
@@ -57,6 +60,7 @@ def follow(request,username):
             return Response({"follow": 'success'})
 
 @api_view(['POST'])
+@permission_classes([AllowAny])
 def signin(request):
     if request.method =='POST':
         if request.user.is_authenticated:
@@ -72,7 +76,8 @@ def signin(request):
         else:
             return Response({"Login": 'failed'},status=status.HTTP_401_UNAUTHORIZED)
 
-@api_view(['GET'])     
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])   
 def logout(request):
     if request.method =='GET':
         auth_logout(request)

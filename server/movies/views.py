@@ -6,7 +6,7 @@ from rest_framework.decorators import api_view
 
 # permission Decorators
 from rest_framework.decorators import permission_classes
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, AllowAny
 
 from rest_framework import status
 from django.shortcuts import get_object_or_404, get_list_or_404
@@ -15,6 +15,7 @@ from .serializers import MovieDetailSerializer,MovieListSerializer, GenreListSer
 # Create your views here.
 
 @api_view(['GET'])
+@permission_classes([AllowAny])
 def genre_list(request):
     if request.method == 'GET':
         genres = get_list_or_404(Genre)
@@ -22,20 +23,23 @@ def genre_list(request):
         return Response(serializer.data)
 
 @api_view(['GET'])
+@permission_classes([AllowAny])
 def movie_list(request):
     if request.method == 'GET':
         movies = get_list_or_404(Movie)
         serializer = MovieListSerializer(movies, many=True)
         return Response(serializer.data)
     
-@api_view(['GET'])        
+@api_view(['GET'])
+@permission_classes([AllowAny])      
 def movie(request, movie_pk):
     if request.method == 'GET':
         movie = get_object_or_404(Movie, pk=movie_pk)
         serializer = MovieDetailSerializer(movie)
         return Response(serializer.data)
     
-@api_view(['POST'])  
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
 def likemovie(request,movie_pk):
     # if request.user.is_authenticated:
         if request.method == 'POST':
