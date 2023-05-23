@@ -62,6 +62,8 @@ export default {
   align-items : center;
   flex-direction: column;
   margin : 1rem;
+  position: relative;
+  top:30%;
 }
 
 .video{

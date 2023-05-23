@@ -1,6 +1,6 @@
 <template>
   <div class="main">
-    <nav class="navbar" style="background-color: #f4f3ee; width: 100%;">
+    <nav class="navbar fixed-top" style="background-color: transparent; width: 100%;">
       <ul>
         
         <li>
@@ -37,6 +37,8 @@
     </nav>
 
     <router-view class="main-view" />
+
+
   </div>
 </template>
 
@@ -81,8 +83,7 @@ export default {
 .main-view{
   align-self: center;
   background-color: #f4f3ee;
-  position: relative;
-  top:0px;
+
 }
 
 nav{
@@ -139,6 +140,15 @@ nav{
 .navbar a:hover {
   background-color: #8DDCA4;
 }
+.video-card-container {
+  height: 0;
+  overflow: hidden;
+  position:absolute;
+  top: 0px;
+}
 
+.video-card-container.show {
+  height: auto;
+}
 
 </style>

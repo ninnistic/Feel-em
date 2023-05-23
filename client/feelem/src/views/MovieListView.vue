@@ -46,6 +46,8 @@ export default {
   align-items : center;
   flex-direction: row;
   margin : 1rem;
+  position: relative;
+  top:100px;
 
 }
 h1{
