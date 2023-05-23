@@ -12,6 +12,7 @@ export default new Vuex.Store({
     nickname: null,
     profile:[],
     moods: [],
+    isMovieSaved : false,
   },
   getters: {
     getRecommendedMovies(state) {
@@ -24,6 +25,9 @@ export default new Vuex.Store({
     },
     isSignedIn(state) {
       return state.nickname != null
+    },
+    isMovieSaved(state){
+      return state.isMovieSaved
     }
   },
   mutations: {
@@ -66,6 +70,9 @@ export default new Vuex.Store({
     },
     SET_MOODS(state, data){
       state.moods = data
+    },
+    SAVE_MOVIE(state){
+      state.isMovieSaved = !state.isMovieSaved
     }
   },
   actions: {
@@ -276,14 +283,16 @@ export default new Vuex.Store({
         
       }) 
     },
-    save(context, id){
+    saveMovie(context, id){
       axios({
         method:'post',
+        // TODO : url like이 아니라 save-movie 이런식으로 하고 / 도 통일할 것..
         url:`${BASE_URI}/movies/${id}/like`,
         headers: authHeaders()
       })
-      .then(() =>{
-        console.log('save')
+      .then((res) =>{
+        console.log('save', res.data)
+        context.commit('SAVE_MOVIE')
       })  
       .catch((err) => {
         console.log(err)
