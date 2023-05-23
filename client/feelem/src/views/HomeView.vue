@@ -12,7 +12,7 @@
     <h1 class="fw-bold username" style="align-self: self-start;">Feelmer</h1>
     <h1 class="fw-bold">님께 딱 맞는 영화</h1>
   </div>
-  <div class=" m-1 container">
+  <div id="movie-containter" class=" m-1 container">
     <b-container class="mb-1">
       <b-row cols="5">
     <router-link
@@ -112,6 +112,10 @@ a{
   text-decoration: none;
     display: inline;
     box-shadow: inset 0 -15px 0 #8DDCA4; 
+}
+a:hover{
+  transform: scale(1.2);
+  transition:.5s;
 }
 
 </style>

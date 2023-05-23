@@ -57,4 +57,9 @@ a {
 h1{
   font-weight: 800;
 }
+
+a:hover{
+  transform: scale(1.2);
+  transition:.5s;
+}
 </style>
