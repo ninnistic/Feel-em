@@ -17,7 +17,8 @@
         {{ movie.overview }}
       </b-card-text>
       <p v-if="showsVote"> 평점 : {{movie.vote_average}}</p>
-      <button @click="save_movie" :class="{ save_status : issaved}">follow</button>
+      <button @click="saveMovie" v-if="isMovieSaved" >♡</button>
+      <button @click="saveMovie" v-else >♥</button>
       <!-- <template #footer>
         <small class="text-muted" > {{movie.id}} 명의 사람이 추천했어요</small>
       </template> -->
@@ -36,29 +37,26 @@ export default {
   },
   data(){
     return{
-      issaved:false
+      isMovieSaved:false
     }
   },
   computed : {
     posterPath() {
       return 'https://image.tmdb.org/t/p/w500' + this.movie.poster_path
-    }
+    },
   },
   methods:{
-    save_movie() {
-          this.issaved = !this.issaved
+    saveMovie() {
+          this.isMovieSaved = !this.isMovieSaved
           const id = this.$route.params.id 
-          this.$store.dispatch('save',id)
-        }
+          this.$store.dispatch('saveMovie',id )
+    }
   },
 }
 </script>
 
 <style>
-.save_status{
-  background-color: blue;
-  color: beige;
-}
+
 
 img{
   width: 200px;
