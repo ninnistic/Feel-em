@@ -15,10 +15,10 @@
 									<h2 class="text-white movie-description">
 										바람과 모래로 쓴 <br>대서사시의 서문
 									</h2><br>
-									<p class="text-white">두려워하지 말라, 두려움은 정신을 죽이고, 세계를 소멸시키는 작은 죽음이다</p>
+									<p class="text-white">두려워하지 말라, 두려움은 정신을 죽이고, <br>세계를 소멸시키는 작은 죽음이다</p>
 									<p class="text-white mb-4 fs-5">
-										바로 가기 >									</p>
-									<!-- <router-link :to="{name:'BoardWrite'}" class="btn btn-success">나의 이야기 쓰기</router-link> -->
+										바로 가기 >									
+									</p>
 								</div>
 							</div>
 						</div>
@@ -35,7 +35,7 @@
 							<div class="col-sm-12 col-md-6 text-md-start">
 								<div class="py-3 py-md-5">
 									<h1 class="text-white display-1 movie-title">
-										FAST-X : 분노의 질주
+										FAST-X
 									</h1><br>
 									<h2 class="text-white movie-description">
 										달리거나, 죽거나.
@@ -44,8 +44,6 @@
 									<p class="text-white mb-4 fs-5">
 										바로가기 >
 									</p>
-									<!-- <router-link :to="{name:'BoardList'}" class="btn btn-primary mx-2">반려생활 소식</router-link> 
-									<router-link :to="{name:'BoardWrite'}" class="btn btn-success">나의 반려생활 쓰기</router-link> -->
 								</div>
 							</div>
 						</div>
@@ -112,8 +110,8 @@ export default {
 }
 
 .movie-title {
-	font-size : 9em;
-	font-weight: 800;
+	font-size : 6em;
+	font-weight: 600;
 }
 
 .movie-description{

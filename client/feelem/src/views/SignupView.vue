@@ -23,8 +23,8 @@ export default {
 </script>
 
 <style scoped>
-.container{
+/* .container{
   position: relative;
   top:200px;
-}
+} */
 </style>

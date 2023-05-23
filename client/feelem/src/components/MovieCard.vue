@@ -59,10 +59,6 @@ export default {
   text-decoration: none;
 }
 
-.img-top {
-  width: 200px;
-  height:357px;
-}
 
 .card-container{
   margin-bottom: 30px;
@@ -90,6 +86,17 @@ export default {
   width: 75%;
 
   background: linear-gradient(90deg, transparent, white);
+}
+ a{
+  text-decoration: none;
+}
+
+</style>
+
+<style scoped>
+img{
+  height:320px;
+  max-width:20rem;
 }
 
 </style>

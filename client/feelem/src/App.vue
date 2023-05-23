@@ -36,20 +36,24 @@
     </nav>
 
     <router-view class="main-view" />
-
-
+    <FooterCard />
   </div>
 </template>
 
 <script>
+import FooterCard from "@/components/FooterCard";
 export default {
   name: 'App',
+  components:{
+    FooterCard,
+  },
   methods : {
     logout: function() {
       this.$store.dispatch("signOut")
       this.$router.push(`login`) 
     }
   },
+  
   created() {
     this.$store.actions.checkForLogin();
   },
@@ -120,7 +124,7 @@ body.fixed-nav .navbar {
   /* background-color: #f4f3ee; */
   width:100%;
   justify-content: space-around;
-  align-items: center;
+  align-items: start;
 }
 
 .navbar li {
@@ -132,10 +136,11 @@ body.fixed-nav .navbar {
   width:200px;
 }
 
-
+a{
+  text-decoration: none;
+} 
 .navbar a {
   text-decoration: none;
-  color: #000;
   padding: 5px;
   border-radius: 5px;
   /* background-color: #f4f3ee; */

@@ -25,6 +25,7 @@ export default new Vuex.Store({
       // For now, just return the first five movies.
       // TODO: actually get reccomendations for the current user
       return state.movies.slice(0, 5);
+      
     },
     getRecommendedFeelogs(state){
       return state.feelogs.slice(0, 5);
