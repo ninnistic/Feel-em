@@ -21,8 +21,11 @@ export default {
 </script>
 
 <style scoped>
+*{
+  background-color: #f4f3ee;
+}
 .container{
-
+  height: 100vh;
   position: relative;
   top:200px;
 }
