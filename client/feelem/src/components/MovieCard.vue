@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="showsHome">
+    <div v-if="showsHome" class="cards">
       <b-col class="card-container" v-if="movie">
         <b-card
           :img-src="posterPath"
@@ -127,10 +127,13 @@ export default {
   padding-top: 30px;
 }
 
-div > img {
-  width: 200px;
+div.cards img {
   filter: grayscale(30);
   min-height: 350px;
+}
+
+img {
+  filter: grayscale(30);
 }
 
 img:hover {

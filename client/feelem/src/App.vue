@@ -14,7 +14,7 @@
         </li> -->
         <li v-if="isLoggedIn" class="nav-login">
           <span>
-            <a @click="logout">Logout</a>
+            <a @click="logout" style="color:white;">Logout</a>
           </span>
           <span>
             <router-link :to="'/account/' + nickname">{{ nickname }}</router-link>
