@@ -10,7 +10,7 @@
   </div> -->
 
   <b-col class="card-container"  v-if="movie">
-      <b-card :img-src="posterPath" img-alt="Image" img-top style="max-width:20rem;" class="card h-200">
+      <b-card :img-src="posterPath" img-alt="Image" img-top style="max-width:20rem" class="card h-100">
         <b-card-title class="card-title">{{movie.title}}</b-card-title>
       <b-card-text class="overview" >
         {{ movie.overview }}
@@ -44,6 +44,9 @@ export default {
       return 'https://image.tmdb.org/t/p/w500' + this.movie.poster_path
     },
   },
+  mounted() {
+    
+  },
   methods:{
     saveMovie() {
           this.isMovieSaved = !this.isMovieSaved
@@ -55,19 +58,20 @@ export default {
 </script>
 
 <style>
-*{
-  text-decoration: none;
+
+
+img{
+  width: 200px;
+  filter: grayscale(30);
 }
 
+img:hover{
+  filter : grayscale(0);
+  transition: 0.5s;
+}
 
 .card-container{
   margin-bottom: 30px;
-  width:240px;
-}
-.card-title{
-  line-height: 26px;
-  height: calc(2 * 25px);
-  text-decoration: none;
 }
 
 .overview {
@@ -86,17 +90,6 @@ export default {
   width: 75%;
 
   background: linear-gradient(90deg, transparent, white);
-}
- a{
-  text-decoration: none;
-}
-
-</style>
-
-<style scoped>
-img{
-  height:320px;
-  max-width:20rem;
 }
 
 </style>

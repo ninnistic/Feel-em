@@ -24,9 +24,9 @@ export default {
 *{
   background-color: #f4f3ee;
 }
-.container{
+/* .container{
   height: 100vh;
   position: relative;
   top:200px;
-}
+} */
 </style>

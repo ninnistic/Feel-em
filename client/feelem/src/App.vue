@@ -34,7 +34,6 @@
         
       </ul>
     </nav>
-
     <router-view class="main-view" />
     <FooterCard />
   </div>
@@ -84,11 +83,11 @@ export default {
   flex-direction: column;
   background-color: #f4f3ee;
 }
-
+/* 
 .main-view{
   align-self: center;
   background-color: #f4f3ee;
-}
+} */
 
 nav{
   background-color: transparent;

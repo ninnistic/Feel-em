@@ -12,8 +12,9 @@ export default {
 
 <style>
 .footer-container{
-    background-color: #3B322C;
-    width:100%;
-    height: 300px;
+  align-self: center;
+  border-top: 1px solid #3b322c;
+  height: 10em;
+  width: 95%;
 }
 </style>
