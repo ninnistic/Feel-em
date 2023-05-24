@@ -4,7 +4,7 @@
 <div v-if="homeFeelog">  
 <div v-if="feelog" class="container">
 <div class="profile-container image">
-  <img src="/profile/profile1.png" alt="IMG" >
+  <!-- <img src="/profile/profile1.png" alt="IMG" > -->
   <router-link :to="'/account/' + feelog.username "> {{feelog.username}}</router-link>
 </div>
 <div class="feelog-container" style="overflow: hidden;">
@@ -20,7 +20,7 @@
 
 <div v-if="detailFeelog" class="form-group">
 <div class="user-card">
-<img src="@/assets/profile/profile1.png" alt="IMG" >
+<!-- <img src="@/assets/profile/profile1.png" alt="IMG" > -->
 <router-link :to="'/account/' + feelog.username "><div class="card-user-name">{{feelog.username}}</div></router-link>
 </div>
 <div class="card-info">
