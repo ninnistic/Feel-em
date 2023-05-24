@@ -62,7 +62,7 @@ h1{
 }
 
 a:hover{
-  transform: scale(1.2);
+  transform: scale(1.05);
   transition:.5s;
 }
 </style>
