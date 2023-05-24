@@ -15,6 +15,7 @@ export default new Vuex.Store({
     movies: [],
     feelogs: [],
     nickname: null,
+    recommended: [],
     profile: [],
     moods: [],
     isMovieSaved: false,
@@ -22,10 +23,7 @@ export default new Vuex.Store({
   },
   getters: {
     getRecommendedMovies(state) {
-      // For now, just return the first five movies.
-      // TODO: actually get reccomendations for the current user
-      return state.movies.slice(0, 5);
-      
+      return state.recommended;
     },
     getRecommendedFeelogs(state){
       return state.feelogs.slice(0, 5);
@@ -87,12 +85,30 @@ export default new Vuex.Store({
     SET_GENRES(state, data){
       state.genres = data
     },
+    SET_RECOMMENDED(state, data) {
+      state.recommended = data
+    }
   },
   actions: {
+    fetchRecommendedMovies(context) {
+      // if (!this.getters.isSignedIn) return;
+      axios({
+        method : 'GET',
+        url : `${BASE_URI}/movies/all/recommended/`,
+        headers: authHeaders()
+      })
+      .then(res => {
+        console.log(res.data)
+        context.commit('SET_RECOMMENDED', res.data)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+    },
     // Consider renaming to fetchAllMovies
     fetchProfile(context, nickname){
       axios({
-        method : 'get',
+        method : 'GET',
         url : `${BASE_URI}/accounts/${nickname}`,
         headers: authHeaders()
       })

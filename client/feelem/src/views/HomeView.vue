@@ -75,8 +75,8 @@ export default {
 
   },
   created() {
-    // this.$store.actions.checkForLogin();
     this.$store.dispatch("fetchMovieList");
+    this.$store.dispatch("fetchRecommendedMovies");
     this.$store.dispatch("fetchFeelogList");
   },
   mounted() {

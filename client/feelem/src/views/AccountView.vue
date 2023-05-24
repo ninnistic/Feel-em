@@ -3,7 +3,7 @@
   <div class="clipboard">
     <div class= "binder">
           <div class="profile-card mx-5">
-          <img :src="profile_pics" alt="">
+          <img :src="profile_pics" alt="profile_imgs">
               <div>
                     <div class="username-tag">{{ profile.username }}
                       <b-button v-if="!isCurrentUser" @click="follow" variant="primary" size="sm" :class="{ following_status: isfollowed }">
@@ -20,7 +20,7 @@
                 Following: 50 | Followers: 100
                 </div>
               <!-- <span>
-                월별 Feelog 목표 횟수: {{ profile.goal_of_month }}
+                월별 Feelog표 횟수: {{ profile.goal_of_month }}
               </span> -->
               <div class="progress my-2">
                 <div class="progress-bar" role="progressbar" style="width: 100%; background-color:#8DDCA4;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" >Feelog 1/1</div>

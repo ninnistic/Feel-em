@@ -80,7 +80,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 
 
 .likes{
@@ -126,17 +126,16 @@ export default {
 }
 
 div.cards img {
-  filter: grayscale(30);
   min-height: 350px;
 }
 
 img {
   filter: grayscale(30);
+  transition: filter 0.5s;
 }
 
 img:hover {
   filter: grayscale(0);
-  transition: 0.5s;
 }
 
 .card-container {

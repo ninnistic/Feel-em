@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- STOPPED HERE!! : 홈에서 feelog title클릭시 feelog 상세로 넘어가는거 만들기!!!!!!!!!!!!!!!!!-->
-    <FeelogCard :feelog = feelog showsUsername showsContent/>
+    <FeelogCard :feelog = feelog showsUsername showsContent detailFeelog />
   </div>
 </template>
 
