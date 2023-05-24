@@ -102,6 +102,7 @@ export default {
 
 a{
   text-decoration: none;
+  transition: transform .5s;
 } 
 
 .video{
@@ -115,7 +116,6 @@ a{
 }
 a:hover{
   transform: scale(1.05);
-  transition:.5s;
 }
 
 </style>
