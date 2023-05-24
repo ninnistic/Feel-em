@@ -3,7 +3,16 @@
   <div class="video"> 
     <VideoCard class="video"/> 
   </div>
-  <div class=" m-1 container">
+
+  <div v-if="isLoggedIn" class="d-flex my-5 p-3" style="align-self: self-start;">
+    <h1 class="fw-bold username" style="align-self: self-start;">{{nickname}}</h1>
+    <h1 class="fw-bold">님께 딱 맞는 영화</h1>
+  </div>
+  <div v-else class="d-flex my-5 p-3" style="align-self: self-start;">
+    <h1 class="fw-bold username" style="align-self: self-start;">Feelmer</h1>
+    <h1 class="fw-bold">님께 딱 맞는 영화</h1>
+  </div>
+  <div id="movie-containter" class=" m-1 container">
     <b-container class="mb-1">
       <b-row cols="5">
     <router-link
@@ -13,15 +22,22 @@
     >
       <MovieCard :movie="movie" />
     </router-link>
+  </b-row>
+  </b-container>
 
+  <div class="d-flex my-5 p-3" style="align-self: self-start;">
+    <h1 class="fw-bold username" style="align-self: self-start;">Feelmer's PICK</h1>
+  </div>
+  <b-container class="mb-1">
+      <b-row cols="2">
     <router-link
       v-for="feelog in feelogList"
       :key="feelog.id"
-      :to="'/feelog-detail/' + feelog.id"
-    >
+      :to="'/feelog-detail/' + feelog.id">
       <FeelogCard
         :feelog="feelog"
-      />
+       class="feelog-container"/>
+      
     </router-link>
     </b-row>
   </b-container>
@@ -29,10 +45,13 @@
   </div>
 </template>
 
+
 <script>
+
 import MovieCard from "@/components/MovieCard";
 import FeelogCard from "@/components/FeelogCard";
 import VideoCard from "@/components/VideoCard";
+
 export default {
   name: "HomeView",
   components: {
@@ -47,11 +66,25 @@ export default {
     feelogList() {
       return this.$store.getters.getRecommendedFeelogs;
     },
+    isLoggedIn() {
+      return this.$store.getters.isSignedIn;
+    },
+    nickname(){
+      return this.$store.state.nickname;
+    }
+
   },
   created() {
+    // this.$store.actions.checkForLogin();
     this.$store.dispatch("fetchMovieList");
     this.$store.dispatch("fetchFeelogList");
   },
+  mounted() {
+    document.body.classList.add("fixed-nav");
+  },
+  destroyed() {
+    document.body.classList.remove("fixed-nav");
+  }
 };
 </script>
 
@@ -63,9 +96,26 @@ export default {
   flex-direction: column;
   position: relative;
   top:30%;
+  width:100vw;
+  margin-bottom: 100px;
 }
+
+a{
+  text-decoration: none;
+} 
 
 .video{
   width:100vw;
 }
+
+.username{
+  text-decoration: none;
+    display: inline;
+    box-shadow: inset 0 -15px 0 #8DDCA4; 
+}
+a:hover{
+  transform: scale(1.2);
+  transition:.5s;
+}
+
 </style>

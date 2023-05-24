@@ -1,10 +1,9 @@
 <template>
   <div class="main">
-    <nav class="navbar fixed-top" style="background-color: transparent; width: 100%;">
+    <nav class="navbar" style="background-color: transparent; width: 100%;" id="myNav">
       <ul>
-        
         <li>
-          <router-link to="/movielist">Movie list</router-link>
+          <router-link to="/movielist">Movies</router-link> 
         </li>
         <li>
           <router-link to="/home"><img src="@/assets/logo-white.png" alt="" style="width:150px;"></router-link>
@@ -14,21 +13,21 @@
           <router-link to="/movie-detail/:id">영화상세</router-link>
         </li> -->
         <li v-if="isLoggedIn" class="nav-login">
-        <span>
-          <span @click="logout">로그아웃</span>
-        </span>
-        <span>
-          <router-link :to="`/mypage/` + nickname">{{ nickname }}</router-link>
-        </span>
-      </li>
+          <span>
+            <a @click="logout">Logout</a>
+          </span>
+          <span>
+            <router-link :to="'/account/' + nickname">{{ nickname }}</router-link>
+          </span>
+        </li>
 
         <li v-else class="nav-login">
           
         <span>
-          <router-link to="/login">로그인</router-link>
+          <router-link to="/login">Login</router-link>
         </span>
         <span>
-          <router-link to="/signup">회원가입</router-link>
+          <router-link to="/signup">Sign Up</router-link>
         </span>
         
       </li>
@@ -37,22 +36,26 @@
     </nav>
 
     <router-view class="main-view" />
-
-
+    <FooterCard />
   </div>
 </template>
 
 <script>
+import FooterCard from "@/components/FooterCard";
 export default {
   name: 'App',
+  components:{
+    FooterCard,
+  },
   methods : {
     logout: function() {
       this.$store.dispatch("signOut")
       this.$router.push(`login`) 
     }
   },
+  
   created() {
-    this.$store.dispatch("checkForLogin")
+    this.$store.actions.checkForLogin();
   },
   computed:{
     isLoggedIn() {
@@ -63,14 +66,16 @@ export default {
     }
   },
 }
+
 </script>
 
 <style>
 
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard.css");
+
 * {
   font-family: 'Pretendard';
-  
+  text-decoration: none;
   
 }
 .main{
@@ -83,8 +88,6 @@ export default {
 .main-view{
   align-self: center;
   background-color: #f4f3ee;
-  
-
 }
 
 nav{
@@ -101,8 +104,12 @@ nav{
   display: flex;
   justify-content: space-between;
   background-color: transparent;
-  position: fixed;
 }
+
+body.fixed-nav .navbar {
+  position: fixed;
+  top: 0;
+} 
 
 .nav-login{
   display: flex;
@@ -117,7 +124,7 @@ nav{
   /* background-color: #f4f3ee; */
   width:100%;
   justify-content: space-around;
-  align-items: center;
+  align-items: start;
 }
 
 .navbar li {
@@ -129,10 +136,11 @@ nav{
   width:200px;
 }
 
-
+a{
+  text-decoration: none;
+} 
 .navbar a {
   text-decoration: none;
-  color: #000;
   padding: 5px;
   border-radius: 5px;
   /* background-color: #f4f3ee; */
@@ -143,5 +151,10 @@ nav{
   background-color: #8DDCA4;
   color:black;
 }
+
+
+/* 
+.nav-colored { background-color:#000; }
+.nav-transparent { background-color:transparent;} */
 
 </style>

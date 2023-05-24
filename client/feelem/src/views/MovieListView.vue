@@ -2,8 +2,8 @@
   <div class="d-flex m-1 container">
     <b-container class="mb-1">
       <b-row cols="5">
-    <router-link v-for="(movie, index) in movieList" :key="index" :to="'/movie-detail/' + movie.id">
-      <MovieCard :movie = movie showsVote />
+    <router-link  v-for="(movie, index) in movieList" :key="index" :to="'/movie-detail/' + movie.id" >
+      <MovieCard :movie = movie showsVote/>
     </router-link>
     </b-row>
   </b-container>
@@ -40,17 +40,26 @@ export default {
 
 
 <style scoped>
+.link{
+  text-decoration: none;
+}
 .container{
   display: flex;
   justify-content: center;
   align-items : center;
   flex-direction: row;
   margin : 1rem;
-  position: relative;
-  top:100px;
-
 }
+a {
+  text-decoration: none;
+}
+
 h1{
   font-weight: 800;
+}
+
+a:hover{
+  transform: scale(1.2);
+  transition:.5s;
 }
 </style>

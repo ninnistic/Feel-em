@@ -41,8 +41,8 @@ const routes = [
     component : () => import('@/views/FeelogDetailView.vue')
   },
   {
-    path : '/mypage/:nickname',
-    component : () => import('@/views/MyPageView.vue')
+    path : '/account/:nickname',
+    component : () => import('@/views/AccountView.vue')
   },
   {
     path : '*',
