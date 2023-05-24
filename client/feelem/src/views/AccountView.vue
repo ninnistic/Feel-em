@@ -1,51 +1,114 @@
 <template>
-  <div>
-    <!--TODO: 나중에 ProfileCard 만들어서 다 옮기기... -->
-    <div class="profile-card">
-      <!-- <img src="@/assets/emotion/mood (1).png" alt=""> -->
-      <img src="@/assets/profile/profile1.png" alt="" />
-      <h2>{{ profile.username }}</h2>
-      <b-button v-if="!isCurrentUser" @click="follow" variant="primary" size="sm" :class="{ following_status: isfollowed }">
-        {{ isfollowed ? "Unfollow" : "Follow" }}
-      </b-button>
-      <ul>
-        <li>Following: 50</li>
-        <li>Followers: 100</li>
-      </ul>
-    </div>
-    <div class="name-tag">
-      <span>{{ profile.favorite_genre[0]?.name }} 장르 애호가 </span>
-    </div>
-    <div>이번달은 {{ profile.goal_of_month }}개의 영화를 볼거야!</div>
-    <div v-if="isCurrentUser">
-      <div>나는 {{ profile.favorite_genre[0]?.name }}같은 장르들을 좋아해!</div>
-      <div>특히 {{ profile.save_movies[0]?.title }}가 보고 싶더라.</div>
-      <div>
-        관심가는 feelmers는
-        <span v-for="feelmer in profile.followings" :key="feelmer.id">
-          {{ feelmer.username }},</span
-        >야.
-      </div>
-      <div>{{ profile.profile_pic[0]?.image }}</div>
-    </div>
-    <span>내가 쓴 feelog는 : </span>
-    <router-link
+<div class="container">
+  <div class="clipboard">
+    <div class= "binder">
+          <div class="profile-card mx-5">
+          <img :src="profile_pics" alt="">
+              <div>
+                    <div class="username-tag">{{ profile.username }}
+                      <b-button v-if="!isCurrentUser" @click="follow" variant="primary" size="sm" :class="{ following_status: isfollowed }">
+                    {{ isfollowed ? "Unfollow" : "Follow" }}
+                  </b-button>
+                  <b-button v-else  variant="primary" size="sm" >
+                    프로필 수정
+                  </b-button>
+                    </div>
+                <div class="nickname-tag">
+                <span>{{ profile.favorite_genre[0]?.name }} 장르 애호가 </span>
+                </div>
+                <div class="name-tag">
+                Following: 50 | Followers: 100
+                </div>
+              </div>
+          </div>
+            <br>
+    <div>
+
+    <!-- <div>이번달은 {{ profile.goal_of_month }}개의 영화를 볼거야!</div> -->
+
+        <div v-if="isCurrentUser">
+              <div class="d-flex my-3" style="align-self: self-start;">
+                <h1 class="fw-bold username" style="align-self: self-start;">{{ profile.username }}</h1>
+                <h1 class="fw-bold">님의 선호 장르</h1>
+              </div>
+              <div class="genre_icon_container">
+                  <div v-for="genres in profile.favorite_genre" :key="genres.id" class="genre_icon">
+                    <span>{{genres.name}} </span>
+                  </div>
+              </div>
+              <br>
+              <br>
+              <div class="d-flex my-3" style="align-self: self-start;">
+                <h1 class="fw-bold username" style="align-self: self-start;">{{ profile.username }}</h1>
+                <h1 class="fw-bold">님이 찜한 영화 </h1>
+              </div>
+              <div class="genre_icon_container">
+                  <div v-for="movies in profile.save_movies" :key="movies.id" class="movie_icon">
+                    <span>{{movies.title}} </span>
+                  </div>
+              </div>
+              <br>
+              
+              <!-- <div class="d-flex my-3" style="align-self: self-start;">
+                  <h1 class="fw-bold username" style="align-self: self-start;">{{ profile.username }}</h1>
+                  <h1 class="fw-bold">님이 찜한 영화</h1>
+
+                </div> -->
+        </div> <!--iscurrent-->
+              <div class="d-flex my-3" style="align-self: self-start;">
+                <h1 class="fw-bold username" style="align-self: self-start;">{{ profile.username }}</h1>
+                <h1 class="fw-bold">님의 Follow</h1>
+              </div>
+              <div class="genre_icon_container">
+                <div v-for="feelmer in profile.followings" :key="feelmer.id" class="genre_icon">
+                  {{ feelmer.username }}
+                </div>
+              </div>
+      
+        </div>
+
+    <!-- <router-link
       v-for="feelog in feelogs"
       :key="feelog.id"
       :to="'/feelog-detail/' + feelog.id"
       >{{ feelog.title }}</router-link
-    >
+    > -->
+      
+
   </div>
+      <div class="feelog-card m-5 p-5">
+              <div class="d-flex my-3" style="align-self: self-start;">
+                <h1 class="fw-bold username" style="align-self: self-start;">{{ profile.username }}</h1>
+                <h1 class="fw-bold">님의 Feelog</h1>
+              </div>
+              <br>
+        <router-link
+          v-for="feelog in feelogs"
+          :key="feelog.id"
+          :to="'/feelog-detail/' + feelog.id">
+          <FeelogCard
+            :feelog="feelog" :account="account"
+          class="feelog-container-account my-5"/>
+          
+        </router-link>
+      </div>
+  </div>
+</div> 
 </template>
 
 <script>
+import FeelogCard from "@/components/FeelogCard";
+
 export default {
   name: "AccountView",
-  components: {},
+  components: {
+    FeelogCard,
+  },
   data() {
     return {
       isfollowed: false,
-    };
+      account:true,
+    }
   },
   created() {
     const nickname = this.$route.params.nickname;
@@ -65,7 +128,13 @@ export default {
   },
   computed: {
     profile() {
-      return this.$store.state.profile;
+      return this.$store.state.profile
+    },
+    profile_pics() {
+      return this.profile.profile_pic.image
+    },
+    profile_genre() {
+      return this.profile.favorite_genre.name
     },
     feelogs() {
       // const nickname = this.$route.params.nickname
@@ -82,60 +151,130 @@ export default {
 </script>
 
 <style scoped>
+.feelog-card{
+  width:100%;
+}
+.genre_icon_container{
+  display: flex;
+}
+.username{
+  text-decoration: none;
+    display: inline;
+    box-shadow: inset 0 -15px 0 #8DDCA4; 
+}
+.binder{
+  background-image: url("@/assets/clipboard.png");
+  width:900px;
+  height:1000px;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  
+}
 .following_status {
   background-color: blue;
   color: beige;
+  flex-direction: row;
 }
-.container {
-  position: relative;
-  top: 200px;
-}
+
 .profile-card {
-  display: grid;
+  width:450px;
+  display: flex;
+  flex-direction: row;
   align-items: center;
-  column-gap: 1.25em;
-  grid-template-columns: repeat(3, auto);
+  justify-content: space-evenly;
+  margin:10px;
+  padding:20px;
+  border: 10px solid rgba(black, .1);
+  background-color: #ffffff;
+  border-radius:30px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 }
 
-.profile-card img {
-  grid-row: 1 / 3;
+.profile-card img{
+  width: 150px;
+  height: 150px;
+  
 }
 
-.profile-card button {
-  grid-column: 3 / -1;
-}
-
-.profile-card h2 {
-  margin: 0;
-}
-.profile-card ul {
-  margin: 0;
-  padding: 0;
-  display: flex;
-  grid-column: 2 / -1;
-}
-.profile-card li:not(:last-child):after {
-  content: "\00a0|\00a0";
-}
-.profile-card button {
-  background-color: var(--bs-blue);
-}
-/* .profile-card {
-  display: flex;
-  align-items: start;
-}
-.profile-greet {
-  color: #3b322c;
-  font-size: 4em;
+.username-tag{
+  font-size:40px;
   font-weight: 700;
-  max-width: 300px;
-  padding: 0;
-  line-height: 1.25em;
-} */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+}
 .name-tag {
-  font-size: 1.5em;
+  font-size: 15px;
   font-weight: 200;
+  color: #F58080;
+}
+.nickname-tag {
+  font-size: 20px;
+  font-weight: 400;
   color: #627278;
 }
-</style>
+.genre_icon{
+  max-width: 80px;
+  background-color: #8DDCA4;
+  border-radius:5px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  padding: 5px;
+  margin: 5px;
+  color: #ffffff;
+  font-weight: 600;
+  text-align: center;
+  display: flex;
+  min-width: 80px;
+  justify-content: center;
+  
+}
+.movie_icon{
+  max-width: 80px;
+  background-color: #8DDCA4;
+  border-radius:5px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  padding: 5px;
+  margin: 5px;
+  color: #ffffff;
+  font-weight: 600;
+  text-align: center;
+  display: flex;
+  min-width: 230px;
+  justify-content: center;
+  
+}
+.feelog-container{
+  display: flex;
+  /* justify-content:space-between; */
+  flex-direction: column;
+  align-items:baseline;
+  width:20%;
+  
+}
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translate3d(0, 100%, 0);
+    }
+    to {
+        opacity: 1;
+        transform: translateZ(0);
+    }
+}
 
+.clipboard{
+  display: flex;
+  justify-content: space-between;
+  width: 5000px;
+  animation: fadeInUp 1s;
+}
+
+a{
+  text-decoration: none;
+}
+
+</style>

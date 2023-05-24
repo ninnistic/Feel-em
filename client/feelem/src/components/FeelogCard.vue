@@ -2,7 +2,7 @@
 <div>
 <div v-if="feelog" class="container">
 <div class="profile-container image">
-  <img src="@/assets/profile/profile1.png" alt="IMG" >
+  <img src="/profile/profile1.png" alt="IMG" >
   <router-link :to="'/account/' + feelog.username "> {{feelog.username}}</router-link>
 </div>
 <div class="feelog-container" style="overflow: hidden;">
@@ -30,6 +30,7 @@ export default {
   props : {
     feelog : Object,
     showsContent: Boolean,
+    account:Boolean,
   },
   data(){
     return{
@@ -85,6 +86,16 @@ export default {
   flex-direction: column;
   align-items:baseline;
   width:60%;
+  
+}
+
+.feelog-container-account{
+  display: flex;
+  /* justify-content:space-between; */
+  flex-direction: column;
+  align-items:center;
+  justify-content: center;
+  width:100px;
   
 }
 
