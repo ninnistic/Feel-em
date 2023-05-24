@@ -1,16 +1,8 @@
 <template>
   <div>
-  <h1>영화 상세</h1>
-  <div>
-    <!-- <div v-if="isLoading" class="loading-container">
-	<div class="loading">
-		<Fade-loader />
-	</div>
-</div> -->
-    <!-- {{getMovieInfo.title}}
-    <img :src="getImageUrl" alt="posterImage"> -->
-    <MovieCard :movie = movie showsOverview showsVote/>
-    <FeelogCard v-for="feelog in feelogs" :feelog = feelog :key="feelog.id"  />
+  <div class="items">
+    <MovieCard :movie = movie showsDetail/>
+    <FeelogCard v-for="feelog in feelogs" :feelog = feelog :key="feelog.id"  detailFeelog />
     <FeelogCreateForm :movie_id = movie_id />
   </div>
   </div>
@@ -51,9 +43,12 @@ export default {
   },
 
 }
+
+
 </script>
 
 <style scoped>
+
 .loading {
   z-index: 2;
   position: fixed;

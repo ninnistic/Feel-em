@@ -13,7 +13,7 @@ export default {
 <style>
 .footer-container{
   align-self: center;
-  border-top: 1px solid #3b322c;
+  border-top: 4px dotted #3b322c;
   height: 10em;
   width: 95%;
 }

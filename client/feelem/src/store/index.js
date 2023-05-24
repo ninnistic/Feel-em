@@ -198,7 +198,7 @@ export default new Vuex.Store({
       const id = newFeelog.id
       const title = newFeelog.title
       const content = newFeelog.content
-      const mood = newFeelog.mood
+      const mood = newFeelog.mood[0]
       axios({
         method : 'post',
         url : `${BASE_URI}/feelogs/by-movie/${id}/`,

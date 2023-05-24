@@ -20,7 +20,7 @@
       :key="movie.movie_num"
       :to="'/movie-detail/' + movie.id"
     >
-      <MovieCard :movie="movie" />
+      <MovieCard :movie="movie" showsHome />
     </router-link>
   </b-row>
   </b-container>
@@ -36,7 +36,7 @@
       :to="'/feelog-detail/' + feelog.id">
       <FeelogCard
         :feelog="feelog"
-      class="feelog-container"/>
+      class="feelog-container" homeFeelog/>
       
     </router-link>
     </b-row>
