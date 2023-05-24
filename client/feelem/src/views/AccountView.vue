@@ -26,7 +26,7 @@
           {{ feelmer.username }},</span
         >야.
       </div>
-      <div>{{ profile.profile_pic[0]?.image }}</div>
+      <div>{{ profile.profile_pic?.image }}</div>
     </div>
     <span>내가 쓴 feelog는 : </span>
     <router-link
