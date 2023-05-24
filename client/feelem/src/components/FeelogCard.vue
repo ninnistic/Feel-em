@@ -1,5 +1,7 @@
 <template>
 <div>
+
+<div v-if="homeFeelog">  
 <div v-if="feelog" class="container">
 <div class="profile-container image">
   <img src="@/assets/profile/profile1.png" alt="IMG" >
@@ -12,16 +14,24 @@
 <i @click="like" v-else style="color:red;" class="bi bi-heart"></i>
 
 <p v-if="showsContent">{{feelog.content}}</p>
+</div>
+</div>
+</div>
 
+<div v-if="detailFeelog" class="form-group">
+<div class="user-card">
+<img src="@/assets/profile/profile1.png" alt="IMG" >
+<router-link :to="'/account/' + feelog.username "><div class="card-user-name">{{feelog.username}}</div></router-link>
+</div>
+<div class="card-info">
+<p class="card-title">"{{feelog.title}}"</p>
+<p class="card-date">{{feelog.created_at}}</p>
+<i @click="like" v-if="islike" style="color:red;" class="bi bi-heart-fill like-heart"></i>
+<i @click="like" v-else style="color:red;" class="bi bi-heart like-heart"></i>
 </div>
 </div>
-  <!-- <div v-if="feelog">
-    <router-link :to="'/mypage/' + feelog.username "> <p>user : {{feelog.username}}</p> </router-link>
-    <p>title : {{feelog.title}}</p>
-    <p v-if="showsContent">content : {{feelog.content}}</p> -->
-    <!-- <p>좋아요 수 : {{feelog.likeCount}}</p> -->
-  <!-- </div> -->
-  </div>
+</div>
+
 </template>
 
 <script>
@@ -30,6 +40,8 @@ export default {
   props : {
     feelog : Object,
     showsContent: Boolean,
+    homeFeelog: Boolean,
+    detailFeelog: Boolean,
   },
   data(){
     return{
@@ -51,9 +63,31 @@ export default {
   },
 
 }
+
+
 </script>
 
 <style scoped>
+.card-info {
+  font-size: 1.5em;
+}
+
+.user-card{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.form-group{
+  padding-top: 3rem;
+  margin: 10em;
+  display: flex;
+  gap : 30px;
+  border-top : 1px solid black;
+}
+
+.card-user-name{
+  font-size: 20px;
+}
 
 .container{
   display: flex;
@@ -102,5 +136,22 @@ export default {
 
 a{
   text-decoration: none;
-} 
+  text-align: center;
+}
+
+.card-title {
+  font-weight: 900;
+  padding: 20px 0px;
+  font-size: 1.2em;
+}
+
+.card-date{
+  font-weight: 300;
+  font-size: 0.8em;
+  color: #627278;
+}
+
+.like-heart{
+  padding-left: 90rem;
+}
 </style>

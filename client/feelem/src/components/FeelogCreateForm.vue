@@ -1,9 +1,9 @@
 <template>
   <div v-if="moods" class="form-group">
     <form @submit.prevent="createFeelog" class="create-form">
-      <label for="feelog-title" class="title-tag"> > Feelmer님의 Feelog를 남겨주세요.</label>
+      <label data-scroll for="feelog-title" class="title-tag"> Feelmer님의 Feelog를 남겨주세요.</label>
       <input type="text" placeholder="한 줄 감상평" id="feelog-title" v-model="feelog.title" required>
-      <textarea v-model="feelog.content" placeholder="더 자세한 감상도 들려주세요."></textarea>
+      <textarea  v-model="feelog.content" placeholder="더 자세한 감상도 들려주세요."></textarea>
       <div>
         <div v-for="mood in moods" :key="mood.id" class="mood">
           <span
@@ -19,6 +19,8 @@
 </template>
 
 <script>
+import ScrollOut from "scroll-out";
+
 export default {
   name: 'FeelogCreateForm',
   data() {
@@ -36,7 +38,9 @@ export default {
   created() {
     this.$store.dispatch('fetchMoods')
   },
-
+  mounted(){
+    ScrollOut({});
+  },
   methods: {
     createFeelog() {
       const movie_id = parseInt(this.movie_id)
@@ -54,6 +58,7 @@ export default {
         console.log(this.feelog.mood);
         this.feelog.mood.push(mood_id);
         if (this.feelog.mood.length > 1) {
+          alert("1개 이상 고를 수 X")
           this.feelog.mood.splice(index, 1);
         }
       } else {
@@ -103,17 +108,16 @@ export default {
 
 .selected {
   color: #f58080;
-
 }
 
 .title-tag {
-  font-size: 2em;
+  font-size: 4em;
   font-weight: 700;
   color: #8ddca4;
 }
 
 .form-group {
-  margin: 5em;
+  margin: 10em;
 }
 
 .create-form {
@@ -160,12 +164,27 @@ textarea {
 .mood-btn {
   font-size: 2em;
   font-weight: 500;
-
 }
 
 .mood-btn:hover{
   cursor: pointer;
    color: #f58080;
+}
+
+[data-scroll] {
+  opacity: 0;
+  will-change: transform, scale, opacity;
+  transform: translateY(6rem) scale(0.92);
+  transition: all 2s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+[data-scroll="in"] {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+[data-scroll="out"] {
+  opacity: 0;
 }
 
 </style>
