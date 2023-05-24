@@ -20,7 +20,7 @@
     <div v-if="showsDetail">
       <div v-if="movie" class="detail-group">
         <div data-scroll>
-        <p class="detail-title">{{ movie.title }}</p>
+        <p class="detail-title" tag="li" style="text-decoration: none; color: inherit;">{{ movie.title }}</p>
         <p class="detail-overview">{{ movie.overview }}</p>
         </div>
         <section class="detail-info">
@@ -30,7 +30,7 @@
         <p class="desc">개봉일 <span class="desc-tag">{{ movie.release_date }}</span></p>
         <span class="genre-tag"> {{ movie.genres[0]?.name }} </span>
         <span class="genre-tag"> {{ movie.genres[1]?.name }} </span>
-        
+        <div data-scroll class="desc likes"><span class="popularity">{{movie.popularity}}</span>명의 사람이 이 영화를 좋아해요!</div>
         </div>
         </section>
       </div>
@@ -84,6 +84,11 @@ export default {
 
 <style>
 
+
+.likes{
+  padding-top: 11rem;
+}
+
 .genre-tag{
   width: 50px;
   padding : 10px 20px;
@@ -93,6 +98,12 @@ export default {
   margin: 5px;
   font-size: 20px;
   
+}
+
+.popularity{
+  font-size: 1.5em;
+  font-weight: 700;
+  color: #f58080;
 }
 .desc{
   font-size: 2em;
@@ -148,6 +159,7 @@ img:hover {
   background: linear-gradient(90deg, transparent, white);
 }
 .detail-title {
+  text-decoration: none;
   font-size: 6em;
   font-weight: 600;
   font-family: "Nanum Myeongjo", serif;

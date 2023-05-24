@@ -79,7 +79,7 @@ export default {
 }
 .form-group{
   padding-top: 3rem;
-  margin: 10em;
+  margin: 3em 10em;
   display: flex;
   gap : 30px;
   border-top : 1px solid black;
