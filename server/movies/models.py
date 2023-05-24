@@ -17,6 +17,7 @@ class Movie(models.Model):
     popularity = models.IntegerField()
     vote_average = models.FloatField()
     genres = models.ManyToManyField(Genre, related_name='movies')
+    backdrop_path = models.CharField(max_length=300)
     # save_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='save_movies')
 
 # def save_genre():

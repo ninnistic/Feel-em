@@ -3,7 +3,7 @@
     <!--TODO: 나중에 ProfileCard 만들어서 다 옮기기... -->
     <div class="profile-card">
       <!-- <img src="@/assets/emotion/mood (1).png" alt=""> -->
-      <img src="@/assets/profile/OBJECTS_03.png" alt="" />
+      <img src="@/assets/profile/profile1.png" alt="" />
       <h2>{{ profile.username }}</h2>
       <b-button v-if="!isCurrentUser" @click="follow" variant="primary" size="sm" :class="{ following_status: isfollowed }">
         {{ isfollowed ? "Unfollow" : "Follow" }}
@@ -26,6 +26,7 @@
           {{ feelmer.username }},</span
         >야.
       </div>
+      <div>{{ profile.profile_pic[0]?.image }}</div>
     </div>
     <span>내가 쓴 feelog는 : </span>
     <router-link
@@ -53,6 +54,7 @@ export default {
   mounted() {},
   methods: {
     follow() {
+      console.log(this.$store.state.profile)
       // follow 메서드 구현 (버튼을 클릭했을 때 호출될 동작)
       this.isfollowed = !this.isfollowed;
       const nickname = this.$route.params.nickname;

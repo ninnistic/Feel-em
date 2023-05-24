@@ -19,7 +19,7 @@ def save_genre():
         genre.save()
 
 def save_movie():
-    for page in range(1,6):
+    for page in range(1,10):
         print(page)
         URL = f"https://api.themoviedb.org/3/movie/popular?api_key=3bf4d020baa9f161f8eaac60d2ab7205&language=ko-KR&page={page}"
 
@@ -31,25 +31,27 @@ def save_movie():
             release_date = movie_data['release_date']
             if release_date and int(release_date[:4]) >= 2010:
                 title = movie_data['title']
-                adult = ['막내 처제', '옥보단']
+                adult = ['막내 처제', '옥보단','슈퍼 마리오 브라더스','장화신은 고양이: 끝내주는 모험','피터팬 & 웬디','매기 심슨의 \"베이비 로그 원\"','매기']
                 if not any(word in title for word in adult):
                     if movie_data['overview']:
+                        if movie_data['backdrop_path']:
 
-                        movie = Movie.objects.create(
-                            movie_num = movie_data['id'],
-                            title = movie_data['title'],
-                            release_date= movie_data['release_date'],
-                            popularity= movie_data['popularity'],
-                            vote_average= movie_data['vote_average'],
-                            overview= movie_data['overview'],
-                            poster_path= movie_data['poster_path'],
-                        )
-                        genre_ids = movie_data['genre_ids']
-                        genres = Genre.objects.filter(id__in = genre_ids)
-                        
-                        movie.genres.set(genres)
+                            movie = Movie.objects.create(
+                                movie_num = movie_data['id'],
+                                title = movie_data['title'],
+                                release_date= movie_data['release_date'],
+                                popularity= movie_data['popularity'],
+                                vote_average= movie_data['vote_average'],
+                                overview= movie_data['overview'],
+                                poster_path= movie_data['poster_path'],
+                                backdrop_path = movie_data['backdrop_path'],
+                            )
+                            genre_ids = movie_data['genre_ids']
+                            genres = Genre.objects.filter(id__in = genre_ids)
+                            
+                            movie.genres.set(genres)
 
-                        movie.save()
+                            movie.save()
 
 save_genre()
 save_movie()

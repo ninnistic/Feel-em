@@ -2,8 +2,8 @@
 <div>
 <div v-if="feelog" class="container">
 <div class="profile-container image">
-  <img src="@/assets/profile/OBJECTS_07.png" alt="IMG" >
-  <router-link :to="'/mypage/' + feelog.username "> {{feelog.username}}</router-link>
+  <img src="@/assets/profile/profile1.png" alt="IMG" >
+  <router-link :to="'/account/' + feelog.username "> {{feelog.username}}</router-link>
 </div>
 <div class="feelog-container" style="overflow: hidden;">
 <p style="font-size : 23px;	font-weight: 600;">{{movie_title.title}}</p>
