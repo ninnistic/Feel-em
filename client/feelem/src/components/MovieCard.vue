@@ -20,8 +20,8 @@
     <div v-if="showsDetail">
       <div v-if="movie" class="detail-group">
         <div data-scroll>
-        <p class="detail-title" tag="li" style="text-decoration: none; color: inherit;">{{ movie.title }}</p>
-        <p class="detail-overview">{{ movie.overview }}</p>
+          <p class="detail-title" tag="li" style="text-decoration: none; color: inherit;">{{ movie.title }}</p>
+          <p class="detail-overview">{{ movie.overview }}</p>
         </div>
         <section class="detail-info">
         <img :src="backdropPath" alt="backdrop" class="backdrop" />
@@ -37,10 +37,8 @@
     </div>
   </div>
 </template>
-<script src="https://unpkg.com/scroll-out/dist/scroll-out.min.js"></script>
 <script>
 import ScrollOut from "scroll-out";
-
 
 export default {
   name: "MovieCard",
@@ -64,13 +62,13 @@ export default {
       return "https://image.tmdb.org/t/p/w500" + this.movie.backdrop_path;
     },
   },
-  created(){
-    
-  },
   mounted() {
-    ScrollOut({
-      threshold : 0
+    this.so = ScrollOut({
+      scope: this.$el
     });
+  },
+  destroyed() {
+    this.so.teardown();
   },
   methods: {
     saveMovie() {
@@ -171,11 +169,11 @@ img:hover {
   color: #627278;
 }
 
+/* TODO: make global */
 [data-scroll] {
-  opacity: 0;
-  will-change: transform, scale, opacity;
-  transform: translateX(6rem) scale(0.92);
-  transition: all 2s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition-property: transform opacity;
+  transition-duration: 2s;
+  transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 [data-scroll="in"] {
@@ -185,6 +183,7 @@ img:hover {
 
 [data-scroll="out"] {
   opacity: 0;
+  transform: translateX(6rem) scale(0.92);
 }
 
 .backdrop {

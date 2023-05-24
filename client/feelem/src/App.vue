@@ -69,9 +69,6 @@ export default {
 </script>
 
 <style>
-
-@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard.css");
-
 * {
   font-family: 'Pretendard';
   text-decoration: none;
