@@ -7,6 +7,7 @@
   <div v-if="isLoggedIn" class="d-flex my-5 p-3" style="align-self: self-start;">
     <h1 class="fw-bold username" style="align-self: self-start;">{{nickname}}</h1>
     <h1 class="fw-bold">님께 딱 맞는 영화</h1>
+    <div>{{nickname}}님이 좋아하는 장르인 {{profile.favorite_genre[0]?.name}} {{profile.favorite_genre[1]?.name}}와 관련있는 영화들이예요!</div>
   </div>
   <div v-else class="d-flex my-5 p-3" style="align-self: self-start;">
     <h1 class="fw-bold username" style="align-self: self-start;">Feelmer</h1>
@@ -71,7 +72,10 @@ export default {
     },
     nickname(){
       return this.$store.state.nickname;
-    }
+    },
+    profile() {
+      return this.$store.state.profile
+    },
 
   },
   created() {
