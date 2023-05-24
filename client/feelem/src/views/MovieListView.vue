@@ -1,5 +1,6 @@
 <template>
-  <div class="d-flex m-1 container">
+  <div class="container">
+  <div class="d-flex m-1 ">
     <b-container class="mb-1">
       <b-row cols="5">
     <router-link  v-for="(movie, index) in movieList" :key="index" :to="'/movie-detail/' + movie.id" >
@@ -9,6 +10,7 @@
   </b-container>
 
   </div>
+</div>
 </template>
 
 <script>
@@ -49,6 +51,7 @@ export default {
   align-items : center;
   flex-direction: row;
   margin : 1rem;
+  align-self: center;
 }
 a {
   text-decoration: none;
