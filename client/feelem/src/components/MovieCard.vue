@@ -30,7 +30,7 @@
         <p class="desc">개봉일 <span class="desc-tag">{{ movie.release_date }}</span></p>
         <span class="genre-tag"> {{ movie.genres[0]?.name }} </span>
         <span class="genre-tag"> {{ movie.genres[1]?.name }} </span>
-        <span class="genre-tag"> {{ movie.genres[2]?.name }} </span>
+        
         </div>
         </section>
       </div>
@@ -82,6 +82,7 @@ export default {
 </script>
 
 <style>
+
 .genre-tag{
   width: 50px;
   padding : 10px 20px;

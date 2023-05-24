@@ -10,10 +10,10 @@
             :class="{ selected: isSelected(mood.id) }"
             class="mood-btn"
             @click="toggleMood(mood.id)"
-          >{{ mood.title }}</span>
+          >{{ mood.title }} /</span>
         </div>
       </div>
-      <input type="submit" value="Post" @click="$router.go()" />
+      <input type="submit" value="Post >" @click="$router.go()" class="signup-btn" />
     </form>
   </div>
 </template>
@@ -54,7 +54,6 @@ export default {
         console.log(this.feelog.mood);
         this.feelog.mood.push(mood_id);
         if (this.feelog.mood.length > 1) {
-          alert("무드는 1개까지만 선택할 수 있습니다!");
           this.feelog.mood.splice(index, 1);
         }
       } else {
@@ -75,17 +74,42 @@ export default {
 </script>
 
 <style>
+.signup-btn {
+  display: block;
+  font-size: 4em;
+  font-weight: 600;
+  color: #8ddca4;
+  align-self: flex-end;
+  background: linear-gradient(to right, #f58080, #8ddca4);
+  animation: rainbow 2s ease-in-out infinite;
+  background-clip: text;
+  -webkit-background-clip: text;
+  transition: color 0.2s ease-in-out;
+}
+.signup-btn:hover {
+  color: rgba(0, 0, 0, 0);
+}
+@keyframes rainbow {
+  0% {
+    background-position: left;
+  }
+  50% {
+    background-position: right;
+  }
+  100% {
+    background-position: left;
+  }
+}
+
 .selected {
-  color : green;
+  color: #f58080;
 
 }
 
 .title-tag {
   font-size: 2em;
   font-weight: 700;
-  color: #3b322c;
-  width: 50%;
-  box-shadow: inset 0 -15px 0 #8DDCA4; 
+  color: #8ddca4;
 }
 
 .form-group {
@@ -95,6 +119,8 @@ export default {
 .create-form {
   display: flex;
   flex-direction: column;
+  background: #3b322c 80%;
+  padding: 2em;
 }
 
 input[type="text"]{
@@ -102,8 +128,8 @@ input[type="text"]{
   height: 50px;
   font-size: 1.5em;
   outline: none;
-  color: #627278;
-  border-bottom: 2px solid  #f58080;
+  color:#f58080;
+  border-bottom: 2px solid #3b322c;
   transition: border-width 0.6s linear;
   margin-bottom: 50px;
   margin-top: 20px;
@@ -129,6 +155,17 @@ textarea {
   resize: none;
   font-size : 1.5em;
   color: #f58080;
+}
+
+.mood-btn {
+  font-size: 2em;
+  font-weight: 500;
+
+}
+
+.mood-btn:hover{
+  cursor: pointer;
+   color: #f58080;
 }
 
 </style>

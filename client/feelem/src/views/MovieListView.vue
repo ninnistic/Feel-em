@@ -3,7 +3,7 @@
     <b-container class="mb-1">
       <b-row cols="5">
     <router-link  v-for="(movie, index) in movieList" :key="index" :to="'/movie-detail/' + movie.id" >
-      <MovieCard :movie = movie showsVote/>
+      <MovieCard :movie = movie showsVote showsHome/>
     </router-link>
     </b-row>
   </b-container>
