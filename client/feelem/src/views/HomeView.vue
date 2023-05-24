@@ -28,7 +28,7 @@
   <div class="d-flex my-5 p-3" style="align-self: self-start;">
     <h1 class="fw-bold username" style="align-self: self-start;">Feelmer's PICK</h1>
   </div>
-  <b-container class="mb-1">
+  <b-container class="mb-1 ">
       <b-row cols="2">
     <router-link
       v-for="feelog in feelogList"
@@ -36,7 +36,7 @@
       :to="'/feelog-detail/' + feelog.id">
       <FeelogCard
         :feelog="feelog"
-      class="feelog-container" homeFeelog/>
+      class="feelog-container m-3" homeFeelog/>
       
     </router-link>
     </b-row>
@@ -114,7 +114,7 @@ a{
     box-shadow: inset 0 -15px 0 #8DDCA4; 
 }
 a:hover{
-  transform: scale(1.2);
+  transform: scale(1.05);
   transition:.5s;
 }
 

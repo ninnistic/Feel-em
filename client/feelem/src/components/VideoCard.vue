@@ -40,7 +40,7 @@
 									<h2 class="text-white movie-description">
 										달리거나, 죽거나.
 									</h2><br>
-									<p class="text-white movie-sub-description">죽은놈이 살아 돌아온 이유는 딱 하나지. 복수</p>
+									<p class="text-white">죽은놈이 살아 돌아온 이유는 딱 하나지. 복수</p>
 									<p class="text mb-4 fs-5" id="shortcut">
 										바로가기 >
 									</p>

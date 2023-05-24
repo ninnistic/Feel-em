@@ -1,10 +1,9 @@
 <template>
 <div>
 
-<div v-if="homeFeelog">  
-<div v-if="feelog" class="container">
+<div v-if="homeFeelog" class="container">  
 <div class="profile-container image">
-  <!-- <img src="/profile/profile1.png" alt="IMG" > -->
+  <img src="/profile/profile1.png" alt="IMG" >
   <router-link :to="'/account/' + feelog.username "> {{feelog.username}}</router-link>
 </div>
 <div class="feelog-container" style="overflow: hidden;">
@@ -16,11 +15,10 @@
 <p v-if="showsContent">{{feelog.content}}</p>
 </div>
 </div>
-</div>
 
 <div v-if="detailFeelog" class="form-group">
 <div class="user-card">
-<!-- <img src="@/assets/profile/profile1.png" alt="IMG" > -->
+  <img src="/profile/profile1.png" alt="IMG" >
 <router-link :to="'/account/' + feelog.username "><div class="card-user-name">{{feelog.username}}</div></router-link>
 </div>
 <div class="card-info">
@@ -90,6 +88,21 @@ export default {
   font-size: 20px;
 }
 
+.account-container{
+  display: flex;
+  justify-content:space-evenly;
+  flex-direction: row;
+  font-weight: bold;
+  color: #000000; 
+  background: #ffffff;
+  box-shadow: 0px 0px 0px 10px #ffeaea;
+  width:650px;
+  border-radius: 10px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  min-height: 180px;
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+  align-items: center;
+}
 .container{
   display: flex;
   justify-content:space-evenly;
