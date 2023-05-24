@@ -20,7 +20,7 @@
       :key="movie.movie_num"
       :to="'/movie-detail/' + movie.id"
     >
-      <MovieCard :movie="movie" />
+      <MovieCard :movie="movie" showsHome />
     </router-link>
   </b-row>
   </b-container>

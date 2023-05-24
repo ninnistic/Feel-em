@@ -1,6 +1,5 @@
 <template>
   <div>
-  <h1>영화 상세</h1>
   <div>
     <!-- <div v-if="isLoading" class="loading-container">
 	<div class="loading">
@@ -9,7 +8,7 @@
 </div> -->
     <!-- {{getMovieInfo.title}}
     <img :src="getImageUrl" alt="posterImage"> -->
-    <MovieCard :movie = movie showsOverview showsVote/>
+    <MovieCard :movie = movie showsDetail/>
     <FeelogCard v-for="feelog in feelogs" :feelog = feelog :key="feelog.id"  />
     <FeelogCreateForm :movie_id = movie_id />
   </div>
