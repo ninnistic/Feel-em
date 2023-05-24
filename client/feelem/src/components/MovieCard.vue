@@ -6,7 +6,7 @@
           :img-src="posterPath"
           img-alt="Image"
           img-top
-          style="max-width: 20rem"
+          style="max-width: 20rem; min-height: 470px;"
           class="card h-100"
         >
           <b-card-title class="card-title">{{ movie.title }} </b-card-title>
@@ -127,9 +127,10 @@ export default {
   padding-top: 30px;
 }
 
-img {
+div > img {
   width: 200px;
   filter: grayscale(30);
+  min-height: 350px;
 }
 
 img:hover {
@@ -147,6 +148,10 @@ img:hover {
   overflow: hidden;
 }
 
+.card-title{
+  overflow: hidden;
+  height: 60px;
+}
 .overview::after {
   content: "";
 
