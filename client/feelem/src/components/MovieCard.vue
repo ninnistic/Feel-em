@@ -19,10 +19,8 @@
 
     <div v-if="showsDetail">
       <div v-if="movie" class="detail-group">
-        <div data-scroll>
-          <p class="detail-title" tag="li" style="text-decoration: none; color: inherit;">{{ movie.title }}</p>
-          <p class="detail-overview">{{ movie.overview }}</p>
-        </div>
+        <p data-scroll="out" class="detail-title" tag="li" style="text-decoration: none; color: inherit;">{{ movie.title }}</p>
+        <p data-scroll="out" class="detail-overview">{{ movie.overview }}</p>
         <section class="detail-info">
         <img :src="backdropPath" alt="backdrop" class="backdrop" />
         <div class="detail-description">
@@ -176,6 +174,10 @@ img:hover {
   color: #627278;
 }
 
+html[data-scroll-dir-y="0"] .detail-overview {
+  transition-delay: 1s;
+}
+
 /* TODO: make global */
 [data-scroll] {
   transition-property: transform opacity;
@@ -185,12 +187,12 @@ img:hover {
 
 [data-scroll="in"] {
   opacity: 1;
-  transform: translateX(0) scale(1);
+  transform: translateX(0) scale(1) rotate(0);
 }
 
 [data-scroll="out"] {
   opacity: 0;
-  transform: translateX(6rem) scale(0.92);
+  transform: translateX(6rem) scale(0.92) rotate(6deg);
 }
 
 .backdrop {
