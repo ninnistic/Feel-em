@@ -1,5 +1,5 @@
 <template>
-<div class="container">
+<div class="account-container">
   <div class="clipboard">
     <div class= "binder">
           <div class="profile-card mx-5">
@@ -76,22 +76,24 @@
       
 
   </div>
+  <!-- <div class="feelog-container"> -->
       <div class="feelog-card m-5 p-5">
               <div class="d-flex my-3" style="align-self: self-start;">
                 <h1 class="fw-bold username" style="align-self: self-start;">{{ profile.username }}</h1>
                 <h1 class="fw-bold">님의 Feelog</h1>
               </div>
               <br>
-        <router-link
-          v-for="feelog in feelogs"
-          :key="feelog.id"
-          :to="'/feelog-detail/' + feelog.id">
-          <FeelogCard
-            :feelog="feelog" :account="account"
-          class="feelog-container-account my-5"/>
-          
-        </router-link>
-      </div>
+              
+                <router-link
+                  v-for="feelog in feelogs"
+                  :key="feelog.id"
+                  :to="'/feelog-detail/' + feelog.id">
+                  <FeelogCard
+                    :feelog="feelog" 
+                  class="feelog-container-account my-5" homeFeelog/>
+                </router-link>
+              </div>
+      <!-- </div> -->
   </div>
 </div> 
 </template>
@@ -247,14 +249,10 @@ export default {
   justify-content: center;
   
 }
-.feelog-container{
+.feelog-container{ 
   display: flex;
-  /* justify-content:space-between; */
-  flex-direction: column;
-  align-items:baseline;
-  width:20%;
-  
-}
+  justify-content: center ;
+ } 
 @keyframes fadeInUp {
     0% {
         opacity: 0;
