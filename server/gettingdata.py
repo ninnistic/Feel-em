@@ -2,6 +2,7 @@ import os
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'feelem.settings')
 
 import django
+
 django.setup()
 
 from movies.models import Genre, Movie
