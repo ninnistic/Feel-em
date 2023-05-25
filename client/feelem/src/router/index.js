@@ -1,12 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-// import SignupView from '@/views/SignupView'
-// import HomeView from '@/views/HomeView'
-// import LoginView from '@/views/LoginView'
-// import MovieListView from '@/views/MovieListView'
-// import MovieDetailView from '@/views/MovieDetailView'
-// import FeelogDetailView from '@/views/FeelogDetailView'
-// import MyPageView from '@/views/MyPageView'
+
 
 Vue.use(VueRouter)
 
