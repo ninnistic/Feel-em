@@ -17,7 +17,7 @@
         <br />
       </div>
       <div class="genre-recommend">
-        {{ nickname }}님이 좋아하는 장르인
+        <!-- {{ nickname }}님이 좋아하는 장르인 -->
         <!-- <span class="genre-point">{{ profile?.favorite_genre[0]?.name }}</span>
         <span class="genre-point">{{ profile?.favorite_genre[1]?.name }}</span>와 관련있는 영화들이예요! -->
       </div>
