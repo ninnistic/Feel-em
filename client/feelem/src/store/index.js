@@ -109,7 +109,6 @@ export default new Vuex.Store({
         console.log(err)
       })
     },
-    // Consider renaming to fetchAllMovies
     fetchProfile(context, nickname){
       axios({
         method : 'GET',
