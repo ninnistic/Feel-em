@@ -6,7 +6,7 @@
           <router-link to="/movielist">Movies</router-link> 
         </li>
         <li>
-          <router-link to="/home"><img src="@/assets/logo-white.png" alt="" style="width:150px;"></router-link>
+          <router-link to="/home"><img src="@/assets/logo-black.png" alt="" style="width:150px;"></router-link>
         </li>
         
         <!-- <li>
@@ -14,7 +14,7 @@
         </li> -->
         <li v-if="isLoggedIn" class="nav-login">
           <span>
-            <a @click="logout" style="color:white;">Logout</a>
+            <a @click="logout" style="color:black;">Logout</a>
           </span>
           <span>
             <router-link :to="'/account/' + nickname">{{ nickname }}</router-link>
@@ -149,7 +149,7 @@ a{
   padding: 5px;
   border-radius: 5px;
   /* background-color: #f4f3ee; */
-  color:white;
+  color:black;
 }
 
 .navbar a:hover {
