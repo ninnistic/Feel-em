@@ -35,7 +35,7 @@
         </div>
         <br />
         <div>
-          {{ profile }}
+          <!-- {{ profile }} -->
           <div>
             <div class="d-flex my-3" style="align-self: self-start">
               <h1 class="fw-bold username" style="align-self: self-start">
