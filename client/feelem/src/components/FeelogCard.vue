@@ -4,11 +4,11 @@
 <div v-if="homeFeelog" class="container">  
 <div class="profile-container image">
   <img src="/profile/profile1.png" alt="IMG" >
-  <router-link :to="'/account/' + feelog.username "> {{feelog.username}}</router-link>
+  <router-link :to="'/account/' + feelog.username" class="home-a"> {{feelog.username}}</router-link>
 </div>
 <div class="feelog-container" style="overflow: hidden;">
-<p style="font-size : 23px;	font-weight: 600;">{{movie_title.title}}</p>
-<p style="font-size : 20px;	font-weight: 300;">{{feelog.title}}</p>
+<p style="font-size : 23px;	font-weight: 600;" class="home-title">{{movie_title.title}}</p>
+<p style="font-size : 20px;	font-weight: 300;" >{{feelog.title}}</p>
 <i @click="like" v-if="islike" style="color:red;" class="bi bi-heart-fill"></i>
 <i @click="like" v-else style="color:red;" class="bi bi-heart"></i>
 
@@ -19,16 +19,21 @@
 <div v-if="detailFeelog" class="form-group">
 <div class="user-card">
   <img src="/profile/profile1.png" alt="IMG" >
-<router-link :to="'/account/' + feelog.username "><div class="card-user-name">{{feelog.username}}</div></router-link>
+<router-link :to="'/account/' + feelog.username" class="detail-a"><div class="card-user-name">{{feelog.username}}</div></router-link>
 </div>
 <div class="card-info">
 <p class="card-title">"{{feelog.title}}"</p>
 <p class="card-date">{{feelog.created_at}}</p>
-<i @click="like" v-if="islike" style="color:red;" class="bi bi-heart-fill like-heart"></i>
-<i @click="like" v-else style="color:red;" class="bi bi-heart like-heart"></i>
+<p class="card-content" >{{feelong.content}}</p>
+<i @click="like" v-if="islike" style="color:#f58080;" class="bi bi-heart-fill like-heart"></i>
+<i @click="like" v-else style="color:#f58080;" class="bi bi-heart like-heart"></i>
 </div>
 </div>
+
+
 </div>
+
+
 
 </template>
 
@@ -67,6 +72,35 @@ export default {
 </script>
 
 <style scoped>
+.home-a{
+  font-size: 20px;
+  font-weight: 500;
+  color: #1d2b30;
+  transition: 0.1s;
+}
+
+.home-a:hover{
+  background-color:  #627278;
+  color: #ffeaea;
+  padding: 0px 10px;
+  border-radius : 10px;
+}
+.home-title{
+  transition: 0.2s;
+}
+
+.home-title:hover{
+  background-color: #f58080;
+  padding: 0px 10px;
+  border-radius : 10px;
+}
+.detail-a{
+  color : #3b322c;
+  font-weight: 500;
+  background-color: #ffeaea;
+  margin-top: 5px;
+  border-radius: 20px;
+}
 .card-info {
   font-size: 1.5em;
 }
@@ -81,7 +115,8 @@ export default {
   margin: 3em 10em;
   display: flex;
   gap : 30px;
-  border-top : 1px solid black;
+  background-color: #a2ccae;
+  padding: 30px;
 }
 
 .card-user-name{
@@ -167,15 +202,17 @@ a{
   font-weight: 900;
   padding: 20px 0px;
   font-size: 1.2em;
+  color : #ffeaea;
 }
 
 .card-date{
-  font-weight: 300;
+  margin-top: 30px;
+  font-weight: 500;
   font-size: 0.8em;
   color: #627278;
 }
 
 .like-heart{
-  padding-left: 90rem;
+  padding-left: 80rem;
 }
 </style>

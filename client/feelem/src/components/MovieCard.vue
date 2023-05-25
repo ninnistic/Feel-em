@@ -136,7 +136,7 @@ export default {
 .detail-info{
   display: flex;
   gap: 30px;
-  border-top: 1px solid black;
+  
   padding-top: 30px;
 }
 
