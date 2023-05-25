@@ -9,7 +9,7 @@ from django.shortcuts import get_object_or_404, get_list_or_404
 from accounts.models import User
 from .models import Feelog, Mood
 from movies.models import Movie
-from .serializers import FeelogListSerializer, FeelogDetailSerializer, MovieFeelogSerializer, MoodSerializer,FeelogMoodDetailSerializer
+from .serializers import FeelogListSerializer, FeelogDetailSerializer, MovieFeelogSerializer, MoodSerializer,FeelogMoodDetailSerializer,FeelogMoodSerializer
 
 # 모든 feelog 조회(모든 내용 포함)
 @api_view(['GET'])
@@ -26,7 +26,7 @@ def user_feelog_list(request, username):
   if request.method == 'GET':
     user = get_object_or_404(User, username=username)
     feelogs = Feelog.objects.filter(user=user)
-    serializer = FeelogDetailSerializer(feelogs, many=True)
+    serializer = FeelogMoodSerializer(feelogs, many=True)
     return Response(serializer.data)
 
 @api_view(['GET','POST'])

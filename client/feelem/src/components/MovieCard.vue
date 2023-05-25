@@ -19,28 +19,26 @@
 
     <div v-if="showsDetail">
       <div v-if="movie" class="detail-group">
-        <div data-scroll>
-        <p class="detail-title" tag="li" style="text-decoration: none; color: inherit;">{{ movie.title }}</p>
-        <p class="detail-overview">{{ movie.overview }}</p>
-        </div>
+        <p data-scroll="out" class="detail-title" tag="li" style="text-decoration: none; color: inherit;">{{ movie.title }}</p>
+        <p data-scroll="out" class="detail-overview">{{ movie.overview }}</p>
         <section class="detail-info">
         <img :src="backdropPath" alt="backdrop" class="backdrop" />
-        <div class="detail-description">
+        <div class="detail-description" >
         <p class="desc">평점 <span class="desc-tag">{{ movie.vote_average }}</span></p>
         <p class="desc">개봉일 <span class="desc-tag">{{ movie.release_date }}</span></p>
         <span class="genre-tag"> {{ movie.genres[0]?.name }} </span>
         <span class="genre-tag"> {{ movie.genres[1]?.name }} </span>
-        <div data-scroll class="desc likes"><span class="popularity">{{movie.popularity}}</span>명의 사람이 이 영화를 좋아해요!</div>
+        <div data-scroll class="desc likes"><span class="popularity">
+          {{movie.popularity}}</span>명의 사람이 이 영화를 좋아해요!</div>
         </div>
+        
         </section>
       </div>
     </div>
   </div>
 </template>
-<script src="https://unpkg.com/scroll-out/dist/scroll-out.min.js"></script>
 <script>
 import ScrollOut from "scroll-out";
-
 
 export default {
   name: "MovieCard",
@@ -64,13 +62,13 @@ export default {
       return "https://image.tmdb.org/t/p/w500" + this.movie.backdrop_path;
     },
   },
-  created(){
-    
-  },
   mounted() {
-    ScrollOut({
-      threshold : 0
+    this.so = ScrollOut({
+      scope: this.$el
     });
+  },
+  destroyed() {
+    this.so.teardown();
   },
   methods: {
     saveMovie() {
@@ -82,8 +80,22 @@ export default {
 };
 </script>
 
-<style>
-
+<style scoped>
+.detail-description {
+  padding: 10px;
+  animation: fadein 3s;
+  -moz-animation: fadein 3s; /* Firefox */
+  -webkit-animation: fadein 3s; /* Safari and Chrome */
+  -o-animation: fadein 3s; /* Opera */
+}
+@keyframes fadein {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
 
 .likes{
   padding-top: 11rem;
@@ -93,17 +105,18 @@ export default {
   width: 50px;
   padding : 10px 20px;
   border-radius: 26px;
-  border : 2px solid #8ddca4;
-  background-color:  #8ddca4;
+  border : 2px solid #627278;
+  background-color:  #627278;
   margin: 5px;
   font-size: 20px;
+  color: white;
   
 }
 
 .popularity{
   font-size: 1.5em;
   font-weight: 700;
-  color: #f58080;
+  color: #8ddca4;
 }
 .desc{
   font-size: 2em;
@@ -123,22 +136,21 @@ export default {
 .detail-info{
   display: flex;
   gap: 30px;
-  border-top: 1px solid black;
+  
   padding-top: 30px;
 }
 
 div.cards img {
-  filter: grayscale(30);
-  min-height: 350px;
+  min-height: 380px;
 }
 
 img {
   filter: grayscale(30);
+  transition: filter 0.5s;
 }
 
 img:hover {
   filter: grayscale(0);
-  transition: 0.5s;
 }
 
 .card-container {
@@ -168,7 +180,7 @@ img:hover {
 }
 .detail-title {
   text-decoration: none;
-  font-size: 6em;
+  font-size: 7em;
   font-weight: 600;
   font-family: "Nanum Myeongjo", serif;
   color : #3b322c;
@@ -178,21 +190,32 @@ img:hover {
   font-family: "Nanum Myeongjo", serif;
   color: #627278;
 }
+.detail-overview::first-line {
+  font-size: 1.2em;
+  font-family: "Nanum Myeongjo", serif;
+  color: #8ddca4;
+  font-weight: 700;
+}
 
+html[data-scroll-dir-y="0"] .detail-overview {
+  transition-delay: 1s;
+}
+
+/* TODO: make global */
 [data-scroll] {
-  opacity: 0;
-  will-change: transform, scale, opacity;
-  transform: translateX(6rem) scale(0.92);
-  transition: all 2s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition-property: transform opacity;
+  transition-duration: 2s;
+  transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 [data-scroll="in"] {
   opacity: 1;
-  transform: translateX(0) scale(1);
+  transform: translateX(0) scale(1) rotate(0);
 }
 
 [data-scroll="out"] {
   opacity: 0;
+  transform: translateX(6rem) scale(0.92) rotate(6deg);
 }
 
 .backdrop {

@@ -14,4 +14,4 @@ class User(AbstractUser):
     favorite_genre = models.ManyToManyField(Genre, related_name='user_genre')
     is_superuser = models.BooleanField(default=False)
     save_movies = models.ManyToManyField(Movie, related_name="save_users",blank=True)
-    profile_pic = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='profile',blank=True, null=True)
+    profile_pic = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='profile',blank=True, null=True,default=1)

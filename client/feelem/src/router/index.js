@@ -1,12 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-// import SignupView from '@/views/SignupView'
-// import HomeView from '@/views/HomeView'
-// import LoginView from '@/views/LoginView'
-// import MovieListView from '@/views/MovieListView'
-// import MovieDetailView from '@/views/MovieDetailView'
-// import FeelogDetailView from '@/views/FeelogDetailView'
-// import MyPageView from '@/views/MyPageView'
+
 
 Vue.use(VueRouter)
 
@@ -52,6 +46,9 @@ const routes = [
 
 const router = new VueRouter({
   mode: 'history',
+  scrollBehavior() { 
+    return { x: 0, y: 0 }
+  },
   base: process.env.BASE_URL,
   routes
 })

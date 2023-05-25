@@ -15,17 +15,16 @@ export default new Vuex.Store({
     movies: [],
     feelogs: [],
     nickname: null,
+    recommended: [],
     profile: [],
     moods: [],
     isMovieSaved: false,
     genres: [],
+    currentUserFeelogs: [],
   },
   getters: {
     getRecommendedMovies(state) {
-      // For now, just return the first five movies.
-      // TODO: actually get reccomendations for the current user
-      return state.movies.slice(0, 5);
-      
+      return state.recommended;
     },
     getRecommendedFeelogs(state){
       return state.feelogs.slice(0, 5);
@@ -87,12 +86,33 @@ export default new Vuex.Store({
     SET_GENRES(state, data){
       state.genres = data
     },
+    SET_RECOMMENDED(state, data) {
+      state.recommended = data
+    },
+    SET_USERFEELOGS(state, data){
+      state.currentUserFeelogs = data
+    },
   },
   actions: {
+    fetchRecommendedMovies(context) {
+      // if (!this.getters.isSignedIn) return;
+      axios({
+        method : 'GET',
+        url : `${BASE_URI}/movies/all/recommended/`,
+        headers: authHeaders()
+      })
+      .then(res => {
+        console.log(res.data)
+        context.commit('SET_RECOMMENDED', res.data)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+    },
     // Consider renaming to fetchAllMovies
     fetchProfile(context, nickname){
       axios({
-        method : 'get',
+        method : 'GET',
         url : `${BASE_URI}/accounts/${nickname}`,
         headers: authHeaders()
       })
@@ -101,6 +121,20 @@ export default new Vuex.Store({
       })
       .catch(err => {
         console.log(err)
+      })
+    },
+    fetchFeelogsByName(context, username){
+      axios({
+        method : 'get',
+        url : `${BASE_URI}/feelogs/${username}`,
+        headers: authHeaders()
+      })
+      .then(res => {
+        console.log(res.data)
+        context.commit('SET_USERFEELOGS', res.data)
+      })
+      .catch(err => {
+        console.timeLog(err)
       })
     },
     fetchMovieList(context){
@@ -194,6 +228,7 @@ export default new Vuex.Store({
         console.log(err)
       })
     },
+    
     createFeelog(context, newFeelog){
       const id = newFeelog.id
       const title = newFeelog.title

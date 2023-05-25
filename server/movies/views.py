@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponse
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 # Authentication Decorators
@@ -11,6 +11,7 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework import status
 from django.shortcuts import get_object_or_404, get_list_or_404
 from .models import Movie, Genre
+from accounts.models import User 
 from .serializers import MovieDetailSerializer,MovieListSerializer, GenreListSerializer
 # Create your views here.
 
@@ -51,3 +52,13 @@ def save_movie(request,movie_pk):
             else:
                 user.save_movies.add(movie)
                 return Response({"like": 'success'})
+            
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def recommended(request):
+    user = request.user
+    user_likes = user.favorite_genre.all()
+    movies = Movie.objects.filter(genres__in=user_likes)[:15]
+    serializer = MovieListSerializer(movies, many=True)
+    return Response(serializer.data)

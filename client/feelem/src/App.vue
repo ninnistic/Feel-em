@@ -6,7 +6,7 @@
           <router-link to="/movielist">Movies</router-link> 
         </li>
         <li>
-          <router-link to="/home"><img src="@/assets/logo-white.png" alt="" style="width:150px;"></router-link>
+          <router-link to="/home"><img src="@/assets/logo-black.png" alt="" style="width:150px;"></router-link>
         </li>
         
         <!-- <li>
@@ -14,7 +14,7 @@
         </li> -->
         <li v-if="isLoggedIn" class="nav-login">
           <span>
-            <a @click="logout" style="color:white;">Logout</a>
+            <a @click="logout" style="color:black;">Logout</a>
           </span>
           <span>
             <router-link :to="'/account/' + nickname">{{ nickname }}</router-link>
@@ -68,10 +68,7 @@ export default {
 
 </script>
 
-<style>
-
-@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard.css");
-
+<style scoped>
 * {
   font-family: 'Pretendard';
   text-decoration: none;
@@ -103,11 +100,19 @@ nav{
   display: flex;
   justify-content: space-between;
   background-color: transparent;
+
 }
 
 body.fixed-nav .navbar {
   position: fixed;
   top: 0;
+  opacity: 1;
+  backdrop-filter: blur(10px);
+  mask: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 1) 45%,
+    rgba(0, 0, 0, 0) 100%
+  );
 } 
 
 .nav-login{
@@ -124,6 +129,7 @@ body.fixed-nav .navbar {
   width:100%;
   justify-content: space-around;
   align-items: start;
+  
 }
 
 .navbar li {
@@ -143,7 +149,7 @@ a{
   padding: 5px;
   border-radius: 5px;
   /* background-color: #f4f3ee; */
-  color:white;
+  color:black;
 }
 
 .navbar a:hover {

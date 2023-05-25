@@ -1,4 +1,5 @@
 <template>
+<div>
   <div v-if="moods" class="form-group">
     <form @submit.prevent="createFeelog" class="create-form">
       <label data-scroll for="feelog-title" class="title-tag"> Feelmer님의 Feelog를 남겨주세요.</label>
@@ -16,6 +17,27 @@
       <input type="submit" value="Post >" @click="$router.go()" class="signup-btn" />
     </form>
   </div>
+
+
+  <div v-if="moods && feelogPost" class="form-group">
+    <form @submit.prevent="createFeelog" class="create-form">
+      <label data-scroll for="feelog-title" class="title-tag"> Feelmer님의 Feelog를 남겨주세요.</label>
+      <input type="text" placeholder="한 줄 감상평" id="feelog-title" v-model="feelog.title" required>
+      <textarea  v-model="feelog.content" placeholder="더 자세한 감상도 들려주세요."></textarea>
+      <div>
+        <div v-for="mood in moods" :key="mood.id" class="mood">
+          <span
+            :class="{ selected: isSelected(mood.id) }"
+            class="mood-btn"
+            @click="toggleMood(mood.id)"
+          >{{ mood.title }} /</span>
+        </div>
+      </div>
+      <input type="submit" value="Post >" @click="$router.go()" class="signup-btn" />
+    </form>
+  </div>
+
+</div>
 </template>
 
 <script>
@@ -34,12 +56,18 @@ export default {
   },
   props: {
     movie_id: Number,
+    feelogPost: Boolean,
   },
   created() {
     this.$store.dispatch('fetchMoods')
   },
   mounted(){
-    ScrollOut({});
+    this.so = ScrollOut({
+      scope: this.$el
+    });
+  },
+  destroyed() {
+    this.so.teardown();
   },
   methods: {
     createFeelog() {
@@ -58,7 +86,7 @@ export default {
         console.log(this.feelog.mood);
         this.feelog.mood.push(mood_id);
         if (this.feelog.mood.length > 1) {
-          alert("1개 이상 고를 수 X")
+          alert("1개 이상 고를 수 없어요!")
           this.feelog.mood.splice(index, 1);
         }
       } else {
@@ -169,22 +197,6 @@ textarea {
 .mood-btn:hover{
   cursor: pointer;
    color: #f58080;
-}
-
-[data-scroll] {
-  opacity: 0;
-  will-change: transform, scale, opacity;
-  transform: translateY(6rem) scale(0.92);
-  transition: all 2s cubic-bezier(0.165, 0.84, 0.44, 1);
-}
-
-[data-scroll="in"] {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-}
-
-[data-scroll="out"] {
-  opacity: 0;
 }
 
 </style>

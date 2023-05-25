@@ -4,9 +4,12 @@
     <VideoCard class="video"/> 
   </div>
 
-  <div v-if="isLoggedIn" class="d-flex my-5 p-3" style="align-self: self-start;">
-    <h1 class="fw-bold username" style="align-self: self-start;">{{nickname}}</h1>
-    <h1 class="fw-bold">님께 딱 맞는 영화</h1>
+  <div v-if="isLoggedIn" class="d-flex flex-column my-5 p-3" style="align-self: self-start;">
+    <div class="d-flex">
+    <h1 class="fw-bold username" style="align-self: self-start;">지금 {{nickname}}</h1>
+    <h1 class="fw-bold">님께 딱 맞는 영화</h1><br>
+    </div>
+    <div class="genre-recommend">{{nickname}}님이 좋아하는 장르인 <span class="genre-point">{{profile.favorite_genre[0]?.name}}</span> <span class="genre-point">{{profile.favorite_genre[1]?.name}}</span>와 관련있는 영화들이예요!</div>
   </div>
   <div v-else class="d-flex my-5 p-3" style="align-self: self-start;">
     <h1 class="fw-bold username" style="align-self: self-start;">Feelmer</h1>
@@ -36,7 +39,7 @@
       :to="'/feelog-detail/' + feelog.id">
       <FeelogCard
         :feelog="feelog"
-      class="feelog-container m-4" homeFeelog/>
+      class="feelog-container m-3" homeFeelog />
       
     </router-link>
     </b-row>
@@ -71,12 +74,14 @@ export default {
     },
     nickname(){
       return this.$store.state.nickname;
-    }
+    profile() {
+      return this.$store.state.profile
+    },
 
   },
   created() {
-    // this.$store.actions.checkForLogin();
     this.$store.dispatch("fetchMovieList");
+    this.$store.dispatch("fetchRecommendedMovies");
     this.$store.dispatch("fetchFeelogList");
   },
   mounted() {
@@ -89,6 +94,14 @@ export default {
 </script>
 
 <style scoped>
+.genre-recommend{
+  font-size: 20px;
+}
+.genre-point{
+  font-weight: 500;
+  background-color: #8DDCA4;
+  padding: 4px;
+}
 .container{
   display: flex;
   justify-content: center;
@@ -102,6 +115,7 @@ export default {
 
 a{
   text-decoration: none;
+  transition: transform .5s;
 } 
 
 .video{
@@ -115,7 +129,6 @@ a{
 }
 a:hover{
   transform: scale(1.05);
-  transition:.5s;
 }
 
 </style>
