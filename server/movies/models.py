@@ -8,12 +8,11 @@ class Genre(models.Model):
 
 
 class Movie(models.Model):
-   
     movie_num = models.IntegerField()
     title = models.CharField(max_length=500)
     overview = models.TextField()
     poster_path = models.CharField(max_length=300)
-    release_date= models.DateField()
+    release_date= models.DateField(default=None,null=True, blank=True)
     popularity = models.IntegerField()
     vote_average = models.FloatField()
     genres = models.ManyToManyField(Genre, related_name='movies')

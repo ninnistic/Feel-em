@@ -59,6 +59,6 @@ def save_movie(request,movie_pk):
 def recommended(request):
     user = request.user
     user_likes = user.favorite_genre.all()
-    movies = Movie.objects.filter(genres__in=user_likes)[:20]
+    movies = Movie.objects.filter(genres__in=user_likes)[:15]
     serializer = MovieListSerializer(movies, many=True)
     return Response(serializer.data)
