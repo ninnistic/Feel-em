@@ -101,8 +101,8 @@
           <div style="display:flex;" >
             <h3 class="fw-bold" style="padding-left:10px;"># {{currentUserFeelogs[0].mood.title}}:{{currentUserFeelogs[0].mood.title_count}}</h3>
             <h3 class="fw-bold" style="padding-left:10px;"># {{currentUserFeelogs[1].mood.title}}:{{currentUserFeelogs[1].mood.title_count}}</h3>
-            <h3 class="fw-bold" style="padding-left:10px;">#{{currentUserFeelogs[2]?.mood.title}}:{{currentUserFeelogs[2].mood.title_count}}</h3>
-            <h3 class="fw-bold" style="padding-left:10px;">#{{currentUserFeelogs[3]?.mood.title}}:{{currentUserFeelogs[3].mood.title_count}}</h3>
+            <h3 class="fw-bold" style="padding-left:10px;">#{{currentUserFeelogs[2].mood?.title}}:{{currentUserFeelogs[2].mood.title_count}}</h3>
+
             </div>
             <br>
             <br>
