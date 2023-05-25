@@ -41,7 +41,6 @@
               <div class="d-flex my-3" style="align-self: self-start;">
                 <h1 class="fw-bold username" style="align-self: self-start;">{{ profile.username }}</h1>
                 <h1 class="fw-bold">님의 선호 장르</h1>
-                {{otherUserfeelogs}}
               </div>
               
               <div class="genre_icon_container">
