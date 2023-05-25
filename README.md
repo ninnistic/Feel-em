@@ -10,10 +10,12 @@ https://www.notion.so/Project-Feel-em-1e20a457fbdf4151bfac0cb4354742c2?pvs=4
 | 개발 기간  | 5월 17일 - 5월 26일 |
 | 주요 기능  | 1. 회원 가입 기능 - SNS 연동 로그인, 일반 로그인 <br> 2. 영화 기록 게시판 - CRUD 기능 <br> 3. 프로필 페이지 - CRUD 기능 <br> 4. 프로필 Follow/Unfollow 기능 <br> 5. 썸네일 메이커 - 이미지 추출 기능  |
 | 개발 언어 | JavaScript ES6 / Python3 / CSS / HTML / Django 3.2.18 / Vue2.7 / node.js 18.16.0 /  |
-| 개발 환경  | -  |
 | 배포 환경 | -  |
 | DB | SQLite SDN 3 |
 
+## 🐵업무 분담
+박지영 : [Frontend] 프로젝트 계획 및 설계 주도, 전반적인 Front-end 컴포넌트 및 화면 구성, 화면 디자인과 Vue 설계, DB Serializer 설계 및 영화 추천 로직 구현, Vue 버그 및 에러 수정 
+신지원 : [Backend] 전반적인 Django 백엔드 서버 구성 TMDB API를 통한 DB 데이터 추출과 저장, Front-end 파트에서 MyPage 화면 구성 담당, Django 및 DB 에러 수정, 프로젝트 발표 담당
 
 ## 🙊주제선정 
 1. **누구를 위한 서비스?**
@@ -47,7 +49,12 @@ https://www.notion.so/Project-Feel-em-1e20a457fbdf4151bfac0cb4354742c2?pvs=4
 
 ## DB 설계
 ![db](img/db.png)
-# 🎬개발일지
+
+## 추천기능 구현
+- 사용자가 선호하는 장르를 최대 5개까지 받아 장르를 바탕으로 데이터를 추출하고 15개 내외로 보여준다.  
+
+
+## 🎬개발일지
 ## 2023-05-17
 ### 할 일 리스트
 
