@@ -54,7 +54,7 @@ export default {
   },
   
   created() {
-    this.$store.actions.checkForLogin();
+    this.$store.dispatch("checkForLogin");
   },
   computed:{
     isLoggedIn() {
