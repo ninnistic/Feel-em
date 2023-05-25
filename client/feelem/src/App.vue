@@ -100,11 +100,19 @@ nav{
   display: flex;
   justify-content: space-between;
   background-color: transparent;
+
 }
 
 body.fixed-nav .navbar {
   position: fixed;
   top: 0;
+  opacity: 1;
+  backdrop-filter: blur(10px);
+  mask: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 1) 45%,
+    rgba(0, 0, 0, 0) 100%
+  );
 } 
 
 .nav-login{
@@ -121,6 +129,7 @@ body.fixed-nav .navbar {
   width:100%;
   justify-content: space-around;
   align-items: start;
+  
 }
 
 .navbar li {
