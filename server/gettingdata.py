@@ -19,7 +19,7 @@ def save_genre():
         genre.save()
 
 def save_movie():
-    for page in range(1,10):
+    for page in range(1,20):
         print(page)
         URL = f"https://api.themoviedb.org/3/movie/popular?api_key=3bf4d020baa9f161f8eaac60d2ab7205&language=ko-KR&page={page}"
 
@@ -28,10 +28,13 @@ def save_movie():
         data = response.json()
         
         for movie_data in data['results']:
+            if 'release_date' not in movie_data:
+                continue
             release_date = movie_data['release_date']
-            if release_date and int(release_date[:4]) >= 2010:
+
+            if int(release_date[:4]) >= 2010:
                 title = movie_data['title']
-                adult = ['막내 처제', '옥보단','슈퍼 마리오 브라더스','장화신은 고양이: 끝내주는 모험','피터팬 & 웬디','매기 심슨의 \"베이비 로그 원\"','매기']
+                adult = ['엄마','섹스','오르가즘','쾌락','막내 처제', '옥보단','슈퍼 마리오 브라더스','장화신은 고양이: 끝내주는 모험','피터팬 & 웬디','매기 심슨의 \"베이비 로그 원\"','매기','슬라임']
                 if not any(word in title for word in adult):
                     if movie_data['overview']:
                         if movie_data['backdrop_path']:

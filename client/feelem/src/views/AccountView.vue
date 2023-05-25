@@ -26,10 +26,10 @@
                 <div class="progress-bar" role="progressbar" style="width: 100%; background-color:#8DDCA4;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" >Feelog 1/1</div>
               </div>
               </div>
-              <div v-for="(mood, index) in currentUserFeelogs" :key=mood.id>
+              <!-- <div v-for="(mood, index) in currentUserFeelogs" :key=mood.id>
                 {{mood.id}}
                 <p>index : {{index}}</p>
-              </div>
+              </div> -->
             
           </div>
             <br>
@@ -40,7 +40,8 @@
         <div v-if="isCurrentUser">
               <div class="d-flex my-3" style="align-self: self-start;">
                 <h1 class="fw-bold username" style="align-self: self-start;">{{ profile.username }}</h1>
-                <h1 class=" description">님의 선호 장르</h1>
+                <h1 class="fw-bold">님의 선호 장르</h1>
+                {{otherUserfeelogs}}
               </div>
               
               <div class="genre_icon_container">
@@ -71,12 +72,17 @@
                 <h1 class="fw-bold username" style="align-self: self-start;">{{ profile.username }}</h1>
                 <h1 class=" description">님의 Follow</h1>
               </div>
+
               <div class="genre_icon_container">
-                <div v-for="feelmer in profile.followings" :key="feelmer.id" class="genre_icon">
-                  {{ feelmer.username }}
-                </div>
+                <router-link v-for="otherfeelmer in profile.followings" :key="otherfeelmer.id" :to="'/account/' + otherfeelmer.username">
+                  <div class="genre_icon">{{ otherfeelmer.username }}</div>
+                </router-link>
               </div>
       
+
+
+
+
         </div>
 
     <!-- <router-link
@@ -94,7 +100,6 @@
               <div class="d-flex my-3" style="align-self: self-start;">
                 <h1 class="fw-bold username" style="align-self: self-start;">{{ profile.username }}</h1>
                 <h1 class="fw-bold">님의 Feelog</h1>
-                
               </div>
               <br>
               
@@ -163,6 +168,7 @@ export default {
       const nickname = this.$route.params.nickname;
       return this.$store.getters.getUserFeelogsByName(nickname);
     },
+
     feelogcnt(){
       return length(this.feelog)
     },

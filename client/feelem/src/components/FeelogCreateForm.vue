@@ -86,7 +86,7 @@ export default {
         console.log(this.feelog.mood);
         this.feelog.mood.push(mood_id);
         if (this.feelog.mood.length > 1) {
-          alert("1개 이상 고를 수 X")
+          alert("1개 이상 고를 수 없어요!")
           this.feelog.mood.splice(index, 1);
         }
       } else {
