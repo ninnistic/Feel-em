@@ -74,6 +74,7 @@ export default {
     },
     nickname(){
       return this.$store.state.nickname;
+    },
     profile() {
       return this.$store.state.profile
     },

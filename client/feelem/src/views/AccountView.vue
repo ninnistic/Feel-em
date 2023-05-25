@@ -28,34 +28,25 @@
               <span><span class="fav-genre">{{ profile.favorite_genre[0]?.name }}</span> 장르 애호가 </span>
             </div>
             <div class="name-tag">
-              Following <span> 2 </span> | Followers <span> 0 </span>
+              Following <span> 2 </span>
             </div>
-            <div class="progress my-2">
-              <div
-                class="progress-bar"
-                role="progressbar"
-                style="width: 100%; background-color: #8ddca4"
-                aria-valuenow="100"
-                aria-valuemin="0"
-                aria-valuemax="100"
-              >
-                Feelog 1/1
-              </div>
-            </div>
+            <span>이 달의 Feelog 작성 목표 : {{ profile.goal_of_month}}</span>
           </div>
         </div>
         <br />
         <div>
-          <div v-if="isCurrentUser">
+          {{ profile }}
+          <div>
             <div class="d-flex my-3" style="align-self: self-start">
               <h1 class="fw-bold username" style="align-self: self-start">
                 {{ profile.username }}
+                
               </h1>
               <h1 class="description">님의 선호 장르</h1>
             </div>
 
             <div class="genre_icon_container">
-              <div
+              <div style="color:white"
                 v-for="genres in profile.favorite_genre"
                 :key="genres.id"
                 class="genre_icon"
@@ -73,6 +64,7 @@
             </div>
             <div class="genre_icon_container">
               <div
+              style="color:white"
                 v-for="movies in profile.save_movies"
                 :key="movies.id"
                 class="movie_icon"
@@ -83,7 +75,7 @@
             <br />
           </div>
           <div class="d-flex my-3" style="align-self: self-start">
-            <h1 class="fw-bold username" style="align-self: self-start">
+            <h1 class="fw-bold username" style="align-self: self-start color:white">
               {{ profile.username }}
             </h1>
             <h1 class="description">님의 Feelmers</h1>
@@ -103,12 +95,14 @@
       </div>
       
       <div class="feelog-card m-5 p-5">
-        <div class="moods m-5" style="display:flex; flex-direction:column">
-          <h1 style="fw-bold">이 달의 감정</h1>
+        <div class="moods mb-5 pb-5">
+          <div><h1 class="fw-bold username" style="width:198px;">이 달의 감정</h1></div>
+          <br>
           <div style="display:flex;" >
-            <h3 style="padding-left:10px;"># {{currentUserFeelogs[0].mood.title}}:{{currentUserFeelogs[0].mood.title_count}}</h3>
-            <h3 style="padding-left:10px;"># {{currentUserFeelogs[1].mood.title}}:{{currentUserFeelogs[1].mood.title_count}}</h3>
-            <h3 style="padding-left:10px;">#{{currentUserFeelogs[2]?.mood.title}}:{{currentUserFeelogs[2]?.mood.title_count}}</h3>
+            <h3 class="fw-bold" style="padding-left:10px;"># {{currentUserFeelogs[0].mood.title}}:{{currentUserFeelogs[0].mood.title_count}}</h3>
+            <h3 class="fw-bold" style="padding-left:10px;"># {{currentUserFeelogs[1].mood.title}}:{{currentUserFeelogs[1].mood.title_count}}</h3>
+            <h3 class="fw-bold" style="padding-left:10px;">#{{currentUserFeelogs[2]?.mood.title}}:{{currentUserFeelogs[2].mood.title_count}}</h3>
+            <h3 class="fw-bold" style="padding-left:10px;">#{{currentUserFeelogs[3]?.mood.title}}:{{currentUserFeelogs[3].mood.title_count}}</h3>
             </div>
             <br>
             <br>
@@ -208,6 +202,11 @@ export default {
 }
 .moods{
   height: 50px;
+  display:flex;
+  flex-direction:column;
+  position: relative;
+  top:-50px;
+  left: 5px;
 }
 
 .moods > p {
@@ -315,6 +314,10 @@ export default {
   min-width: 230px;
   justify-content: center;
 }
+.feelmo{
+  animation: fadeInUp 1s;
+}
+
 .feelog-container {
   display: flex;
   justify-content: center;
