@@ -12,10 +12,13 @@
                 v-if="!isCurrentUser"
                 @click="follow"
                 variant="primary"
-                size="sm"
+                size="xs"
                 :class="{ following_status: isfollowed }"
+                style="width:50px;height:20px;"
               >
-                {{ isfollowed ? "Unfollow" : "Follow" }}
+              <span style="font-size:10px; " v-if="isfollowed">Unfollow</span>
+              <span style="font-size:10px; " v-else>Follow</span>
+                <!-- {{ isfollowed ? "Unfollow" : "Follow" }} -->
               </b-button>
               <!-- <b-button v-else variant="primary" size="sm">
                 프로필 수정
@@ -100,14 +103,16 @@
       </div>
       
       <div class="feelog-card m-5 p-5">
-        <!-- <div class="moods">
-            <p>{{currentUserFeelogs[0].mood.title}}</p>
-            <p>{{currentUserFeelogs[0].mood.title_count}}</p>
-            <p>{{currentUserFeelogs[1].mood.title}}</p>
-            <p>{{currentUserFeelogs[1].mood.title_count}}</p>
-            <p>{{currentUserFeelogs[2]?.mood.title}}</p>
-            <p>{{currentUserFeelogs[2]?.mood.title_count}}</p>
-        </div> -->
+        <div class="moods m-5" style="display:flex; flex-direction:column">
+          <h1 style="fw-bold">이 달의 감정</h1>
+          <div style="display:flex;" >
+            <h3 style="padding-left:10px;"># {{currentUserFeelogs[0].mood.title}}:{{currentUserFeelogs[0].mood.title_count}}</h3>
+            <h3 style="padding-left:10px;"># {{currentUserFeelogs[1].mood.title}}:{{currentUserFeelogs[1].mood.title_count}}</h3>
+            <h3 style="padding-left:10px;">#{{currentUserFeelogs[2]?.mood.title}}:{{currentUserFeelogs[2]?.mood.title_count}}</h3>
+            </div>
+            <br>
+            <br>
+        </div>
         <div class="d-flex my-3" style="align-self: self-start">
           <h1 class="fw-bold username" style="align-self: self-start">
             {{ profile.username }}
@@ -203,7 +208,11 @@ export default {
 }
 .moods{
   height: 50px;
-  background-color: aqua;
+}
+
+.moods > p {
+  font-size: 20px;
+  color:#3b322c;
 }
 .feelmo{
   font-weight: 700;
@@ -238,8 +247,8 @@ export default {
   flex-direction: column;
 }
 .following_status {
-  background-color: blue;
-  color: beige;
+  background-color: #8ddca4;
+  color: white;
   flex-direction: row;
 }
 
