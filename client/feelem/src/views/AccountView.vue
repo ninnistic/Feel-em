@@ -88,7 +88,6 @@
               <div class="d-flex my-3" style="align-self: self-start;">
                 <h1 class="fw-bold username" style="align-self: self-start;">{{ profile.username }}</h1>
                 <h1 class="fw-bold">님의 Feelog</h1>
-                
               </div>
               <br>
               

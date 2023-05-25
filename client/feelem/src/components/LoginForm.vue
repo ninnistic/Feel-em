@@ -41,6 +41,7 @@ export default {
 
 .form-group {
   margin: 5em;
+  min-height: 100vh;
 }
 
 .login-form {

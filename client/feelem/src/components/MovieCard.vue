@@ -28,8 +28,10 @@
         <p class="desc">개봉일 <span class="desc-tag">{{ movie.release_date }}</span></p>
         <span class="genre-tag"> {{ movie.genres[0]?.name }} </span>
         <span class="genre-tag"> {{ movie.genres[1]?.name }} </span>
-        <div data-scroll class="desc likes"><span class="popularity">{{movie.popularity}}</span>명의 사람이 이 영화를 좋아해요!</div>
+        <div data-scroll class="desc likes"><span class="popularity">
+          {{movie.popularity}}</span>명의 사람이 이 영화를 좋아해요!</div>
         </div>
+        
         </section>
       </div>
     </div>
@@ -124,7 +126,7 @@ export default {
 }
 
 div.cards img {
-  min-height: 350px;
+  min-height: 380px;
 }
 
 img {
