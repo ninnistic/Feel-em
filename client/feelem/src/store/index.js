@@ -20,6 +20,7 @@ export default new Vuex.Store({
     moods: [],
     isMovieSaved: false,
     genres: [],
+    currentUserFeelogs: [],
   },
   getters: {
     getRecommendedMovies(state) {
@@ -87,7 +88,10 @@ export default new Vuex.Store({
     },
     SET_RECOMMENDED(state, data) {
       state.recommended = data
-    }
+    },
+    SET_USERFEELOGS(state, data){
+      state.currentUserFeelogs = data
+    },
   },
   actions: {
     fetchRecommendedMovies(context) {
@@ -117,6 +121,20 @@ export default new Vuex.Store({
       })
       .catch(err => {
         console.log(err)
+      })
+    },
+    fetchFeelogsByName(context, username){
+      axios({
+        method : 'get',
+        url : `${BASE_URI}/feelogs/${username}`,
+        headers: authHeaders()
+      })
+      .then(res => {
+        console.log(res.data)
+        context.commit('SET_USERFEELOGS', res.data)
+      })
+      .catch(err => {
+        console.timeLog(err)
       })
     },
     fetchMovieList(context){
@@ -210,6 +228,7 @@ export default new Vuex.Store({
         console.log(err)
       })
     },
+    
     createFeelog(context, newFeelog){
       const id = newFeelog.id
       const title = newFeelog.title
