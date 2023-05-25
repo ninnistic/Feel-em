@@ -26,7 +26,7 @@ def user_feelog_list(request, username):
   if request.method == 'GET':
     user = get_object_or_404(User, username=username)
     feelogs = Feelog.objects.filter(user=user)
-    serializer = FeelogDetailSerializer(feelogs, many=True)
+    serializer = FeelogMoodSerializer(feelogs, many=True)
     return Response(serializer.data)
 
 @api_view(['GET','POST'])
