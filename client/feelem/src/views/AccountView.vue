@@ -28,14 +28,14 @@
               <span><span class="fav-genre">{{ profile.favorite_genre[0]?.name }}</span> 장르 애호가 </span>
             </div>
             <div class="name-tag">
-              Following <span> 2 </span>
+              Following <span> {{ profile.followings_count }} </span>
             </div>
             <span>이 달의 Feelog 작성 목표 : {{ profile.goal_of_month}}</span>
           </div>
         </div>
         <br />
         <div>
-          <!-- {{ profile }} -->
+        
           <div>
             <div class="d-flex my-3" style="align-self: self-start">
               <h1 class="fw-bold username" style="align-self: self-start">

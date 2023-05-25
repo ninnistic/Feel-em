@@ -4,7 +4,7 @@ from .models import User,Profile
 from movies.models import Genre, Movie
 
 class UserSerializer(serializers.ModelSerializer):
-    # followings_count = serializers.IntegerField(source = 'followings.count')
+    followings_count = serializers.IntegerField(source = 'followings.count')
     class GenreSerializer(serializers.ModelSerializer):
         class Meta:
             model = Genre
@@ -54,6 +54,7 @@ class UserSignUpSerializer(serializers.ModelSerializer):
             model = Profile
             fields=('image',)
     profile_pic = UserProfileSerializer( read_only = True)
+
     class Meta:
         model = get_user_model()
         # fields=('username','password','email','goal_of_month','favorite_genre','followings','save_movies', 'genres')
