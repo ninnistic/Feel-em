@@ -17,7 +17,7 @@
                 <span>{{ profile.favorite_genre[0]?.name }} 장르 애호가 </span>
                 </div>
                 <div class="name-tag">
-                Following: 50 | Followers: 100
+                Following <span> 50 </span> | Followers <span> 100 </span>
                 </div>
               <!-- <span>
                 월별 Feelog표 횟수: {{ profile.goal_of_month }}
@@ -53,7 +53,7 @@
               <br>
               <div class="d-flex my-3" style="align-self: self-start;">
                 <h1 class="fw-bold username" style="align-self: self-start;">{{ profile.username }}</h1>
-                <h1 class="fw-bold">님이 찜한 영화 </h1>
+                <h1 class=" description">님이 찜한 영화 </h1>
               </div>
               <div class="genre_icon_container">
                   <div v-for="movies in profile.save_movies" :key="movies.id" class="movie_icon">
@@ -70,7 +70,7 @@
         </div> <!--iscurrent-->
               <div class="d-flex my-3" style="align-self: self-start;">
                 <h1 class="fw-bold username" style="align-self: self-start;">{{ profile.username }}</h1>
-                <h1 class="fw-bold">님의 Follow</h1>
+                <h1 class=" description">님의 Follow</h1>
               </div>
 
               <div class="genre_icon_container">
@@ -181,6 +181,7 @@ export default {
 </script>
 
 <style scoped>
+
 .feelog-card{
   width:100%;
 }
@@ -240,7 +241,6 @@ export default {
 .name-tag {
   font-size: 15px;
   font-weight: 200;
-  color: #F58080;
 }
 .nickname-tag {
   font-size: 20px;
@@ -254,7 +254,7 @@ export default {
   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
   padding: 5px;
   margin: 5px;
-  color: #ffffff;
+  color: #3b322c;
   font-weight: 600;
   text-align: center;
   display: flex;
@@ -269,7 +269,7 @@ export default {
   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
   padding: 5px;
   margin: 5px;
-  color: #ffffff;
+  color: #3b322c;
   font-weight: 600;
   text-align: center;
   display: flex;
@@ -303,4 +303,8 @@ a{
   text-decoration: none;
 }
 
+.name-tag > span{
+  color : #F58080;
+  font-weight: 500;
+}
 </style>

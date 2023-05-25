@@ -4,10 +4,12 @@
     <VideoCard class="video"/> 
   </div>
 
-  <div v-if="isLoggedIn" class="d-flex my-5 p-3" style="align-self: self-start;">
-    <h1 class="fw-bold username" style="align-self: self-start;">{{nickname}}</h1>
-    <h1 class="fw-bold">님께 딱 맞는 영화</h1>
-    <div>{{nickname}}님이 좋아하는 장르인 {{profile.favorite_genre[0]?.name}} {{profile.favorite_genre[1]?.name}}와 관련있는 영화들이예요!</div>
+  <div v-if="isLoggedIn" class="d-flex flex-column my-5 p-3" style="align-self: self-start;">
+    <div class="d-flex">
+    <h1 class="fw-bold username" style="align-self: self-start;">지금 {{nickname}}</h1>
+    <h1 class="fw-bold">님께 딱 맞는 영화</h1><br>
+    </div>
+    <div class="genre-recommend">{{nickname}}님이 좋아하는 장르인 <span class="genre-point">{{profile.favorite_genre[0]?.name}}</span> <span class="genre-point">{{profile.favorite_genre[1]?.name}}</span>와 관련있는 영화들이예요!</div>
   </div>
   <div v-else class="d-flex my-5 p-3" style="align-self: self-start;">
     <h1 class="fw-bold username" style="align-self: self-start;">Feelmer</h1>
@@ -93,6 +95,14 @@ export default {
 </script>
 
 <style scoped>
+.genre-recommend{
+  font-size: 20px;
+}
+.genre-point{
+  font-weight: 500;
+  background-color: #8DDCA4;
+  padding: 4px;
+}
 .container{
   display: flex;
   justify-content: center;

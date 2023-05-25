@@ -1,4 +1,5 @@
 <template>
+<div>
   <div v-if="moods" class="form-group">
     <form @submit.prevent="createFeelog" class="create-form">
       <label data-scroll for="feelog-title" class="title-tag"> Feelmer님의 Feelog를 남겨주세요.</label>
@@ -16,6 +17,27 @@
       <input type="submit" value="Post >" @click="$router.go()" class="signup-btn" />
     </form>
   </div>
+
+
+  <div v-if="moods && feelogPost" class="form-group">
+    <form @submit.prevent="createFeelog" class="create-form">
+      <label data-scroll for="feelog-title" class="title-tag"> Feelmer님의 Feelog를 남겨주세요.</label>
+      <input type="text" placeholder="한 줄 감상평" id="feelog-title" v-model="feelog.title" required>
+      <textarea  v-model="feelog.content" placeholder="더 자세한 감상도 들려주세요."></textarea>
+      <div>
+        <div v-for="mood in moods" :key="mood.id" class="mood">
+          <span
+            :class="{ selected: isSelected(mood.id) }"
+            class="mood-btn"
+            @click="toggleMood(mood.id)"
+          >{{ mood.title }} /</span>
+        </div>
+      </div>
+      <input type="submit" value="Post >" @click="$router.go()" class="signup-btn" />
+    </form>
+  </div>
+
+</div>
 </template>
 
 <script>
@@ -34,6 +56,7 @@ export default {
   },
   props: {
     movie_id: Number,
+    feelogPost: Boolean,
   },
   created() {
     this.$store.dispatch('fetchMoods')

@@ -23,7 +23,7 @@
         <p data-scroll="out" class="detail-overview">{{ movie.overview }}</p>
         <section class="detail-info">
         <img :src="backdropPath" alt="backdrop" class="backdrop" />
-        <div class="detail-description">
+        <div class="detail-description" >
         <p class="desc">평점 <span class="desc-tag">{{ movie.vote_average }}</span></p>
         <p class="desc">개봉일 <span class="desc-tag">{{ movie.release_date }}</span></p>
         <span class="genre-tag"> {{ movie.genres[0]?.name }} </span>
@@ -81,7 +81,21 @@ export default {
 </script>
 
 <style scoped>
-
+.detail-description {
+  padding: 10px;
+  animation: fadein 3s;
+  -moz-animation: fadein 3s; /* Firefox */
+  -webkit-animation: fadein 3s; /* Safari and Chrome */
+  -o-animation: fadein 3s; /* Opera */
+}
+@keyframes fadein {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
 
 .likes{
   padding-top: 11rem;
@@ -91,17 +105,18 @@ export default {
   width: 50px;
   padding : 10px 20px;
   border-radius: 26px;
-  border : 2px solid #8ddca4;
-  background-color:  #8ddca4;
+  border : 2px solid #627278;
+  background-color:  #627278;
   margin: 5px;
   font-size: 20px;
+  color: white;
   
 }
 
 .popularity{
   font-size: 1.5em;
   font-weight: 700;
-  color: #f58080;
+  color: #8ddca4;
 }
 .desc{
   font-size: 2em;
@@ -165,7 +180,7 @@ img:hover {
 }
 .detail-title {
   text-decoration: none;
-  font-size: 6em;
+  font-size: 7em;
   font-weight: 600;
   font-family: "Nanum Myeongjo", serif;
   color : #3b322c;
@@ -174,6 +189,12 @@ img:hover {
   font-size: 3em;
   font-family: "Nanum Myeongjo", serif;
   color: #627278;
+}
+.detail-overview::first-line {
+  font-size: 1.2em;
+  font-family: "Nanum Myeongjo", serif;
+  color: #8ddca4;
+  font-weight: 700;
 }
 
 html[data-scroll-dir-y="0"] .detail-overview {
