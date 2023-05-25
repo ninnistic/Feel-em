@@ -9,7 +9,7 @@
     <h1 class="fw-bold username" style="align-self: self-start;">지금 {{nickname}}</h1>
     <h1 class="fw-bold">님께 딱 맞는 영화</h1><br>
     </div>
-    <div class="genre-recommend">{{nickname}}님이 좋아하는 장르인 <span class="genre-point">{{profile.favorite_genre[0]?.name}}</span> <span class="genre-point">{{profile.favorite_genre[1]?.name}}</span>와 관련있는 영화들이예요!</div>
+    <div class="genre-recommend">{{nickname}}님이 좋아하는 장르인 <span class="genre-point">{{profile?.favorite_genre[0]?.name}}</span> <span class="genre-point">{{profile?.favorite_genre[1]?.name}}</span>와 관련있는 영화들이예요!</div>
   </div>
   <div v-else class="d-flex my-5 p-3" style="align-self: self-start;">
     <h1 class="fw-bold username" style="align-self: self-start;">Feelmer</h1>
