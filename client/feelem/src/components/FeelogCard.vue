@@ -23,8 +23,9 @@
 </div>
 <div class="card-info">
 <p class="card-title">"{{feelog.title}}"</p>
+<p class="card-content">{{feelog.content}}</p>
 <p class="card-date">{{feelog.created_at}}</p>
-<p class="card-content" >{{feelong.content}}</p>
+
 <i @click="like" v-if="islike" style="color:#f58080;" class="bi bi-heart-fill like-heart"></i>
 <i @click="like" v-else style="color:#f58080;" class="bi bi-heart like-heart"></i>
 </div>
@@ -72,6 +73,12 @@ export default {
 </script>
 
 <style scoped>
+
+.card-content{
+  color: #627278;
+  font-weight: 500;
+  overflow: hidden;
+}
 .home-a{
   font-size: 20px;
   font-weight: 500;

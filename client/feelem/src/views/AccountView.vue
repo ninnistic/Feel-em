@@ -125,7 +125,6 @@
             :feelog="feelog"
             class="feelog-container-account my-5"
             homeFeelog
-            showsContent
           />
         </router-link>
       </div>
