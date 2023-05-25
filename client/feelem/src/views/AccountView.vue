@@ -26,6 +26,11 @@
                 <div class="progress-bar" role="progressbar" style="width: 100%; background-color:#8DDCA4;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" >Feelog 1/1</div>
               </div>
               </div>
+              <div v-for="(mood, index) in currentUserFeelogs" :key=mood.id>
+                {{mood.id}}
+                <p>index : {{index}}</p>
+              </div>
+            
           </div>
             <br>
     <div>
@@ -37,6 +42,7 @@
                 <h1 class="fw-bold username" style="align-self: self-start;">{{ profile.username }}</h1>
                 <h1 class="fw-bold">님의 선호 장르</h1>
               </div>
+              
               <div class="genre_icon_container">
                   <div v-for="genres in profile.favorite_genre" :key="genres.id" class="genre_icon">
                     <span>{{genres.name}} </span>
@@ -123,6 +129,8 @@ export default {
   created() {
     const nickname = this.$route.params.nickname;
     this.$store.dispatch("fetchProfile", nickname);
+    this.$store.dispatch("fetchFeelogsByName", nickname);
+    
   },
   mounted() {},
   methods: {
@@ -139,6 +147,9 @@ export default {
   computed: {
     profile() {
       return this.$store.state.profile
+    },
+    currentUserFeelogs(){
+      return this.$store.state.currentUserFeelogs
     },
     profile_pics() {
       return this.profile.profile_pic.image
