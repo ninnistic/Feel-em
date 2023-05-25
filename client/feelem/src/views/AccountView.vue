@@ -75,7 +75,7 @@
             <br />
           </div>
           <div class="d-flex my-3" style="align-self: self-start">
-            <h1 class="fw-bold username" style="align-self: self-start color:white">
+            <h1 class="fw-bold username" style="align-self: self-start;">
               {{ profile.username }}
             </h1>
             <h1 class="description">님의 Feelmers</h1>
@@ -88,7 +88,7 @@
               :key="otherfeelmer.id"
               :to="'/account/' + otherfeelmer.username"
             >
-              <div class="genre_icon">{{ otherfeelmer.username }}</div>
+              <div style="color:white;" class="genre_icon">{{ otherfeelmer.username }}</div>
             </router-link>
           </div>
         </div>
@@ -99,9 +99,9 @@
           <div><h1 class="fw-bold username" style="width:198px;">이 달의 감정</h1></div>
           <br>
           <div style="display:flex;" >
-            <h3 class="fw-bold" style="padding-left:10px;"># {{currentUserFeelogs[0].mood.title}}:{{currentUserFeelogs[0].mood.title_count}}</h3>
-            <h3 class="fw-bold" style="padding-left:10px;"># {{currentUserFeelogs[1].mood.title}}:{{currentUserFeelogs[1].mood.title_count}}</h3>
-            <h3 class="fw-bold" style="padding-left:10px;">#{{currentUserFeelogs[2].mood?.title}}:{{currentUserFeelogs[2].mood.title_count}}</h3>
+            <h3 class="fw-bold" style="padding-left:10px;"># {{currentUserFeelogs[0].mood?.title}}:{{currentUserFeelogs[0].mood?.title_count}}</h3>
+            <h3 class="fw-bold" style="padding-left:10px;"># {{currentUserFeelogs[1].mood?.title}}:{{currentUserFeelogs[1].mood?.title_count}}</h3>
+            <h3 class="fw-bold" style="padding-left:10px;">#{{currentUserFeelogs[2].mood?.title}}:{{currentUserFeelogs[2].mood?.title_count}}</h3>
 
             </div>
             <br>
