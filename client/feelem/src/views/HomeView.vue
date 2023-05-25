@@ -36,7 +36,7 @@
       :to="'/feelog-detail/' + feelog.id">
       <FeelogCard
         :feelog="feelog"
-      class="feelog-container m-3" homeFeelog/>
+      class="feelog-container m-4" homeFeelog/>
       
     </router-link>
     </b-row>
