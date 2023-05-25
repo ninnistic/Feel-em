@@ -1,39 +1,42 @@
 <template>
   <div>
     <div v-if="showsHome" class="cards">
-      <b-col class="card-container" v-if="movie">
+      <b-col class="card-container">
         <b-card
           :img-src="posterPath"
           img-alt="Image"
           img-top
-          style="max-width: 20rem; min-height: 470px;"
+          style="max-width: 20rem; min-height: 470px"
           class="card h-100"
         >
-          <b-card-title class="card-title">{{ movie.title }} </b-card-title>
+          <b-card-title class="card-title">{{ movie?.title }} </b-card-title>
           <b-card-text class="overview">
-            {{ movie.overview }}
+            {{ movie?.overview }}
           </b-card-text>
         </b-card>
       </b-col>
     </div>
 
-    <div v-if="showsDetail">
-      <div v-if="movie" class="detail-group">
-        <p data-scroll="out" class="detail-title" tag="li" style="text-decoration: none; color: inherit;">{{ movie.title }}</p>
-        <p data-scroll="out" class="detail-overview">{{ movie.overview }}</p>
-        <section class="detail-info">
+    <div v-if="showsDetail && movie" class="detail-group">
+      <p data-scroll="out" class="detail-title">{{ movie.title }}</p>
+      <p data-scroll="out" class="detail-overview">{{ movie.overview }}</p>
+      <section class="detail-info">
         <img :src="backdropPath" alt="backdrop" class="backdrop" />
-        <div class="detail-description" >
-        <p class="desc">평점 <span class="desc-tag">{{ movie.vote_average }}</span></p>
-        <p class="desc">개봉일 <span class="desc-tag">{{ movie.release_date }}</span></p>
-        <span class="genre-tag"> {{ movie.genres[0]?.name }} </span>
-        <span class="genre-tag"> {{ movie.genres[1]?.name }} </span>
-        <div data-scroll class="desc likes"><span class="popularity">
-          {{movie.popularity}}</span>명의 사람이 이 영화를 좋아해요!</div>
+        <div class="detail-description">
+          <p class="desc">
+            평점 <span class="desc-tag">{{ movie.vote_average }}</span>
+          </p>
+          <p class="desc">
+            개봉일 <span class="desc-tag">{{ movie.release_date }}</span>
+          </p>
+          <span class="genre-tag"> {{ movie.genres[0]?.name }} </span>
+          <span class="genre-tag"> {{ movie.genres[1]?.name }} </span>
+          <div data-scroll class="desc likes">
+            <span class="popularity"> {{ movie.popularity }}</span
+            >명의 사람이 이 영화를 좋아해요!
+          </div>
         </div>
-        
-        </section>
-      </div>
+      </section>
     </div>
   </div>
 </template>
@@ -62,9 +65,10 @@ export default {
       return "https://image.tmdb.org/t/p/w500" + this.movie.backdrop_path;
     },
   },
-  mounted() {
+  updated() {
+    if (this.so) return;
     this.so = ScrollOut({
-      scope: this.$el
+      scope: this.$el.querySelector(".detail-group")
     });
   },
   destroyed() {
@@ -89,54 +93,53 @@ export default {
   -o-animation: fadein 3s; /* Opera */
 }
 @keyframes fadein {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
-.likes{
+.likes {
   padding-top: 11rem;
 }
 
-.genre-tag{
+.genre-tag {
   width: 50px;
-  padding : 10px 20px;
+  padding: 10px 20px;
   border-radius: 26px;
-  border : 2px solid #627278;
-  background-color:  #627278;
+  border: 2px solid #627278;
+  background-color: #627278;
   margin: 5px;
   font-size: 20px;
   color: white;
-  
 }
 
-.popularity{
+.popularity {
   font-size: 1.5em;
   font-weight: 700;
   color: #8ddca4;
 }
-.desc{
+.desc {
   font-size: 2em;
   margin-bottom: 1em;
-  color : #3b322c;
+  color: #3b322c;
 }
 .desc-tag {
   font-size: 1.5em;
   font-weight: 900;
-  color : #8ddca4;
+  color: #8ddca4;
 }
 
-.detail-group{
+.detail-group {
   margin: 10em;
 }
 
-.detail-info{
+.detail-info {
   display: flex;
   gap: 30px;
-  
+
   padding-top: 30px;
 }
 
@@ -163,7 +166,7 @@ img:hover {
   overflow: hidden;
 }
 
-.card-title{
+.card-title {
   overflow: hidden;
   height: 60px;
 }
@@ -183,7 +186,7 @@ img:hover {
   font-size: 7em;
   font-weight: 600;
   font-family: "Nanum Myeongjo", serif;
-  color : #3b322c;
+  color: #3b322c;
 }
 .detail-overview {
   font-size: 3em;

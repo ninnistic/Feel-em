@@ -61,7 +61,8 @@ export default {
   created() {
     this.$store.dispatch('fetchMoods')
   },
-  mounted(){
+  updated(){
+    if (this.so) return;
     this.so = ScrollOut({
       scope: this.$el
     });

@@ -32,7 +32,9 @@ export default {
   },
   computed : {
     movie() {
+      
       const id = this.$route.params.id
+      console.log(this.$store.state.movies.find(movie => movie.id == id))
       return this.$store.state.movies.find(movie => movie.id == id)
     },
     feelogs() {
